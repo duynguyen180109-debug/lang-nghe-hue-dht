@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Làng Hoa Giấy Thanh Tiên – Huế</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+
+  
+  <style>
+    :root{
+  --muted:#666;
+  --primary:#6a0dad;
+}
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f2ff;
+      color: #333;
+    }
+
+    header {
+      background: #6a0dad;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://phuotvivu.com/blog/wp-content/uploads/2021/12/lang-nghe-lam-hoa-giay-thanh-tien-o-hue-1024x552.jpg') center/cover no-repeat;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 8px 20px rgba(0,0,0,0.4);
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #6a0dad;
+      border-left: 6px solid #6a0dad;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 15px 0;
+    }
+
+    .content section{
+  padding:48px 0;
+}
+
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6a0dad;
+      color: white;
+      margin-top: 50px;
+    }
+
+
+    .img-center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.img-center img {
+ width: 100%;
+  max-width: 720px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.map-wrapper {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+.gallery img{
+  transition: .4s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+
+#backToTop:hover{
+  background:#6a0dad;
+  color:white;
+  transform: translateY(-4px);
+}
+
+/* hiệu ứng xuất hiện khi load */
+.fade-top{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.delay-1{ animation-delay: .2s }
+.delay-2{ animation-delay: .4s }
+.delay-3{ animation-delay: .6s }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* hiệu ứng khi cuộn tới */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* biến thể trái – phải nếu cần */
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-left.show,
+.reveal-right.show {
+  transform: translateX(0);
+}
+
+
+/* Ảnh bay từ trái */
+.reveal-img-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.reveal-img-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+
+@media (max-width: 768px){
+  .hero{
+    height: 200px;
+    font-size: 26px;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  header{
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  header h1{
+    font-size: 18px;
+  }
+
+  nav a{
+    margin-left: 10px;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 600px){
+  .lb-btn{
+    font-size: 32px;
+  }
+  .lb-close{
+    font-size: 36px;
+  }
+}
+
+.reveal,
+.reveal-img-left{
+  will-change: transform, opacity;
+}
+
+
+  </style>
+
+  
+</head>
+<body>
+
+<header class="fade-top">
+  <h1>Làng nghề truyền thống Huế</h1>
+  <nav>
+    <a href="LangNgheTruyenThongHue.html">🏠Trang chủ</a>
+  </nav>
+</header>
+
+<section class="hero fade-top delay-1">
+  Làng Hoa Giấy Thanh Tiên 
+</section>
+
+<div class="content">
+
+  <h2 class="reveal reveal-left">Giới thiệu</h2>
+  <p class="reveal">
+    Làng hoa giấy Thanh Tiên là làng nghề truyền thống hơn "300 năm tuổi", nổi tiếng với việc làm hoa giấy phục vụ trang trí, lễ hội và đời sống tín ngưỡng.
+  </p>
+  <h2 class="reveal reveal-left">Vị Trí</h2>
+  <p class="reveal">
+    Nằm cách trung tâm thành phố Huế khoảng 10 km, làng Thanh Tiên thuộc xã Phú Mậu, huyện Phú Vang, tỉnh Thừa Thiên Huế nổi tiếng với nghề làm hoa giấy truyền thống hàng trăm năm nay. 
+  </p>
+
+
+
+
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.388577046374!2d107.57844148307802!3d16.506469088049215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a100617da4bf%3A0x1728af2a1468f9b!2zTMOgbmcgSG9hIGdp4bqleSBUaGFuaCBUacOqbg!5e0!3m2!1svi!2s!4v1765512262719!5m2!1svi!2s" 
+    width="100%" 
+    height="350" 
+    style="border:0; border-radius:10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
+  <p class="reveal">
+     Theo sử liệu, nghề làm hoa giấy Thanh Tiên đã hình thành từ thời các chúa Nguyễn (thế kỷ XVI – XVII) và được ghi chép trong Đại Nam nhất thống chí như một trong những nghề thủ công tiêu biểu của xứ Huế. Tương truyền rằng, vào triều Gia Long, một vị quan Bộ Lễ gốc làng Thanh Tiên đã dâng lên nhà vua những cành hoa giấy ngũ sắc, trong đó ba bông lớn tượng trưng cho Quân – Sư – Phụ (hoặc Trung – Hiếu – Nghĩa) và năm bông nhỏ bao quanh biểu thị Nhân – Lễ – Nghĩa – Trí – Tín. Trước ý nghĩa cao đẹp ấy, vua Gia Long vô cùng hài lòng và khuyến khích dân làng phát triển nghề, để hoa giấy hiện diện trong các lễ nghi của kinh thành.
+  </p>
+
+  <div class="img-center reveal-img-left">
+  <img src="https://api.sovaba.travel/uploads/hoa_giay_thanh_tien_hue_3ef9a8194f.jpg" alt="Hoa giấy Thanh Tiên">
+</div>
+
+  <h2 class="reveal reveal-left">Cách làm hoa giấy</h2>
+  <p class="reveal">
+    Nghề làm hoa giấy Thanh Tiên không đơn thuần là một quy trình thủ công, mà là nghệ thuật sống động được thổi hồn từ bàn tay khéo léo và tâm hồn tinh tế của người dân xứ Huế. Từng bông hoa không chỉ là sản phẩm, mà còn là kết tinh của sự kiên nhẫn, óc thẩm mỹ và niềm tự hào về một di sản trăm năm.
+  </p>
+ <p class="reveal">
+    Khi mùa thu về, khoảng tháng 8 âm lịch, người dân Thanh Tiên lại rủ nhau ra vườn đốn tre. Tre được chẻ nhỏ, phơi khô, chọn lọc kỹ càng để làm cành hoa. Với họ, mỗi cành tre không chỉ là vật liệu, mà còn là “xương sống” nâng đỡ cho cái đẹp. Song song đó, những tờ giấy thủ công được nhuộm thành nhiều gam màu rực rỡ: hồng, tím, xanh, vàng, trắng vừa gợi sắc xuân, vừa ẩn chứa ý niệm ngũ hành. Đọt sắn cũng được người dân hái về, tỉ mỉ thụt lõi để tạo thành nhụy hoa, đặc biệt là cho những bông sen.
+  </p>
+
+<div class="img-center reveal-img-left">
+  <img src="https://s3-ap-southeast-1.amazonaws.com/cntatr-assets-ap-southeast-1-250226768838-55a62c9399d4d8a6/2023/07/lang-hoa-giay-thanh-tien-1-1024x682.jpg?tr=q-70,c-at_max,w-1000,h-600" alt="Hoa giấy Thanh Tiên">
+</div>
+
+
+
+  <p class="reveal">
+    Từng cánh giấy mỏng manh qua bàn tay nghệ nhân bỗng trở thành cánh hoa có hồn, với những nếp gấp mềm mại và dáng hoa thanh thoát. Người dân Thanh Tiên mô phỏng vẻ đẹp của hoa sen, hoa cúc, hoa hồng, hoa huệ hay cả những loài hoa dại ven đường. Trong đó, hoa sen giấy được coi là thử thách lớn nhất: khó đến mức cả làng chỉ còn chừng mươi hộ gia đình giữ được kỹ thuật tinh xảo này. Với họ, mỗi bông sen không chỉ là một sản phẩm, mà còn là sự kế thừa của bí quyết cha ông để lại. 
+  </p>
+  <p class="reveal">
+    Khi các cánh hoa đã đủ hình hài, người thợ ghép chúng thành từng cành. Một cành hoa truyền thống thường gồm 3 bông lớn ở giữa và 5 bông nhỏ xung quanh, gợi nhắc đến triết lý Tam Cương – Ngũ Thường trong Nho học. Hoàn thiện xong, những cành hoa được cắm vào “chông” tre, tạo thành bó lớn để mang ra chợ hoặc đưa lên phố. Với người dân, khoảnh khắc nhìn cả “rừng hoa giấy” bung nở trên sân nhà chính là niềm vui lớn nhất, bởi nó tượng trưng cho sự sung túc, an lành và nét đẹp bền vững của Huế.
+  </p>
+
+<h2 class="reveal reveal-left">Hình ảnh</h2>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+      <div class="gallery"><img src="https://s3-ap-southeast-1.amazonaws.com/cntatr-assets-ap-southeast-1-250226768838-55a62c9399d4d8a6/2023/07/lang-hoa-giay-thanh-tien-1-1024x682.jpg?tr=q-70,c-at_max,w-1000,h-600" class="lb-img"></div>
+      <div class="gallery"><img src="https://www.lagunalangco.com/wp-content/uploads/2025/04/lang-nghe-truyen-thong-hue-3.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://vcdn1-dulich.vnecdn.net/2024/01/26/Thu-Nguyen-1706258519.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=kitutvCiO-e4qw5PEHVxoA" class="lb-img"></div>
+      <div class="gallery"><img src="https://s3-ap-southeast-1.amazonaws.com/cntatr-assets-ap-southeast-1-250226768838-55a62c9399d4d8a6/2023/07/lang-hoa-giay-thanh-tien-5-1024x682.jpg?tr=q-70,c-at_max,w-1000,h-600" class="lb-img"></div>
+    </div>
+    
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+</div>
+
+<footer>
+  © 2025 – Làng Hoa Giấy Thanh Tiên
+</footer>
+<div id="backToTop">↑</div>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+<script>
+const revealElements = document.querySelectorAll(
+  '.reveal, .reveal-img-left'
+);
+
+let ticking = false;
+
+function revealOnScroll(){
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach(el => {
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 80){
+      el.classList.add('show');
+    }
+  });
+
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(revealOnScroll);
+    ticking = true;
+  }
+});
+
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Làng Bún Vân Cù - Huế</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f2ff;
+      color: #333;
+    }
+
+    header {
+      background: #6a0dad;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://media.vov.vn/sites/default/files/styles/large_watermark/public/2025-02/bun_van_cu_1.jpg') center/cover no-repeat;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 8px 20px rgba(0,0,0,0.4);
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #6a0dad;
+      border-left: 6px solid #6a0dad;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 15px 0;
+    }
+
+    section{padding:48px 0}
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+
+  
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6a0dad;
+      color: white;
+      margin-top: 50px;
+    }
+
+
+    .img-center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.img-center img {
+  max-width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.map-wrapper {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+:root{
+  --muted:#666;
+}
+.gallery img{
+  transition: .4s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+
+#backToTop:hover{
+  background:#6a0dad;
+  color:white;
+  transform: translateY(-4px);
+}
+
+/* hiệu ứng xuất hiện khi load */
+.fade-top{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.delay-1{ animation-delay: .2s }
+.delay-2{ animation-delay: .4s }
+.delay-3{ animation-delay: .6s }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* hiệu ứng khi cuộn tới */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* biến thể trái – phải nếu cần */
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-left.show,
+.reveal-right.show {
+  transform: translateX(0);
+}
+
+
+/* Ảnh bay từ trái */
+.reveal-img-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.reveal-img-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px){
+
+  header{
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  nav a{
+    margin: 0 10px;
+  }
+
+  .hero{
+    height: 180px;
+    font-size: 24px;
+    padding: 0 12px;
+    text-align: center;
+  }
+
+  .content{
+    margin: 25px auto;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  p{
+    font-size: 15px;
+  }
+
+  .gallery img{
+    height: 140px;
+  }
+
+  .img-center img{
+    max-width: 100%;
+  }
+
+  .lb-btn{
+    font-size: 32px;
+  }
+
+  .lb-close{
+    font-size: 36px;
+  }
+}
+
+
+  </style>
+
+  
+</head>
+<body>
+
+<header class="fade-top">
+  <h1>Làng nghề truyền thống Huế</h1>
+  <nav>
+    <a href="LangNgheTruyenThongHue.html">🏠Trang chủ</a>
+  </nav>
+</header>
+
+<section class="hero fade-top delay-1">
+  Làng bún Vân Cù
+</section>
+
+<div class="content">
+
+  <h2 class="reveal reveal-left">Giới thiệu</h2>
+  <p class="reveal">
+   Xứ Huế từ lâu được biết đến với danh xưng "Thiên đường ẩm thực" với hàng ngàn món ăn đa dạng, phong phú. Những món ngon xứ Huế nổi tiếng có thể kể đến như: Bún bò Huế, bún hến, bún nghệ, bún giấm nuốc, bún chả cá, bún chay... Thật không quá ngạc nhiên khi những món ngon xứ Huế lại có nguyên liệu chính là bún nhiều đến vậy. Bởi lẽ, chính ở Huế, bún cũng là một loại đặc sản, nổi danh nhất là bún của làng nghề truyền thống Vân Cù.
+  </p>
+  <h2 class="reveal reveal-left">Vị Trí</h2>
+  <p class="reveal">
+    Vân Cù là tên một làng nằm ven sông Bồ, nay thuộc xã Hương Toàn, thị xã Hương Trà, tỉnh Thừa Thiên Huế. Tính từ chợ Đông Ba, làng nằm cách kinh thành Huế khoảng 10km về phía Tây Bắc.
+  </p>
+
+
+
+
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.914241685183!2d107.54152090974829!3d16.530426584152053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a7bebffe11f3%3A0x53c72ddea95bc3f!2zxJDDrG5oIEzDoG5nIFbDom4gQ8O5!5e0!3m2!1svi!2s!4v1765547453364!5m2!1svi!2s" 
+    width="100%" 
+    height="350" 
+    style="border:0; border-radius:10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
+  <p class="reveal">
+   Theo sách “Ô Châu cận lục” của cụ Dương Văn An, làng Vân Cù có bề dày lịch sử trên 500 năm. Ban đầu, làng có tên là Đào Cù thuộc huyện Đan Điền, chuyên nghề nung gạch. Sau đó, làng bỏ nghề gạch theo nghề bún nên có thêm tên tục là làng Bún.
+  </p>
+  <p class="reveal">
+  Cũng có truyền thuyết rằng, thuở xưa có một đoàn người từ Đàng Ngoài theo chân chúa Nguyễn Hoàng vào Nam lập nghiệp tại làng Cổ Tháp, thuộc huyện Hương Điền (nay tách thành thị xã Hương Trà, huyện Phong Điền và huyện Quảng Điền, tỉnh Thừa Thiên Huế). Trong số đó có một cô gái xinh đẹp và giỏi giang nên được mọi người yêu mến. Trong khi dân làng sinh sống bằng nghề nông, cô gái thì chọn cách làm bún từ những hạt gạo xứ này. Vì làm bún rất ngon nên được mọi người gọi thân thương là cô Bún. Tuy nhiên, có vài kẻ ghen ghét nhân lúc mất ba mùa lúa liên tiếp đã rêu rao rằng thần linh quở phạt dân làng vì cô Bún dám lấy hạt ngọc của trời để ngâm, để chà, để xát. Vì thế, mọi người đùng đùng nổi giận và buộc cô Bún phải bỏ việc làm bún hoặc rời làng ra đi. Cô chọn cách thứ hai để giữ nghề.</p>
+  <p class="reveal">
+    Là người phúc hậu nên dân làng ban ân cho cô được chọn hướng đi, đồng thời cử thêm năm chàng trai khỏe mạnh khiêng giúp cối đá. Đoàn người cứ đi mãi về phía Đông. Đến khi chàng trai thứ năm quỵ xuống vì cõng cối đá nặng trên lưng, cô Bún nghĩ là do duyên trời sắp đặt. Nhìn xung quanh cây cỏ tốt tươi, lại còn có dòng sông mát rượi trong lành nên cô Bún quyết định chọn đây là nơi lập nghiệp. Từ đó, ngày qua ngày cô bày cho dân làng cách làm bún. Nghề làm bún ở Vân Cù cũng được hình thành từ đó.
+  </p>
+  <div class="img-center reveal-img-left">
+  <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg" alt="Làng bún Vân Cù">
+</div>
+
+  <h2 class="reveal reveal-left">Quy trình làm bún Vân Cù</h2>
+  <p class="reveal">
+   Ngày xưa, nghề làm bún là một nghề công phu và đòi hỏi quá trình làm rất vất vả. Nghề làm bún cần có chày, cối để giã gạo; có khuôn để vặn bún; có lò lửa để luộc bún; có thúng, mủng để đựng bún…
+  </p>
+  <p class="reveal">
+   Để làm nên sợi bún ngon, gạo được dùng phải là gạo Khang dân (người Huế gọi là gạo ruộng), là loại gạo dùng để nấu cơm khô nổi tiếng ăn không ngán. Gạo được rửa sạch kỹ lớp cám bên ngoài từ 4-5 lần, ngâm 2 ngày thì hạt gạo khô ban đầu trở thành dẻo và no nước. Bí quyết đặc biệt là sau khi ngâm xong thì bỏ muối hột sống (thành phần quan trọng để bún bớt bị chua trong quá trình làm mà lại có vị mặn giúp bún ăn ngon, đậm đà).
+  </p>
+<p class="reveal">
+Sau đó, cho gạo vào cối giã, gạn lọc thành bột khô. Sau khi nấu chín bột, người làm bún phải dùng tay đánh bột nhuyễn thành hồ, sau đó bỏ vào khuôn vặn. Sợi bột sau khi đi qua lỗ khuôn được nhúng ngay vào nồi nước đang sôi, sợi bún từ đó được thành hình. Bước cuối cùng là làm nguội nhanh sợi bún bằng nước lạnh.</p>
+<div class="img-center reveal-img-left">
+  <img src="https://khamphahue.com.vn/Portals/0/DiSan/NgheTruyenThong/BunVanCu/2024_12_11_danhmucdisan_NghebunVanCu_.jpg?ver=2024-12-13-100942-190" alt="Làng bún Vân Cù">
+</div>
+
+
+
+  <p class="reveal">
+    Muốn con bún không quá bở cũng không quá dai, người làm bún phải pha thêm bột lọc. Nghề bún không chỉ đòi hỏi ở người làm sức khoẻ mà còn đòi hỏi sự tinh tế trong cách pha chế. Tỷ lệ bột lọc cho vào trong bún không có công thức cụ thể mà đòi hỏi kinh nghiệm của người làm nghề.
+  </p>
+  <p class="reveal">
+    Ngày nay, để đáp ứng nhu cầu ngày càng nhiều của thị trường, người dân làng Vân Cù đã biết ứng dụng máy móc, thiết bị kỹ thuật vào quy trình sản xuất bún, vừa cho năng suất cao, đảm bảo vệ sinh an toàn thực phẩm vừa giải phóng sức lao động cho người dân thôn Vân Cù. Tuy nhiên, để đảm bảo độ thơm ngon đặc trưng của sợi bún làng Vân, nhiều công đoạn thủ công vẫn được người dân nơi đây duy trì.
+  </p>
+   <p class="reveal">
+   Bún Vân Cù xưa có 3 loại là bún con, bún lá và bún mớ. Hiện nay chỉ còn bún con (những lọn bún quấn lại với nhau, dài già gang tay, rất tiện lợi cho việc ăn uống đơn giản) và bún mớ (còn gọi là bún “ngảo” hay bún kí lô, loại người Huế thường ăn đại trà ngày nay).</p>
+
+<h2 class="reveal reveal-left">Giá trị của Di sản ẩm thực:</h2>
+
+<p class="reveal">
+  Bún Vân Cù thành phẩm ngày ngày được người dân trong làng và các đầu mối thu mua đưa đi giao khắp các chợ, quán ăn, nhà hàng trong tỉnh, góp phần tạo nên thương hiệu cho món “bún bò Huế” nức tiếng gần xa.
+</p>
+<p class="reveal">
+  Sợi bún Vân Cù màu trắng ngà, mùi thơm như hương gạo mới xay. Điều đặc biệt là không cần ăn kèm cao lương mỹ vị gì, nhiều khi chỉ cần một chén nước mắm chanh tỏi ớt cũng đủ làm thực khách nhớ mãi sợi bún ở ngôi làng ven phía sông Bồ…
+</p>
+<p class="reveal">
+  Khác với những làng nghề truyền thống khác, các sản phẩm đều có thể để được rất lâu, trở thành hàng lưu niệm. Sợi bún tươi Vân Cù được sản xuất và tiêu thụ trong ngày. Điều khiến cho sợi bún bé nhỏ trở thành niềm tự hào của một làng quê, rồi trở thành một làng nghề truyền thống như Vân Cù ngày nay chính là ở chất lượng của bún Vân Cù đã gắn liền với những món ngon đặc trưng của xứ Huế; ở sự cần cù, chịu thương chịu khó của bao thế hệ người làng Vân Cù, góp vào một nguyên liệu chính yếu của kho tàng ẩm thực độc đáo xứ Huế.
+</p>
+<h2 class="reveal reveal-left">Hình ảnh</h2>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+      <div class="gallery"><img src="https://cdn.realtech.com.vn/uploads/gostay/news/2729/nghe-lam-bun-lang-van-cu.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://media.vietnamplus.vn/images/ec8177852ad9f8006058dcf997b39405d07dee2316d11a166624143d54c7b6d1d46fb93569dc1060eace4bce688bc7eb/bun-van-cu3-1188.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://langngheviet.com.vn/stores/news_dataimages/2025/022025/25/10/vc5-kgwd20250225103624.jpg?rt=20250225103646" class="lb-img"></div>
+      <div class="gallery"><img src="https://cdn-i2.congthuong.vn/stores/news_dataimages/2025/022025/17/10/32c5536aa0781e26476920250217100714.jpg?rt=20250217101141" class="lb-img"></div>
+    </div>
+   
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+</div>
+
+<footer>
+  © 2025 – Làng bún Vân Cù
+</footer>
+<div id="backToTop">↑</div>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+
+<script>
+const revealElements = document.querySelectorAll(
+  '.reveal, .reveal-img-left'
+);
+
+let ticking = false;
+
+function revealOnScroll(){
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach(el => {
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 80){
+      el.classList.add('show');
+    }
+  });
+
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(revealOnScroll);
+    ticking = true;
+  }
+});
+
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+
+
+</body>
+</html>

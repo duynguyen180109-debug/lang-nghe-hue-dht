@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Làng nghề mây tre đan Bao La - Huế</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+<!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+
+
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f2ff;
+      color: #333;
+    }
+
+    header {
+      background: #6a0dad;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/016-9-41-42.jpg') center/cover no-repeat;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 8px 20px rgba(0,0,0,0.4);
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #6a0dad;
+      border-left: 6px solid #6a0dad;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 15px 0;
+    }
+
+    section{padding:48px 0}
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+
+    
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6a0dad;
+      color: white;
+      margin-top: 50px;
+    }
+
+
+    .img-center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.img-center img {
+  max-width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.map-wrapper {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+:root{
+  --muted:#666;
+}
+.gallery img{
+  transition: .4s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+
+#backToTop:hover{
+  background:#6a0dad;
+  color:white;
+  transform: translateY(-4px);
+}
+
+/* hiệu ứng xuất hiện khi load */
+.fade-top{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.delay-1{ animation-delay: .2s }
+.delay-2{ animation-delay: .4s }
+.delay-3{ animation-delay: .6s }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* hiệu ứng khi cuộn tới */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* biến thể trái – phải nếu cần */
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-left.show,
+.reveal-right.show {
+  transform: translateX(0);
+}
+
+
+/* Ảnh bay từ trái */
+.reveal-img-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.reveal-img-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px){
+
+  header{
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  nav a{
+    margin-left: 0;
+    margin: 0 10px;
+  }
+
+  .hero{
+    height: 180px;
+    font-size: 24px;
+    padding: 0 15px;
+    text-align: center;
+  }
+
+  .content{
+    margin: 25px auto;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  p{
+    font-size: 15px;
+  }
+
+  .gallery img{
+    height: 140px;
+  }
+
+  .img-center img{
+    max-width: 100%;
+  }
+
+  .lb-btn{
+    font-size: 32px;
+  }
+
+  .lb-close{
+    font-size: 36px;
+  }
+}
+
+  </style>
+
+  
+</head>
+<body>
+
+<header class="fade-top">
+  <h1>Làng nghề truyền thống Huế</h1>
+  <nav>
+    <a href="LangNgheTruyenThongHue.html">🏠Trang chủ</a>
+  </nav>
+</header>
+
+<section class="hero fade-top delay-1">
+  Làng nghề mây tre đan Bao La
+</section>
+
+<div class="content">
+
+  <h2 class="reveal reveal-left">Giới thiệu</h2>
+  <p class="reveal">
+     Làng nghề mây tre đan Bao La là làng nghề truyền thống sáu thế kỷ nổi tiếng với các sản phẩm thủ công tinh xảo, đa dạng từ thúng mủng dân dã đến đồ mỹ nghệ xuất khẩu làm từ mây và tre.
+  </p>
+  <h2 class="reveal reveal-left">Vị Trí</h2>
+  <p class="reveal">
+  Nằm cách thành phố Huế 15km về phía Bắc, nép mình bên bờ Bắc con sông Bồ thơ mộng, làng nghề mây tre đan Bao La thuộc xã Quảng Phú, huyện Quảng Điền, tỉnh Thừa Thiên - Huế.
+  </p>
+
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7649.673234265887!2d107.48034405438212!3d16.534343993549495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a7f8c066fb83%3A0xb9eba61ff5fbacdc!2zxJDDrG5oIEzDoG5nIEJhbyBMYQ!5e0!3m2!1svi!2s!4v1765551828612!5m2!1svi!2s" 
+    width="100%" 
+    height="350" 
+    style="border:0; border-radius:10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
+  <p class="reveal">
+   Khởi nguồn từ một làng nghề nhỏ lẻ, chuyên sản xuất các sản phẩm mây tre gia dụng đơn giản, làng nghề Bao La từng đối mặt với nguy cơ mai một. Nhận thức được tiềm năng to lớn của làng nghề, năm 2007, Hợp tác xã ( HTX) Mây tre Bao La được thành lập, đánh dấu bước ngoặt quan trọng trong hành trình phát triển của làng nghề. Định hướng khôi phục và phát triển làng nghề gắn với du lịch, Hợp tác xã đã đưa ra những chiến lược táo bạo, đưa làng nghề Bao La "lột xác" ngoạn mục.
+  </p>
+  <p class="reveal">
+    Năm 2008, Hợp tác xã vinh dự được Hội Làng nghề Việt Nam trao tặng danh hiệu cao quý "Làng nghề tiêu biểu Việt Nam". Kể từ đó, Hợp tác xã liên tục gặt hái thành công với nhiều giải thưởng danh giá, khẳng định vị thế và chất lượng vượt trội của sản phẩm mây tre đan Bao La.
+</p>
+<p class="reveal">
+Làng nghề mây tre đan Bao La ngày nay không chỉ là nơi lưu giữ và phát huy truyền thống văn hóa lâu đời mà còn là điểm đến du lịch hấp dẫn, thu hút du khách trong và ngoài nước. Đến với Bao La, du khách có thể tham quan quy trình sản xuất, trải nghiệm tự tay làm những sản phẩm mây tre và mua sắm những món quà lưu niệm độc đáo. Không những thế làng nghề Bao La còn là một biểu tượng cho sự gìn giữ và phát huy giá trị truyền thống, đồng thời là minh chứng cho sức sống mãnh liệt của làng nghề Việt Nam trong thời đại mới.</p>
+
+  <div class="img-center reveal-img-left">
+  <img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/106-9-47-4.jpg" alt="Làng nghề mây tre đan Bao La">
+</div>
+
+
+<h2 class="reveal reveal-left">Hình ảnh</h2>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+      <div class="gallery"><img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/116-9-48-53.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/146-9-55-33.jpg"></div>
+      <div class="gallery"><img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/166-9-56-6.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/306-9-56-19.jpg" class="lb-img"></div>
+    </div>
+    
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+</div>
+
+<footer>
+  © 2025 – Làng nghề mây tre đan Bao La
+</footer>
+<div id="backToTop">↑</div>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+
+<script>
+const revealElements = document.querySelectorAll(
+  '.reveal, .reveal-img-left'
+);
+
+let ticking = false;
+
+function revealOnScroll(){
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach(el => {
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 80){
+      el.classList.add('show');
+    }
+  });
+
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(revealOnScroll);
+    ticking = true;
+  }
+});
+
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Làng nghề truyền thống trong giáo dục – THPT Đặng Huy Trứ</title>
+
+
+<!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+
+
+
+
+<style>
+  body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f6f2fb;
+    color:#333;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    background:linear-gradient(135deg,#6a0dad,#9b59b6);
+    color:white;
+    padding:20px;
+    text-align:center;
+  }
+
+  header h1{
+    margin:0;
+    font-size:28px;
+  }
+
+  header p{
+    margin-top:8px;
+    font-size:16px;
+    opacity:0.9;
+    text-align: center;
+  }
+
+  /* ===== MENU ===== */
+  nav{
+    background:#5e2b97;
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    padding:12px 0;
+  }
+
+  nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+  }
+
+  nav a:hover{
+    color:#ffd6ff;
+  }
+
+  /* ===== CONTENT ===== */
+  .container{
+    max-width:1000px;
+    margin:40px auto;
+    padding:0 20px;
+  }
+
+  section{
+    background:white;
+    padding:25px;
+    margin-bottom:30px;
+    border-radius:14px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    animation:fadeUp 0.8s ease;
+  }
+  .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  h2{
+    color:#6a0dad;
+    border-left:6px solid #6a0dad;
+    padding-left:12px;
+    margin-top:0;
+  }
+
+  p{
+    line-height:1.7;
+    text-align:justify;
+    margin:12px 0;
+  }
+
+  /* ===== CARD ===== */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+    margin-top:20px;
+  }
+
+  .card{
+    background:#faf7ff;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    transition:0.3s;
+  }
+
+  .card:hover{
+    transform:translateY(-6px);
+  }
+
+  .card h3{
+    color:#6a0dad;
+    margin-top:0;
+  }
+
+  .card p{
+    font-size:15px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:#6a0dad;
+    color:white;
+    text-align:center;
+    padding:18px;
+    margin-top:40px;
+    font-size:14px;
+  }
+  html {
+  scroll-behavior: smooth;
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:20px;
+}
+
+.gallery img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.gallery img:hover{
+  transform:scale(1.05);
+}
+
+/* Responsive: màn hình nhỏ */
+@media (max-width: 768px){
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== VIDEO GRID ===== */
+.video-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:24px;
+  margin-top:20px;
+}
+
+.video-grid video,
+.video-grid iframe{
+  width:100%;
+  height:320px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Tablet */
+@media (max-width: 768px){
+  .video-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+#hoatdong strong{
+  font-size:20px;
+  color:black;
+}
+
+
+
+
+
+.card {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.15);
+}
+
+
+
+
+.video-grid iframe{
+  height:320px;
+}
+
+@media (max-width: 768px){
+  .video-grid iframe,
+  .video-grid video{
+    height:220px;
+  }
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:0.8s ease;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Làng nghề truyền thống trong giáo dục</h1>
+  <p>Trường Trung học Phổ thông Đặng Huy Trứ</p>
+</header>
+
+<nav>
+  <a href="LangNgheTruyenThongHue.html">Trang chủ</a>
+  <a href="#gioithieu">Giới thiệu</a>
+  <a href="#vaitro">Vai trò</a>
+  <a href="#ynghia">Ý nghĩa</a>
+  <a href="#hoatdong">Hoạt động</a>
+</nav>
+
+<div class="container">
+
+  <section id="gioithieu" class="reveal">
+    <h2>Giới thiệu chung</h2>
+    <p>
+      Trường Trung học Phổ thông Đặng Huy Trứ luôn chú trọng gắn giáo dục với
+      thực tiễn đời sống và giá trị văn hóa truyền thống. Việc đưa nội dung
+      làng nghề truyền thống vào giảng dạy giúp học sinh hiểu sâu hơn về
+      bản sắc văn hóa dân tộc, đặc biệt là các làng nghề đặc trưng của Huế.
+    </p>
+  </section>
+
+  <section id="vaitro" class="reveal">
+    <h2>Vai trò của làng nghề truyền thống trong giáo dục</h2>
+    <p>
+      Làng nghề truyền thống không chỉ mang giá trị kinh tế mà còn là kho tàng
+      tri thức dân gian quý báu. Khi được lồng ghép vào giáo dục, học sinh sẽ:
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🎓 Giáo dục văn hóa</h3>
+        <p>
+          Giúp học sinh hiểu và trân trọng các giá trị văn hóa truyền thống,
+          nâng cao ý thức giữ gìn di sản dân tộc.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🧠 Giáo dục kỹ năng</h3>
+        <p>
+          Học sinh được rèn luyện kỹ năng quan sát, tìm hiểu thực tế,
+          làm việc nhóm và thuyết trình.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>❤️ Giáo dục thái độ</h3>
+        <p>
+          Hình thành tinh thần trách nhiệm, lòng tự hào quê hương và ý thức
+          bảo tồn các giá trị truyền thống.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <section id="ynghia" class = "reveal">
+    <h2>Ý nghĩa đối với học sinh</h2>
+    <p>
+      Việc đưa làng nghề truyền thống vào giáo dục giúp học sinh phát triển
+      toàn diện về kiến thức, kỹ năng và nhân cách, đồng thời góp phần lan tỏa
+      tình yêu văn hóa Huế đến thế hệ trẻ.
+    </p>
+  </section>
+
+
+  <section id="hoatdong" class="reveal">
+    <h2>Hoạt động</h2>
+    <strong>Video:</strong>
+
+  
+
+<div class="video-grid">
+
+  <!-- Video từ máy -->
+  <video controls>
+    <source src="videos/video1.mp4" type="video/mp4">
+  </video>
+
+  <!-- Video Google Drive -->
+  <iframe 
+    src="https://drive.google.com/file/d/1Crv1CVkq24FkV5pcDjcj_EBUVMRDy3kx/preview"
+    allow="autoplay">
+  </iframe>
+
+  <!-- Video từ máy -->
+  <video controls>
+    <source src="videos/video2.mp4" type="video/mp4">
+  </video>
+
+  <!-- Video từ máy -->
+  <video controls>
+    <source src="videos/video3.mp4" type="video/mp4">
+  </video>
+
+</div>
+
+
+<div style="height:30px"></div>
+
+
+
+<strong>Ảnh:</strong>
+
+
+
+<div class="grid" style="margin-top:20px;">
+  <div class="gallery">
+    <img src="images/p1.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p2.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p3.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p4.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p5.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p6.jpg" class="lb-img">
+  </div>
+
+  <div class="gallery">
+    <img src="images/p7.jpg" class="lb-img">
+  </div>
+</div>
+
+
+
+
+  </section>
+
+</div>
+
+<footer>
+  © 2025 – Trường THPT Đặng Huy Trứ 
+</footer>
+
+  <div id="backToTop">↑</div>
+  
+
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+
+ 
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+<script>
+const revealEls = document.querySelectorAll('.reveal');
+
+function revealOnScroll(){
+  const h = window.innerHeight;
+  revealEls.forEach(el=>{
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < h - 80){
+      el.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+
+</body>
+</html>

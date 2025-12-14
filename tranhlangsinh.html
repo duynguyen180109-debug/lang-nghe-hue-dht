@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Làng nghề làm tranh Sình – Huế</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f2ff;
+      color: #333;
+    }
+
+    header {
+      background: #6a0dad;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://statics.vinpearl.com/tranh-lang-sinh-2_1679156848.jpg') center/cover no-repeat;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 8px 20px rgba(0,0,0,0.4);
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #6a0dad;
+      border-left: 6px solid #6a0dad;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 15px 0;
+    }
+
+    section{padding:48px 0}
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6a0dad;
+      color: white;
+      margin-top: 50px;
+    }
+
+
+    .img-center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.img-center img {
+  max-width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.map-wrapper {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+:root{
+  --muted:#666;
+}
+.gallery img{
+  transition: .4s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+
+#backToTop:hover{
+  background:#6a0dad;
+  color:white;
+  transform: translateY(-4px);
+}
+
+/* hiệu ứng xuất hiện khi load */
+.fade-top{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.delay-1{ animation-delay: .2s }
+.delay-2{ animation-delay: .4s }
+.delay-3{ animation-delay: .6s }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* hiệu ứng khi cuộn tới */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* biến thể trái – phải nếu cần */
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-left.show,
+.reveal-right.show {
+  transform: translateX(0);
+}
+
+
+/* Ảnh bay từ trái */
+.reveal-img-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.reveal-img-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+@media (max-width: 768px){
+
+  header{
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  nav a{
+    margin-left: 0;
+    margin: 0 10px;
+  }
+
+  .hero{
+    height: 180px;
+    font-size: 24px;
+    padding: 0 15px;
+    text-align: center;
+  }
+
+  .content{
+    margin: 25px auto;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  p, strong{
+    font-size: 15px;
+  }
+
+  .gallery img{
+    height: 140px;
+  }
+
+  .img-center img{
+    max-width: 100%;
+  }
+
+  .lb-btn{
+    font-size: 32px;
+  }
+
+  .lb-close{
+    font-size: 36px;
+  }
+}
+
+
+  </style>
+
+  
+</head>
+<body>
+
+<header class="fade-top">
+  <h1>Làng nghề truyền thống Huế</h1>
+  <nav>
+    <a href="LangNgheTruyenThongHue.html">🏠Trang chủ</a>
+  </nav>
+</header>
+
+<section class="hero fade-top delay-1">
+  Làng nghề làm tranh Sình
+</section>
+
+<div class="content">
+
+  <h2 class="reveal reveal-left">Giới thiệu</h2>
+  <p class="reveal">
+    Tranh làng Sình được biết tới là một trong những nhân chứng sống có bề dày lịch sử lâu đời ở xứ kinh kỳ. Dù đã trải qua rất nhiều thăng trầm của thời gian, tranh làng Sình ngày nay vẫn còn tồn tại và được gìn giữ phát triển.
+  </p>
+  <p class="reveal">
+    Cùng với dòng tranh Đông Hồ, tranh Hàng Trống ở miền Bắc, tranh làng Sình xứ Huế cũng góp phần làm nên sự đa dạng và phong phú cho dòng tranh dân gian của nước ta. Trong chuyến du lịch Huế, nếu bỏ qua lịch trình khám phá làng nghề tranh dân gian làng Sình sẽ là một thiếu sót rất lớn.
+  </p>
+  <h2 class="reveal reveal-left">Vị Trí</h2>
+  <p class="reveal">
+    Làng Sình Huế có địa chỉ ở thôn Lại Ân, TP. Huế. Ngôi làng nằm ven sông Hương, liền kề ngã ba sông Hương hợp với sông Bồ.Ngôi làng này cách thành phố Huế 10km về phía Bắc.
+  </p>
+  <p class="reveal"> 
+    Sau khi đi qua cầu Đập Đá, bạn rẽ phải vào đường tỉnh 10A rồi chếch trái qua đường Nguyễn Sinh Cung. Đến được đường tỉnh 2, bạn rẽ trái và đi tiếp khoảng 3.3 km là tới làng Sình. Quãng đường này dài khoảng 10 km và mất gần 20 phút di chuyển. Trên đường đi, bạn sẽ có cơ hội chiêm ngưỡng cảnh sắc sông Hương thơ mộng và khám phá nét văn hóa độc đáo của làng Sình.
+  </p>
+
+
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.0709474939804!2d107.57169968885496!3d16.5225155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a14b7c5a1bf7%3A0x141d79500cf93e34!2zTMOgbmcgU8Osbmg!5e0!3m2!1svi!2s!4v1765597860622!5m2!1svi!2s" 
+    width="100%" 
+    height="350" 
+    style="border:0; border-radius:10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
+  <p class="reveal">
+   Làng Sình (hay còn có tên gọi Lại Ân) là một ngôi làng cổ nằm bên bờ sông Hương xinh đẹp. Đây là một trong những nơi duy nhất ở Việt Nam còn giữ được nghề làm tranh giấy mộc truyền thống. Làng Sình có lịch sử lâu đời, từng là trung tâm văn hóa của cố đô Huế và là điểm giao thương quan trọng. Tên gọi Sình có nhiều giả thuyết khác nhau. Theo nhiều người, tên gọi của làng có thể là dấu tích của người Chăm hoặc liên quan đến một thế võ xưa. Ngoài ra, nhiều người còn tin rằng đây là tên của một ngôi chợ nổi tiếng từng tồn tại trong làng.
+  </p>
+
+  <p class="reveal">
+    Theo truyền thuyết, nghề làm tranh dân gian làng Sình bắt nguồn từ ông Kỳ Hữu Hòa - một người đến định cư ở đây mang theo nghề của quê hương. Ngày nay, ở làng Sình chỉ còn một nhà duy nhất là ông Kỳ Hữu Phước - con cháu của ông Kỳ Hữu Hòa - vẫn tiếp tục nghề làm tranh cảnh mang đậm nét dân gian. Các nhà làm tranh khác thì chuyển sang làm tranh thờ cúng, loại tranh này chỉ dùng một lần rồi đốt đi. Dần dần, nơi đây trở thành một địa điểm tham quan lý thú cho những ai yêu thích văn hóa và nghệ thuật của Huế.
+  </p>
+
+  <div class="img-center reveal-img-left">
+  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-02-1700548381.jpg">
+</div>
+
+  <h2 class="reveal reveal-left">Chiêm ngưỡng tranh làng Sình nổi tiếng tại xứ Huế</h2>
+  <strong>Tranh làng Sình - Dòng tranh dân gian hơn 400 năm</strong>
+  <p class="reveal">
+    Làng Sình nổi tiếng với nghề làm tranh mộc bản cổ truyền mang đậm bản sắc văn hóa của xứ Huế. Tranh làng Sình có nguồn gốc từ thế kỷ 17, ban đầu chỉ dùng để thờ cúng, cầu mong một năm bình an, mùa màng bội thu. Thế nhưng qua nhiều đổi thay của lịch sử, tranh làng Sình đã phát triển thành một nét đẹp văn hóa đặc trưng của xứ Huế và được sử dụng trong nhiều dịp lễ, Tết, làm quà biếu, trang trí nhà cửa hay tham gia các lễ hội dân gian. Làng Sình Huế cũng là điểm đến hấp dẫn của du khách trong và ngoài nước mong muốn tìm hiểu về nghệ thuật và truyền thống của vùng đất cố đô.
+  </p>
+
+ <div class="img-center reveal-img-left">
+  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-04-1700548381.jpg">
+</div>
+
+  <strong>Nghề làm tranh làng Sình tại Huế</strong>
+  <p class="reveal">
+   Nghề làm tranh làng Sình Huế là một nghề truyền thống có từ rất lâu đời và vẫn tồn tại đến tận ngày nay. Để tạo ra một bức tranh làng Sình, người nghệ nhân phải trải qua nhiều công đoạn khéo léo và tỉ mỉ. Đầu tiên, họ phải chọn gỗ mít, gỗ kền hoặc gỗ thị để khắc thành các khuôn mộc bản, mỗi khuôn tương ứng với một đề tài tranh. Sau đó, họ phải quét màu đen lên khuôn và dập lên giấy dó - một loại giấy trắng được làm từ bột gạo và vỏ cây điệp. Giấy dó có khổ 25x70cm có thể xén thành các khổ nhỏ hơn tùy theo kích thước tranh. Khi bản in đen đã khô, người nghệ nhân sẽ tô màu cho tranh bằng các màu được làm từ thiên nhiên như màu đỏ từ nước lá bàng, màu tím từ hạt cây mồng tơi, màu vàng từ lá đung và hoa hòe… Mỗi màu sắc trên tranh đều có ý nghĩa riêng nhằm thể hiện sự tôn kính và mong ước của người dân.
+  </p>
+
+<div class="img-center reveal-img-left">
+  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-05-1700548381.jpg">
+</div>
+
+
+
+<h2>Hình ảnh</h2>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+      <div class="gallery"><img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-06-1700548381.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://statics.vinpearl.com/tranh-lang-sinh-1_1679156776.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://static.vinwonders.com/production/lang-sinh-hue.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://vietnamtourism.vn/imguploads/tourist/58Tranhlangsinh01.jpg" class="lb-img"></div>
+    </div>
+ 
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+</div>
+
+<footer>
+  © 2025 – Làng nghề làm tranh Sình
+</footer>
+<div id="backToTop">↑</div>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+
+<script>
+const revealElements = document.querySelectorAll(
+  '.reveal, .reveal-img-left'
+);
+
+let ticking = false;
+
+function revealOnScroll(){
+  const windowHeight = window.innerHeight;
+
+  revealElements.forEach(el => {
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 80){
+      el.classList.add('show');
+    }
+  });
+
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if(!ticking){
+    requestAnimationFrame(revealOnScroll);
+    ticking = true;
+  }
+});
+
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+
+
+
+</body>
+</html>

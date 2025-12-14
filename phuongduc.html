@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Làng nghề đúc đồng - Phường Đúc - Huế</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f7f2ff;
+      color: #333;
+    }
+
+    header {
+      background: #6a0dad;
+      padding: 15px 30px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://vietnamtourism.vn/imguploads/tourist/58Ducdonghue01.jpg') center/cover no-repeat;
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 8px 20px rgba(0,0,0,0.4);
+      font-size: 36px;
+      font-weight: bold;
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      color: #6a0dad;
+      border-left: 6px solid #6a0dad;
+      padding-left: 10px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 15px 0;
+    }
+
+    .content section{
+  padding:48px 0;
+}
+
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+
+  .hero{
+  letter-spacing: 1px;
+}
+
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6a0dad;
+      color: white;
+      margin-top: 50px;
+    }
+
+
+    .img-center {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.img-center img {
+  max-width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+
+.map-wrapper {
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+}
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+:root{
+  --muted:#666;
+}
+.gallery img{
+  transition: .4s ease;
+}
+
+.gallery img:hover{
+  transform: scale(1.06);
+  box-shadow: 0 10px 22px rgba(0,0,0,.25);
+}
+
+
+#backToTop:hover{
+  background:#6a0dad;
+  color:white;
+  transform: translateY(-4px);
+}
+
+/* hiệu ứng xuất hiện khi load */
+.fade-top{
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeUp 0.9s ease forwards;
+}
+
+.delay-1{ animation-delay: .2s }
+.delay-2{ animation-delay: .4s }
+.delay-3{ animation-delay: .6s }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* hiệu ứng khi cuộn tới */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* biến thể trái – phải nếu cần */
+.reveal-left {
+  transform: translateX(-40px);
+}
+.reveal-right {
+  transform: translateX(40px);
+}
+.reveal-left.show,
+.reveal-right.show {
+  transform: translateX(0);
+}
+
+
+/* Ảnh bay từ trái */
+.reveal-img-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.9s ease;
+}
+
+.reveal-img-left.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal,
+.reveal-img-left{
+  will-change: transform, opacity;
+}
+
+
+@media (max-width: 768px) {
+  header{
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  nav a{
+    margin: 0 10px;
+  }
+
+  .hero{
+    height: 200px;
+    font-size: 24px;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .content{
+    margin: 25px auto;
+  }
+
+  h2{
+    font-size: 20px;
+  }
+
+  p{
+    font-size: 15px;
+  }
+}
+
+
+@media (max-width: 768px){
+  .gallery img:hover{
+    transform: none;
+    box-shadow: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *{
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+
+  </style>
+
+  
+</head>
+<body>
+
+<header class="fade-top">
+  <h1>Làng nghề truyền thống Huế</h1>
+  <nav>
+    <a href="LangNgheTruyenThongHue.html">🏠Trang chủ</a>
+  </nav>
+</header>
+
+<section class="hero fade-top delay-1">  Làng nghề đúc đồng Huế - Phường Đúc
+</section>
+
+<div class="content">
+
+  <h2 class="reveal reveal-left">Giới thiệu</h2>
+  <p class="reveal">
+    Phường Đúc là một làng nghề đúc đồng yên bình có lịch sử hình thành và phát triển hàng trăm năm nay, Phường Đúc nổi tiếng với những đồ đồng được đúc cầu kỳ, hoa văn tinh xảo.
+  </p>
+  <h2 class="reveal reveal-left">Vị Trí</h2>
+  <p class="reveal">
+   Cách trung tâm TP Huế khoảng 3 km về phía Tây Nam kinh thành Huế và nằm dọc bên bờ sông Hương.
+  </p>
+
+
+
+
+<div class="map-wrapper">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61222.668981520386!2d107.49373396752071!3d16.454419110940545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a6b1464fb64f%3A0x2d3179df88ceaf99!2zUGjGsOG7nW5nIMSQw7pjLCBUcC4gSHXhur8sIFRow6BuaCBwaOG7kSBIdeG6vywgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1765532882725!5m2!1svi!2s"  
+    width="100%" 
+    height="350" 
+    style="border:0; border-radius:10px;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+
+  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
+  <p class="reveal">
+   Theo gia phả của dòng họ Nguyễn - Kinh Nhơn, thủy tổ của nghề này là cụ Nguyễn Văn Lương, quê thuộc làng Ðồng Xá, huyện Siêu Loại (Bắc Ninh) đến Thuận Hóa từ đầu thế kỷ 17. Khi xây dựng Huế thành Kinh đô, các chúa Nguyễn trưng tập thợ khéo cả nước về đây làm những công trình, vật dụng cao cấp. Khi Chúa Trịnh và Tây Sơn đánh chiếm Phú Xuân, các công trường đúc đồng bị tan rã. Riêng chỉ có họ Nguyễn ở Kinh Nhơn vẫn ở lại tại chỗ và tiếp tục nghề đúc của ông cha.
+  </p>
+  <p class="reveal">
+  Từ những lò đúc của các anh em trong dòng họ Nguyễn, nghề đúc ở làng Dương Xuân (ngày trước hầu hết dân làng làm nghề đúc đồng, cho nên từ lâu quen gọi là phường Ðúc) vẫn được duy trì và phát triển cho đến ngày nay.</p>
+
+  <div class="img-center reveal-img-left">
+  <img src="https://huetourism.gov.vn/Portals/0/Medias/Nam2018/T3/visithue_Duc-dong-phuong-duc.jpg" alt="Làng nghề đúc đồng">
+</div>
+
+  <h2 class="reveal reveal-left">Giá trị thẩm mĩ trong từng sản phẩm</h2>
+  <p class="reveal">
+   Hiện nay, sản phẩm của Phường Đúc được tiêu thụ mạnh bởi đời sống của người dân đã được nâng cao, việc sắm một bộ đồ thờ bằng đồng không còn vượt quá khả năng kinh tế của mỗi gia đình. Bên cạnh đó, phải ghi nhận sự sáng tạo của các nghệ nhân đã biến đồ tưởng chừng không có gì cầu kỳ thành một thứ trang trí mỹ thuật trong nhà. Với đôi bàn tay khéo léo của mình, hết thế hệ này đến thế hệ khác nối tiếp nhau, những người thợ ở làng nghề này đã cho ra đời những sản phẩm bằng đồng rất tinh xảo, có giá trị nghệ thuật cao với nhiều kiểu dáng độc đáo.
+  </p>
+  <p class="reveal">
+    Như hồi sinh của một làng nghề không những giải quyết được công ăn việc làm cho chính người dân địa phương, mà còn là một nét văn hóa làng nghề độc đáo. Riêng với Phường Đúc, đây là niềm tự hào của nhiều thế hệ quyết tâm giữ lại nét riêng của mình sau hơn bốn trăm năm. Trải qua thời gian, Phường Đúc đã làm nên dấu ấn mạnh mẽ trong nền văn hóa Cố Đô. Đến đây, khách du lịch không chỉ đi thăm các di tích nổi tiếng mà những địa danh như làng Đúc cũng là một nơi khám phá thú vị.
+  </p>
+
+<div class="img-center reveal-img-left">
+  <img src="https://huetourism.gov.vn/Portals/0/VisitHue/Destination/LangNghe/visithue_Truy%E1%BB%81n_th%E1%BB%91ng_%C4%91%C3%BAc_%C4%91%E1%BB%93ng_ph%C6%B0%E1%BB%9Dng_%C4%91%C3%BAc_hu%E1%BA%BF.jpg/H%C3%ACnh%20%E1%BA%A3nh%20ch%E1%BB%A5p%20chi%E1%BA%BFc%20chu%C3%B4ng%20kh%E1%BB%95ng%20l%E1%BB%93%20%E1%BB%9F%20ch%C3%B9a%20B%C3%A3i%20%C4%90%C3%ADnh%20%E2%80%93%20Ninh%20B%C3%ACnh.%205.JPG" alt="Làng nghề đúc đồng">
+</div>
+<div class="img-center reveal-img-left">
+  <img src="https://huetourism.gov.vn/Portals/0/VisitHue/Destination/LangNghe/visithue_Truy%E1%BB%81n_th%E1%BB%91ng_%C4%91%C3%BAc_%C4%91%E1%BB%93ng_ph%C6%B0%E1%BB%9Dng_%C4%91%C3%BAc_hu%E1%BA%BF.jpg/H%E1%BB%8Da%20ti%E1%BA%BFt%20%C4%91%E1%BA%B7c%20s%E1%BA%AFc%20tr%C3%AAn%20b%C3%ACnh%20%C4%91%E1%BB%93ng%20mang%20t%C3%ADnh%20gi%C3%A1%20tr%E1%BB%8B%20ngh%E1%BB%87%20thu%E1%BA%ADt%20cao%208.jpg">
+</div>
+
+
+
+<h2 class="reveal reveal-left">Hình ảnh</h2>
+
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
+      <div class="gallery"><img src="https://huetourism.gov.vn/Portals/0/VisitHue/Destination/LangNghe/visithue_Truy%E1%BB%81n_th%E1%BB%91ng_%C4%91%C3%BAc_%C4%91%E1%BB%93ng_ph%C6%B0%E1%BB%9Dng_%C4%91%C3%BAc_hu%E1%BA%BF.jpg/Nh%E1%BB%AFng%20s%E1%BA%A3n%20ph%E1%BA%A9m%20%C4%91%C6%B0%E1%BB%A3c%20t%E1%BA%A1o%20ra%20t%E1%BB%AB%20%C4%91%C3%B4i%20b%C3%A0n%20tay%20%C4%91%E1%BB%93ng.%209.JPG" class="lb-img"></div>
+      <div class="gallery"><img src="https://huetourism.gov.vn/Portals/0/VisitHue/Destination/LangNghe/visithue_Truy%E1%BB%81n_th%E1%BB%91ng_%C4%91%C3%BAc_%C4%91%E1%BB%93ng_ph%C6%B0%E1%BB%9Dng_%C4%91%C3%BAc_hu%E1%BA%BF.jpg/S%E1%BA%A3n%20ph%E1%BA%A9m%20%C4%91%C3%BAc%20%C4%91%E1%BB%93ng%20ph%E1%BB%A5c%20v%E1%BB%A5%20nhu%20c%E1%BA%A7u%20ng%C6%B0%E1%BB%9Di%20d%C3%A2n%20hi%E1%BB%87n%20%C4%91%E1%BA%A1i.%2011.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://api.sovaba.travel/uploads/Tuyet_tac_duc_dong_xu_hue_e643d20b33.jpg" class="lb-img"></div>
+      <div class="gallery"><img src="https://api.sovaba.travel/uploads/Nhung_nguoi_giu_lua_nghe_o_phuong_duc_hue_813b56bf5d.jpg" class="lb-img"></div>
+    </div>
+    
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+
+</div>
+
+<footer>
+  © 2025 – Làng nghề đúc đồng -Phường Đúc
+</footer>
+
+<div id="backToTop">↑</div>
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+<script>
+const revealElements = document.querySelectorAll(
+  '.reveal, .reveal-img-left'
+);
+
+function revealOnScroll(){
+  const windowHeight = window.innerHeight;
+  revealElements.forEach(el => {
+    if(el.classList.contains('show')) return;
+    const top = el.getBoundingClientRect().top;
+    if(top < windowHeight - 80){
+      el.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+
+
+
+
+</body>
+</html>

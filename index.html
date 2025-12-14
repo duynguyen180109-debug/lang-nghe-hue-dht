@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Làng nghề truyền thống Huế | Thủy Xuân – Phước Tích – Thanh Tiên</title>
+
+  <!-- SEO DESCRIPTION -->
+  <meta name="description" content="Giới thiệu các làng nghề truyền thống Huế như làng hương Thủy Xuân, làng tranh Sình, gốm Phước Tích, hoa giấy Thanh Tiên. Trang thông tin giáo dục và văn hóa Huế.">
+
+  <!-- KEYWORDS -->
+  <meta name="keywords" content="làng nghề truyền thống Huế, làng hương Thủy Xuân, gốm Phước Tích, tranh làng Sinh, hoa giấy Thanh Tiên, văn hóa Huế">
+
+  <!-- LANGUAGE + LOCATION -->
+  <meta name="language" content="vi">
+  <meta name="geo.region" content="VN-TH">
+  <meta name="geo.placename" content="Huế, Việt Nam">
+
+  <!-- AUTHOR -->
+  <meta name="author" content="THPT Đặng Huy Trứ">
+
+  <!-- OPEN GRAPH (Facebook, Zalo) -->
+  <meta property="og:title" content="Làng nghề truyền thống Huế">
+  <meta property="og:description" content="Khám phá các làng nghề truyền thống Huế: Thủy Xuân, Phước Tích, Thanh Tiên, tranh làng Sinh.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="langnghe.png">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+  <style>
+    :root{--accent:#8b5e3c;--muted:#666}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Arial;margin:0;color:#222;line-height:1.45}
+    header{background:linear-gradient(0deg,rgba(0,0,0,.25),rgba(0,0,0,.15)), url('langnghe.png') center/cover no-repeat; color:#fff;padding:48px 20px}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    nav{display:flex;align-items:center;justify-content:space-between}
+    nav .brand{font-weight:700;letter-spacing:0.3px}
+    nav a{color:inherit;text-decoration:none;margin-left:16px;font-weight:600}
+    .hero{display:flex;flex-direction:column;gap:18px;padding:48px 0}
+    .hero h1{font-size:clamp(28px,5vw,44px);margin:0}
+    .hero p{max-width:70%;margin:0;color:rgba(255,255,255,.92)}
+    .btn{background:var(--accent);color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block}
+
+    section{padding:48px 0}
+    .grid{display:grid;gap:20px}
+    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
+    .card img{width:100%;height:160px;object-fit:cover}
+    .card .body{padding:16px}
+    .muted{color:var(--muted)}
+
+    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+    footer{background:#faf7f3;padding:28px 0;color:#333}
+
+    /* responsive tweaks */
+    @media(min-width:900px){.hero{flex-direction:row;align-items:center}.hero p{max-width:50%}}
+    h1 {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.6),
+                0 4px 12px rgba(0,0,0,0.5),
+                0 8px 20px rgba(0,0,0,0.4);
+  }
+
+#backToTop {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: white;
+  color: black;
+  padding: 12px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+#backToTop:hover {
+  animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+
+
+
+.card .btn {
+  display: block;
+  margin: 12px auto 0; /* căn giữa nút */
+  width: 150px;        /* tất cả nút bằng nhau */
+  text-align: center;
+}
+
+.card .body p {
+  text-align: justify;
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+.card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.04);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}
+.card img {
+  transition: transform 0.4s ease;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+
+
+
+
+
+.gallery img {
+  transition: transform .3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.06);
+}
+
+section h2 {
+  position: relative;
+  padding-left: 20px;
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 0.5s ease, color 0.3s ease;
+}
+
+/* Gạch đứng */
+section h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 70%;
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* Khi rê chuột -> chữ bay ra */
+section h2:hover {
+  transform: translateX(14px);
+  color: var(--accent);
+}
+
+
+.hero {
+  text-shadow: 0 3px 12px rgba(0,0,0,.5);
+}
+
+.btn {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+}
+
+
+/* Mặc định ẩn */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+/* Khi xuất hiện */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Biến thể */
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.reveal-zoom { transform: scale(0.85); }
+.reveal-zoom.active { transform: scale(1); }
+
+
+
+
+nav a {
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 3px;
+  background: #fff;
+  transition: 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+
+.hero h1 {
+  animation: fadeDown 1s ease;
+}
+
+.hero p {
+  animation: fadeUp 1.2s ease;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  #gallery .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== MOBILE FIRST ===== */
+@media (max-width: 768px) {
+
+  header {
+    padding: 32px 16px;
+  }
+
+  .hero {
+    padding: 32px 0;
+  }
+
+  .hero p {
+    max-width: 100%;
+  }
+
+  section {
+    padding: 36px 0;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  /* Card hover nhẹ hơn trên mobile */
+  .card:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Gallery 2 cột */
+  #gallery .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ===== TABLET ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  #gallery .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .hero p {
+    max-width: 80%;
+  }
+}
+
+@media (hover: none) {
+  .card:hover,
+  .gallery img:hover,
+  section h2:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+}
+
+.gallery-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">Làng nghề truyền thống Huế</div>
+        <div>
+          <a href="#about">Giới thiệu</a>
+          <a href="#villages">Làng nghề</a>
+          <a href="#gallery">Ảnh</a>
+          <a href="#contact">Liên hệ</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <div>
+          <h1>Giới thiệu và lưu giữ làng nghề truyền thống Huế</h1>
+          <p>Trang web này trình bày các làng nghề truyền thống của Huế: lịch sử ngắn, ảnh,...</p>
+          <p style="margin-top:12px"><a class="btn" href="#villages">Khám phá làng nghề</a></p>
+        </div>
+        <div class="muted" style="align-self:center;margin-left:auto;max-width:380px">
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2 class="reveal reveal-left">Giới thiệu</h2>
+      <p class="muted">Các làng nghề Huế phát triển mạnh dưới thời Nguyễn để phục vụ nhu cầu của triều đình, hình thành nên trung tâm thủ công nghiệp với kỹ thuật và chất lượng tinh xảo. Yếu tố lịch sử này đã định hình nên giá trị nghệ thuật và tính độc đáo trong từng sản phẩm thủ công, từ đó tạo nên bản sắc văn hóa đặc trưng của cố đô.</p>
+      <p class="muted">Vai trò chính của chúng là đáp ứng nhu cầu văn hóa và tâm linh, ví dụ: Phường Đúc tạo ra các tác phẩm đồng lớn, còn Hương Thủy Xuân và Hoa Giấy Thanh Tiên phục vụ nghi lễ thờ cúng truyền thống. Các sản phẩm này không chỉ là vật dụng mà còn là biểu tượng văn hóa, phản ánh sâu sắc đời sống tín ngưỡng của người dân xứ Huế.</p>
+      <p class="muted">Hiện tại, các làng nghề đang nỗ lực bảo tồn bí quyết gia truyền đồng thời chuyển mình thành các điểm đến du lịch trải nghiệm hấp dẫn. Việc kết nối làng nghề với du lịch giúp quảng bá hình ảnh văn hóa Huế ra thế giới và tạo ra sinh kế bền vững cho các nghệ nhân.</p>
+   
+
+    </section>
+
+    <section id="villages">
+      <h2 class="reveal reveal-left">Các làng nghề tiêu biểu</h2>
+      <div class="grid cols-3">
+
+
+
+
+        <!-- Card 1: mẫu -->
+        <article class="card reveal reveal-left">
+
+          <img src="langnghe.png" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng nghề hoa giấy Thanh Tiên</h3>
+            <p class="muted">Hoa Giấy Thanh Tiên là nghề truyền thống Huế chế tác hoa giấy từ tre và giấy màu tự nhiên bằng kỹ thuật thủ công tinh xảo, gắn liền với tín ngưỡng thờ cúng ngày Tết và du lịch trải nghiệm.</p>
+            <p style="margin-top:12px">
+              <a href="langhoagiay.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+
+
+
+
+        <!-- Card 2: mẫu -->
+          <article class="card reveal reveal-left">
+
+          <img src="https://phuotvivu.com/blog/wp-content/uploads/2021/12/lam-huong-thuy-xuan-o-hue-1.jpg" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng hương Thủy Xuân</h3>
+            <p class="muted">Làng hương Thủy Xuân nổi bật như một bức tranh đầy màu sắc. Những bó hương rực rỡ xếp thành từng chùm, tạo nên khung cảnh vừa bình dị, vừa cuốn hút.</p>
+            <p class="muted"><span style="color:white; font-weight:600;">.</span>
+
+            <p style="margin-top:12px"> 
+              <a href="langhuong.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+
+
+
+
+        <!-- Card 3: mẫu -->
+         <article class="card reveal reveal-left">
+
+          <img src="https://phuotvivu.com/blog/wp-content/uploads/2021/12/lang-nghe-duc-dong-o-hue.jpg" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng nghề đúc đồng – Phường Đúc</h3>
+            <p class="muted">Phường Đúc là làng nghề truyền thống lâu đời bên sông Hương ở Huế, nổi tiếng với kỹ thuật đúc đồng tinh xảo để tạo ra các sản phẩm thờ cúng(chuông, lư hương) và các công trình cung đình.</p>
+            <p style="margin-top:12px">
+              <a href="phuongduc.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+
+    <section id="villages-more">
+      <div class="grid cols-3">
+         <!-- Card 4 -->
+       <article class="card reveal reveal-left">
+
+          <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng bún Vân Cù</h3>
+            <p class="muted">Làng bún Vân Cù ở Huế là một làng nghề truyền thống nổi tiếng với bí quyết làm sợi bún tươi, dai ngon đặc trưng đã được truyền qua nhiều thế hệ. </p>
+            <p class="muted"><span style="color:white; font-weight:600;">.</span>
+            <p style="margin-top:12px">
+              <a href="langbun.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+
+
+
+
+
+        <!-- Card 5 -->
+       <article class="card reveal reveal-left">
+
+          <img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/106-9-47-4.jpg" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng nghề mây tre đan Bao La</h3>
+            <p class="muted">Làng nghề mây tre đan Bao La nổi tiếng với nghề đan lát sản phẩm thủ công tinh xảo, đa dạng từ mây và tre (như thúng, rổ, rá truyền thống đến đồ mỹ nghệ hiện đại) đã được truyền giữ qua nhiều thế kỷ tại huyện Quảng Điền.</p>
+            <p style="margin-top:12px">
+              <a href="langmaytre.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+
+
+
+
+        <!-- Card 6 -->
+        <article class="card reveal reveal-left">
+
+          <img src="https://statics.vinpearl.com/tranh-lang-sinh-1_1679156776.jpg" alt="Làng nghề Huế">
+          <div class="body">
+            <h3>Làng nghề làm tranh Sình</h3>
+            <p class="muted">Tranh làng Sình được biết tới là một trong những nhân chứng sống có bề dày lịch sử lâu đời ở xứ kinh kỳ. Dù đã trải qua rất nhiều thăng trầm của thời gian, tranh làng Sình ngày nay vẫn còn tồn tại và được gìn giữ phát triển.</p>
+            <p style="margin-top:12px">
+              <a href="tranhlangsinh.html" class="btn">Xem chi tiết</a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+
+<section>
+
+    <h2 class="reveal reveal-left">Làng nghề truyền thống trong giáo dục của Trường trung học phổ thông Đặng Huy Trứ </h2>
+    <p class="muted">Mô tả ngắn:Trường THPT Đặng Huy Trứ (thị xã Hương Trà, Huế) đã tích cực đưa nội dung giáo dục làng nghề truyền thống vào chương trình ngoại khóa và trải nghiệm thực tế, giúp học sinh không chỉ học lịch sử, văn hóa mà còn trực tiếp tham gia, bảo tồn, và phát huy các giá trị nghề truyền thống nổi bật của địa phương như nghề làm nón lá hoặc các nghề thủ công khác.
+    </p>
+            <p style="margin-top:12px">
+  <a href="giaoduc.html" class="btn">Xem chi tiết</a>
+</p>
+
+
+</section>
+
+      <section id="gallery">
+  <h2 class="reveal reveal-left">Thư viện ảnh</h2>
+  <p class="muted">Ảnh để trình diễn. Click để phóng to.</p>
+
+  <div class="grid gallery-grid">
+
+    <div class="gallery">
+      <img src="https://vietnamtourism.vn/imguploads/tourist/58Ducdonghue01.jpg"
+           class="lb-img"
+           alt="Làng nghề đúc đồng Phường Đúc Huế với sản phẩm thủ công truyền thống">
+    </div>
+
+    <div class="gallery">
+      <img src="https://www.lagunalangco.com/wp-content/uploads/2025/04/lang-nghe-truyen-thong-hue-3.jpg"
+           class="lb-img"
+           alt="Không gian làng nghề truyền thống Huế gắn với du lịch văn hóa">
+    </div>
+
+    <div class="gallery">
+      <img src="https://reviewhue.vn/wp-content/uploads/2022/12/lang-nghe-1.jpg"
+           class="lb-img"
+           alt="Hoạt động sản xuất thủ công tại các làng nghề truyền thống ở Huế">
+    </div>
+
+    <div class="gallery">
+      <img src="https://gotrangtri.vn/wp-content/uploads/2018/11/lang-nghe-truyen-thong-o-hue-4.jpg"
+           class="lb-img"
+           alt="Nghệ nhân Huế đang làm nghề thủ công truyền thống">
+    </div>
+
+    <div class="gallery">
+      <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-02-1700548381.jpg"
+           alt="Tranh dân gian làng Sình Huế – di sản văn hóa truyền thống">
+    </div>
+
+    <div class="gallery">
+      <img src="https://static.vinwonders.com/production/lang-sinh-hue-banner.jpg"
+           class="lb-img"
+           alt="Làng tranh dân gian Sình Huế nổi tiếng">
+    </div>
+
+    <div class="gallery">
+      <img src="https://ik.imagekit.io/tvlk/blog/2022/12/lang-huong-thuy-xuan-7.jpg?tr=q-70,c-at_max,w-1000,h-600"
+           class="lb-img"
+           alt="Làng hương Thủy Xuân Huế rực rỡ sắc màu">
+    </div>
+
+    <div class="gallery">
+      <img src="https://visithue.vn/Portals/0/VisitHue/Destination/LangNghe/visithue_Truy%E1%BB%81n_th%E1%BB%91ng_%C4%91%C3%BAc_%C4%91%E1%BB%93ng_ph%C6%B0%E1%BB%9Dng_%C4%91%C3%BAc_hu%E1%BA%BF.jpg/huetourism_Phuong%20Duc%207.jpg"
+           class="lb-img"
+           alt="Quy trình đúc đồng truyền thống tại Phường Đúc Huế">
+    </div>
+
+    <div class="gallery">
+      <img src="https://file.huengaynay.vn/data/0/images/2023/04/13/upload_3836/ps-1.jpg?dpi=150&quality=100&w=1400"
+           class="lb-img"
+           alt="Hoạt động sản xuất tại làng nghề truyền thống Huế">
+    </div>
+
+    <div class="gallery">
+      <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg"
+           class="lb-img"
+           alt="Làng bún Vân Cù Huế với nghề làm bún truyền thống">
+    </div>
+
+    <div class="gallery">
+      <img src="https://khamphahue.com.vn/Portals/0/Medias/Nam2023/T8/Khamphahue_DiemDuLich_MayTreDanBaola-Hue.jpg"
+           class="lb-img"
+           alt="Làng nghề mây tre đan Bao La Huế">
+    </div>
+
+    <div class="gallery">
+      <img src="https://locan.hue.gov.vn/Portals/0/Medias/Nam2023/T5/maytrebaolahue_01-9369.jpg"
+           class="lb-img"
+           alt="Sản phẩm mây tre đan thủ công Bao La Huế">
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+  <!-- LIGHTBOX -->
+  <style>
+    .lightbox {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      animation: zoomIn .2s ease;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.7); opacity: 0;}
+      to   {transform: scale(1); opacity: 1;}
+    }
+    .lb-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 42px;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+    .lb-prev { left: 30px; }
+    .lb-next { right: 30px; }
+    .lb-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 48px;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" onclick="closeLB()">×</span>
+    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
+    <img id="lb-img">
+    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </div>
+
+  <script>
+    let images = [...document.querySelectorAll(".lb-img")];
+    let lb = document.getElementById("lightbox");
+    let lbImg = document.getElementById("lb-img");
+    let index = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener("click", () => {
+        index = i;
+        openLB();
+      });
+    });
+
+    function openLB() {
+      lb.style.display = "flex";
+      lbImg.src = images[index].src;
+    }
+
+    function closeLB() {
+      lb.style.display = "none";
+    }
+
+    function changeImg(dir) {
+      index = (index + dir + images.length) % images.length;
+      lbImg.src = images[index].src;
+    }
+
+    // bấm nền -> tắt
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) closeLB();
+    });
+  </script>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <section id="contact"></section>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>
+          <strong>Thông tin liên hệ</strong>
+          <div class="muted">Nếu có ý kiến xin gửi về gmail/sdt
+        <div class="muted">Gmail: duynguyen.180109@gmail.com    Sdt: 0349229611</div>
+      </div>
+    </div>
+  </footer>
+  <div id="backToTop">↑</div>
+  
+<script>
+const btn = document.getElementById("backToTop");
+
+// Hiện nút khi cuộn xuống 300px
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    btn.classList.add("show");
+  } else {
+    btn.classList.remove("show");
+  }
+});
+
+// Cuộn lên đầu trang
+btn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
+
+
+
+
+<script>
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "Làng nghề truyền thống Huế",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Huế",
+    "addressCountry": "VN"
+  },
+  "description": "Trang giới thiệu và giáo dục về các làng nghề truyền thống Huế."
+}
+</script>
+
+
+
+
+
+</body>
+</html>
