@@ -2,503 +2,802 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Làng Bún Vân Cù - Huế</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Làng Bún Vân Cù – Huế</title>
+  <meta name="description" content="Làng bún Vân Cù – làng nghề truyền thống hơn 500 năm tuổi ven sông Bồ, Hương Toàn, Hương Trà, Thừa Thiên Huế.">
 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,500&family=IM+Fell+English:ital@0;1&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- LIGHTBOX -->
   <style>
+    :root {
+      --ink:      #1c1208;
+      --ink-s:    #5c4a2a;
+      --ink-xs:   #8a7356;
+      --gold:     #b8892a;
+      --gold-l:   #d4a84b;
+      --gold-ll:  #f0d898;
+      --rust:     #8b3a1a;
+      --rust-l:   #c4552a;
+      --cream:    #f7f0e4;
+      --cream-d:  #ede3cc;
+      --cream-dd: #e0d0b0;
+      --paper:    #faf6ed;
+      --white:    #fffdf7;
+      --purple:   #4a1a6e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink); color: var(--gold-ll);
+      text-align: center; font-size: .72rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      padding: .55rem 1rem; font-weight: 500;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--ink);
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+    }
+    .header-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .brand-icon {
+      width: 42px; height: 42px; background: var(--gold);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+    }
+    .brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-ll); letter-spacing: .04em; line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: .6rem; color: rgba(255,255,255,.4);
+      letter-spacing: .2em; text-transform: uppercase; font-weight: 300;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--gold-ll); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .08em;
+      padding: .5rem 1.2rem; border: 1px solid rgba(212,168,75,.3);
+      transition: all .3s;
+    }
+    .back-btn::before { content: '←'; }
+    .back-btn:hover { background: rgba(212,168,75,.1); border-color: var(--gold); color: var(--gold); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--ink);
+      border-bottom: 1px solid rgba(212,168,75,.15); padding: .6rem 0;
+    }
+    .breadcrumb-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; color: rgba(255,255,255,.35); letter-spacing: .05em;
+    }
+    .breadcrumb a { color: var(--gold-l); text-decoration: none; transition: color .3s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold-ll); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 55vh;
+      display: flex; align-items: center; justify-content: center;
+      background:
+        linear-gradient(160deg, rgba(28,18,8,.80) 0%, rgba(74,26,110,.48) 50%, rgba(139,58,26,.68) 100%),
+        url('https://media.vov.vn/sites/default/files/styles/large_watermark/public/2025-02/bun_van_cu_1.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a84b' fill-opacity='0.04'%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-border {
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(212,168,75,.2); pointer-events: none;
+    }
+    .hero-border::before {
+      content: ''; position: absolute; inset: 8px;
+      border: 1px solid rgba(212,168,75,.08);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; }
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .4em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 1rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      opacity: 0; animation: fadeUp .8s .2s forwards;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.1; color: var(--cream);
+      text-shadow: 0 4px 40px rgba(0,0,0,.6);
+      opacity: 0; animation: fadeUp .9s .4s forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-l); }
+    .hero-sub {
+      font-family: 'IM Fell English', serif; font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      color: rgba(240,216,152,.7); margin-top: .8rem;
+      opacity: 0; animation: fadeUp .9s .6s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.35); font-size: .62rem; letter-spacing: .2em;
+      text-transform: uppercase; animation: bounce 2s infinite;
+    }
+    .hero-scroll span { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+
+    .divider {
+      display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-ll), var(--gold), var(--gold-ll), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1rem; letter-spacing: .3em; flex-shrink: 0; }
+
+    .sec-eyebrow {
+      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: .5rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 1.2rem;
+    }
+    .sec-title em { font-style: italic; color: var(--rust); }
+
+    .muted {
+      color: var(--ink-s); line-height: 1.95;
+      margin-bottom: 1.2rem; font-size: .92rem; text-align: justify;
+    }
+
+    /* ── INTRO SECTION ── */
+    #gioi-thieu { background: var(--cream); padding: 5rem 0; }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--gold); margin: 2.5rem 0;
+    }
+    .info-card {
+      background: var(--white); padding: 2rem 1.8rem; transition: all .35s;
+    }
+    .info-card:hover { background: var(--cream); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .info-card-icon { font-size: 2rem; display: block; margin-bottom: .8rem; }
+    .info-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--rust); margin-bottom: .6rem;
+    }
+    .info-card p { font-size: .87rem; color: var(--ink-s); line-height: 1.8; }
+
+    .intro-lead {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-style: italic;
+      color: var(--rust); line-height: 1.7;
+      border-left: 4px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      background: var(--white); margin-bottom: 2rem;
+      box-shadow: 4px 0 20px rgba(0,0,0,.04);
+    }
+
+    /* ── MAP ── */
+    .map-wrapper {
+      margin: 2rem 0; border: 2px solid var(--gold);
+      overflow: hidden; box-shadow: 0 8px 35px rgba(0,0,0,.12);
+    }
+
+    /* ── HISTORY SECTION ── */
+    #lich-su { background: var(--paper); padding: 5rem 0; }
+
+    .history-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .img-featured { position: sticky; top: 100px; }
+    .img-featured img {
+      width: 100%; display: block;
+      border: 3px solid var(--gold);
+      box-shadow: 8px 8px 40px rgba(0,0,0,.15);
+    }
+    .img-caption {
+      text-align: center; font-size: .75rem;
+      color: var(--ink-xs); letter-spacing: .1em;
+      margin-top: .6rem; font-style: italic;
+    }
+
+    .highlight-box {
+      background: var(--ink); padding: 2rem;
+      border-left: 4px solid var(--gold);
+      position: relative; overflow: hidden; margin-top: 2rem;
+    }
+    .highlight-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rust), var(--gold));
+    }
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--gold-ll); line-height: 1.75; margin: 0;
+    }
+
+    /* ── PROCESS SECTION ── */
+    #quy-trinh { background: var(--cream-d); padding: 5rem 0; }
+
+    .process-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .process-steps { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .process-steps::before {
+      content: ''; position: absolute;
+      left: 28px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--rust), var(--gold));
+    }
+    .process-step {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid rgba(224,208,176,.5);
+      position: relative;
+    }
+    .process-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 58px; height: 58px; flex-shrink: 0;
+      background: var(--ink); border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--gold);
+      position: relative; z-index: 1;
+    }
+    .step-content { flex: 1; }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--rust);
+      margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* ── VALUE SECTION ── */
+    #gia-tri { background: var(--paper); padding: 5rem 0; }
+
+    /* ── FEATURED IMAGE BANNER ── */
+    .img-banner {
+      position: relative; overflow: hidden; margin: 2.5rem 0;
+      border: 2px solid var(--gold);
+    }
+    .img-banner img {
+      width: 100%; max-height: 420px; object-fit: cover; display: block;
+      filter: brightness(.88) saturate(.9);
+      transition: transform .6s, filter .4s;
+    }
+    .img-banner:hover img { transform: scale(1.03); filter: brightness(1) saturate(1.05); }
+    .img-banner-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(28,18,8,.85), transparent);
+      padding: 1.5rem 1.5rem .8rem;
+      font-size: .78rem; color: var(--gold-ll);
+      letter-spacing: .1em; font-style: italic;
+    }
+
+    /* ── GALLERY ── */
+    #hinh-anh { background: var(--ink); padding: 5rem 0; }
+    #hinh-anh .sec-title { color: var(--cream-d); }
+    #hinh-anh .sec-eyebrow { color: var(--gold-l); }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 3px; background: var(--gold); margin-top: 2.5rem;
+    }
+    .gallery-grid .g-item:first-child { grid-column: span 2; }
+
+    .g-item {
+      position: relative; overflow: hidden;
+      cursor: zoom-in; aspect-ratio: 4/3;
+    }
+    .g-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s;
+      filter: brightness(.85) saturate(.9);
+    }
+    .g-item:hover img { transform: scale(1.08); filter: brightness(1) saturate(1.1); }
+    .g-item-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,18,8,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: white;
+      opacity: 0; transition: opacity .3s;
+    }
+    .g-item:hover .g-item-overlay { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
     .lightbox {
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
+      position: fixed; z-index: 9999; inset: 0;
+      background: rgba(0,0,0,.95);
+      display: none; justify-content: center; align-items: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lb-wrap {
+      position: relative; max-width: 88%; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
     }
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-      animation: zoomIn .2s ease;
+      max-width: 100%; max-height: 80vh;
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 80px rgba(184,137,42,.3);
+      animation: zoomIn .3s ease; display: block;
     }
-    @keyframes zoomIn {
-      from {transform: scale(0.7); opacity: 0;}
-      to   {transform: scale(1); opacity: 1;}
+    .lb-caption {
+      margin-top: .8rem; color: rgba(255,255,255,.5);
+      font-size: .8rem; letter-spacing: .1em; text-align: center;
     }
+    .lb-counter { color: var(--gold); font-size: .72rem; letter-spacing: .2em; margin-top: .3rem; }
+    @keyframes zoomIn { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
     .lb-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 42px;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.2rem; color: white; cursor: pointer;
+      background: rgba(184,137,42,.3); border: 1px solid var(--gold);
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; user-select: none; z-index: 2;
     }
-    .lb-prev { left: 30px; }
-    .lb-next { right: 30px; }
+    .lb-btn:hover { background: var(--gold); color: var(--ink); transform: translateY(-50%) scale(1.1); }
+    .lb-prev { left: -70px; } .lb-next { right: -70px; }
     .lb-close {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 48px;
-      color: #fff;
-      cursor: pointer;
+      position: fixed; top: 18px; right: 24px;
+      font-size: 1.4rem; color: white; cursor: pointer;
+      background: rgba(139,58,26,.5); border: 1px solid var(--rust-l);
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; z-index: 10;
     }
-  </style>
-
-
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f7f2ff;
-      color: #333;
+    .lb-close:hover { background: var(--rust); transform: rotate(90deg); }
+    .lb-zoom-controls { display: flex; gap: .5rem; margin-top: .8rem; }
+    .lb-zoom-btn {
+      width: 34px; height: 34px;
+      background: rgba(184,137,42,.2); border: 1px solid rgba(212,168,75,.3);
+      border-radius: 50%; cursor: pointer; color: var(--gold-ll);
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: all .3s;
     }
+    .lb-zoom-btn:hover { background: var(--gold); color: var(--ink); }
 
-    header {
-      background: #6a0dad;
-      padding: 15px 30px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: url('https://media.vov.vn/sites/default/files/styles/large_watermark/public/2025-02/bun_van_cu_1.jpg') center/cover no-repeat;
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
-    0 4px 12px rgba(0,0,0,0.5),
-    0 8px 20px rgba(0,0,0,0.4);
-      font-size: 36px;
-      font-weight: bold;
-    }
-
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      color: #6a0dad;
-      border-left: 6px solid #6a0dad;
-      padding-left: 10px;
-    }
-
-    p {
-      line-height: 1.7;
-      margin: 15px 0;
-    }
-
-    section{padding:48px 0}
-    .grid{display:grid;gap:20px}
-    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
-    .card img{width:100%;height:160px;object-fit:cover}
-    .card .body{padding:16px}
-    .muted{color:var(--muted)}
-
-    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-
-
-  
-
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #6a0dad;
-      color: white;
-      margin-top: 50px;
+      background: var(--ink); color: var(--cream);
+      border-top: 3px solid var(--gold); padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    footer strong { color: var(--gold-l); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
+    footer p { color: rgba(255,255,255,.55); font-size: .85rem; line-height: 1.8; margin-top: .5rem; }
+    footer a { color: var(--gold-l); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1380px; margin: 2rem auto 0; padding: 1.5rem 2.5rem 0;
+      border-top: 1px solid rgba(212,168,75,.15);
+      text-align: center; font-size: .72rem;
+      color: rgba(255,255,255,.3); letter-spacing: .05em;
     }
 
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 50px; height: 50px;
+      background: var(--gold); color: var(--ink);
+      border-radius: 50%; cursor: pointer; border: none;
+      font-size: 1.2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 25px rgba(184,137,42,.5);
+      opacity: 0; visibility: hidden; transition: all .35s; z-index: 500;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: var(--ink); color: var(--gold); transform: translateY(-5px); }
 
-    .img-center {
-  text-align: center;
-  margin: 20px 0;
-}
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s, transform .8s; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s, transform .8s; }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-.img-center img {
-  max-width: 80%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-
-.map-wrapper {
-  margin: 25px 0;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-}
-#backToTop {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: white;
-  color: black;
-  padding: 12px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 22px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-}
-
-#backToTop.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-:root{
-  --muted:#666;
-}
-.gallery img{
-  transition: .4s ease;
-}
-
-.gallery img:hover{
-  transform: scale(1.06);
-  box-shadow: 0 10px 22px rgba(0,0,0,.25);
-}
-
-
-#backToTop:hover{
-  background:#6a0dad;
-  color:white;
-  transform: translateY(-4px);
-}
-
-/* hiệu ứng xuất hiện khi load */
-.fade-top{
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeUp 0.9s ease forwards;
-}
-
-.delay-1{ animation-delay: .2s }
-.delay-2{ animation-delay: .4s }
-.delay-3{ animation-delay: .6s }
-
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-
-/* hiệu ứng khi cuộn tới */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* biến thể trái – phải nếu cần */
-.reveal-left {
-  transform: translateX(-40px);
-}
-.reveal-right {
-  transform: translateX(40px);
-}
-.reveal-left.show,
-.reveal-right.show {
-  transform: translateX(0);
-}
-
-
-/* Ảnh bay từ trái */
-.reveal-img-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.9s ease;
-}
-
-.reveal-img-left.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-@media (max-width: 768px){
-
-  header{
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  nav a{
-    margin: 0 10px;
-  }
-
-  .hero{
-    height: 180px;
-    font-size: 24px;
-    padding: 0 12px;
-    text-align: center;
-  }
-
-  .content{
-    margin: 25px auto;
-  }
-
-  h2{
-    font-size: 20px;
-  }
-
-  p{
-    font-size: 15px;
-  }
-
-  .gallery img{
-    height: 140px;
-  }
-
-  .img-center img{
-    max-width: 100%;
-  }
-
-  .lb-btn{
-    font-size: 32px;
-  }
-
-  .lb-close{
-    font-size: 36px;
-  }
-}
-
-
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      .history-layout, .process-layout { grid-template-columns: 1fr; }
+      .img-featured { position: static; }
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid .g-item:first-child { grid-column: span 2; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .lb-prev { left: 8px; } .lb-next { right: 8px; }
+      .process-steps::before { left: 22px; }
+      .step-num { width: 46px; height: 46px; font-size: 1.1rem; }
+    }
+    @media(max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .g-item:first-child { grid-column: span 1; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
   </style>
-
-  
 </head>
+
 <body>
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ — Tư liệu Giáo dục Địa phương Huế ✦</div>
 
-<header class="fade-top">
-  <h1>Làng nghề truyền thống Huế</h1>
-  <nav>
-    <a href="index.html">🏠Trang chủ</a>
-  </nav>
-</header>
-
-<section class="hero fade-top delay-1">
-  Làng bún Vân Cù
-</section>
-
-<div class="content">
-
-  <h2 class="reveal reveal-left">Giới thiệu</h2>
-  <p class="reveal">
-   Xứ Huế từ lâu được biết đến với danh xưng "Thiên đường ẩm thực" với hàng ngàn món ăn đa dạng, phong phú. Những món ngon xứ Huế nổi tiếng có thể kể đến như: Bún bò Huế, bún hến, bún nghệ, bún giấm nuốc, bún chả cá, bún chay... Thật không quá ngạc nhiên khi những món ngon xứ Huế lại có nguyên liệu chính là bún nhiều đến vậy. Bởi lẽ, chính ở Huế, bún cũng là một loại đặc sản, nổi danh nhất là bún của làng nghề truyền thống Vân Cù.
-  </p>
-  <h2 class="reveal reveal-left">Vị Trí</h2>
-  <p class="reveal">
-    Vân Cù là tên một làng nằm ven sông Bồ, nay thuộc xã Hương Toàn, thị xã Hương Trà, tỉnh Thừa Thiên Huế. Tính từ chợ Đông Ba, làng nằm cách kinh thành Huế khoảng 10km về phía Tây Bắc.
-  </p>
-
-
-
-
-<div class="map-wrapper">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.914241685183!2d107.54152090974829!3d16.530426584152053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a7bebffe11f3%3A0x53c72ddea95bc3f!2zxJDDrG5oIEzDoG5nIFbDom4gQ8O5!5e0!3m2!1svi!2s!4v1765547453364!5m2!1svi!2s" 
-    width="100%" 
-    height="350" 
-    style="border:0; border-radius:10px;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
-
-  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
-  <p class="reveal">
-   Theo sách “Ô Châu cận lục” của cụ Dương Văn An, làng Vân Cù có bề dày lịch sử trên 500 năm. Ban đầu, làng có tên là Đào Cù thuộc huyện Đan Điền, chuyên nghề nung gạch. Sau đó, làng bỏ nghề gạch theo nghề bún nên có thêm tên tục là làng Bún.
-  </p>
-  <p class="reveal">
-  Cũng có truyền thuyết rằng, thuở xưa có một đoàn người từ Đàng Ngoài theo chân chúa Nguyễn Hoàng vào Nam lập nghiệp tại làng Cổ Tháp, thuộc huyện Hương Điền (nay tách thành thị xã Hương Trà, huyện Phong Điền và huyện Quảng Điền, tỉnh Thừa Thiên Huế). Trong số đó có một cô gái xinh đẹp và giỏi giang nên được mọi người yêu mến. Trong khi dân làng sinh sống bằng nghề nông, cô gái thì chọn cách làm bún từ những hạt gạo xứ này. Vì làm bún rất ngon nên được mọi người gọi thân thương là cô Bún. Tuy nhiên, có vài kẻ ghen ghét nhân lúc mất ba mùa lúa liên tiếp đã rêu rao rằng thần linh quở phạt dân làng vì cô Bún dám lấy hạt ngọc của trời để ngâm, để chà, để xát. Vì thế, mọi người đùng đùng nổi giận và buộc cô Bún phải bỏ việc làm bún hoặc rời làng ra đi. Cô chọn cách thứ hai để giữ nghề.</p>
-  <p class="reveal">
-    Là người phúc hậu nên dân làng ban ân cho cô được chọn hướng đi, đồng thời cử thêm năm chàng trai khỏe mạnh khiêng giúp cối đá. Đoàn người cứ đi mãi về phía Đông. Đến khi chàng trai thứ năm quỵ xuống vì cõng cối đá nặng trên lưng, cô Bún nghĩ là do duyên trời sắp đặt. Nhìn xung quanh cây cỏ tốt tươi, lại còn có dòng sông mát rượi trong lành nên cô Bún quyết định chọn đây là nơi lập nghiệp. Từ đó, ngày qua ngày cô bày cho dân làng cách làm bún. Nghề làm bún ở Vân Cù cũng được hình thành từ đó.
-  </p>
-  <div class="img-center reveal-img-left">
-  <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg" alt="Làng bún Vân Cù">
-</div>
-
-  <h2 class="reveal reveal-left">Quy trình làm bún Vân Cù</h2>
-  <p class="reveal">
-   Ngày xưa, nghề làm bún là một nghề công phu và đòi hỏi quá trình làm rất vất vả. Nghề làm bún cần có chày, cối để giã gạo; có khuôn để vặn bún; có lò lửa để luộc bún; có thúng, mủng để đựng bún…
-  </p>
-  <p class="reveal">
-   Để làm nên sợi bún ngon, gạo được dùng phải là gạo Khang dân (người Huế gọi là gạo ruộng), là loại gạo dùng để nấu cơm khô nổi tiếng ăn không ngán. Gạo được rửa sạch kỹ lớp cám bên ngoài từ 4-5 lần, ngâm 2 ngày thì hạt gạo khô ban đầu trở thành dẻo và no nước. Bí quyết đặc biệt là sau khi ngâm xong thì bỏ muối hột sống (thành phần quan trọng để bún bớt bị chua trong quá trình làm mà lại có vị mặn giúp bún ăn ngon, đậm đà).
-  </p>
-<p class="reveal">
-Sau đó, cho gạo vào cối giã, gạn lọc thành bột khô. Sau khi nấu chín bột, người làm bún phải dùng tay đánh bột nhuyễn thành hồ, sau đó bỏ vào khuôn vặn. Sợi bột sau khi đi qua lỗ khuôn được nhúng ngay vào nồi nước đang sôi, sợi bún từ đó được thành hình. Bước cuối cùng là làm nguội nhanh sợi bún bằng nước lạnh.</p>
-<div class="img-center reveal-img-left">
-  <img src="https://khamphahue.com.vn/Portals/0/DiSan/NgheTruyenThong/BunVanCu/2024_12_11_danhmucdisan_NghebunVanCu_.jpg?ver=2024-12-13-100942-190" alt="Làng bún Vân Cù">
-</div>
-
-
-
-  <p class="reveal">
-    Muốn con bún không quá bở cũng không quá dai, người làm bún phải pha thêm bột lọc. Nghề bún không chỉ đòi hỏi ở người làm sức khoẻ mà còn đòi hỏi sự tinh tế trong cách pha chế. Tỷ lệ bột lọc cho vào trong bún không có công thức cụ thể mà đòi hỏi kinh nghiệm của người làm nghề.
-  </p>
-  <p class="reveal">
-    Ngày nay, để đáp ứng nhu cầu ngày càng nhiều của thị trường, người dân làng Vân Cù đã biết ứng dụng máy móc, thiết bị kỹ thuật vào quy trình sản xuất bún, vừa cho năng suất cao, đảm bảo vệ sinh an toàn thực phẩm vừa giải phóng sức lao động cho người dân thôn Vân Cù. Tuy nhiên, để đảm bảo độ thơm ngon đặc trưng của sợi bún làng Vân, nhiều công đoạn thủ công vẫn được người dân nơi đây duy trì.
-  </p>
-   <p class="reveal">
-   Bún Vân Cù xưa có 3 loại là bún con, bún lá và bún mớ. Hiện nay chỉ còn bún con (những lọn bún quấn lại với nhau, dài già gang tay, rất tiện lợi cho việc ăn uống đơn giản) và bún mớ (còn gọi là bún “ngảo” hay bún kí lô, loại người Huế thường ăn đại trà ngày nay).</p>
-
-<h2 class="reveal reveal-left">Giá trị của Di sản ẩm thực:</h2>
-
-<p class="reveal">
-  Bún Vân Cù thành phẩm ngày ngày được người dân trong làng và các đầu mối thu mua đưa đi giao khắp các chợ, quán ăn, nhà hàng trong tỉnh, góp phần tạo nên thương hiệu cho món “bún bò Huế” nức tiếng gần xa.
-</p>
-<p class="reveal">
-  Sợi bún Vân Cù màu trắng ngà, mùi thơm như hương gạo mới xay. Điều đặc biệt là không cần ăn kèm cao lương mỹ vị gì, nhiều khi chỉ cần một chén nước mắm chanh tỏi ớt cũng đủ làm thực khách nhớ mãi sợi bún ở ngôi làng ven phía sông Bồ…
-</p>
-<p class="reveal">
-  Khác với những làng nghề truyền thống khác, các sản phẩm đều có thể để được rất lâu, trở thành hàng lưu niệm. Sợi bún tươi Vân Cù được sản xuất và tiêu thụ trong ngày. Điều khiến cho sợi bún bé nhỏ trở thành niềm tự hào của một làng quê, rồi trở thành một làng nghề truyền thống như Vân Cù ngày nay chính là ở chất lượng của bún Vân Cù đã gắn liền với những món ngon đặc trưng của xứ Huế; ở sự cần cù, chịu thương chịu khó của bao thế hệ người làng Vân Cù, góp vào một nguyên liệu chính yếu của kho tàng ẩm thực độc đáo xứ Huế.
-</p>
-<h2 class="reveal reveal-left">Hình ảnh</h2>
-
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
-      <div class="gallery"><img src="https://cdn.realtech.com.vn/uploads/gostay/news/2729/nghe-lam-bun-lang-van-cu.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://media.vietnamplus.vn/images/ec8177852ad9f8006058dcf997b39405d07dee2316d11a166624143d54c7b6d1d46fb93569dc1060eace4bce688bc7eb/bun-van-cu3-1188.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://langngheviet.com.vn/stores/news_dataimages/2025/022025/25/10/vc5-kgwd20250225103624.jpg?rt=20250225103646" class="lb-img"></div>
-      <div class="gallery"><img src="https://cdn-i2.congthuong.vn/stores/news_dataimages/2025/022025/17/10/32c5536aa0781e26476920250217100714.jpg?rt=20250217101141" class="lb-img"></div>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">🏺</div>
+        <div>
+          <div class="brand-text">Làng nghề truyền thống Huế</div>
+          <div class="brand-sub">Di sản · Thủ công · Văn hóa</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">Trang chủ</a>
     </div>
-   
+  </header>
 
-  <div class="lightbox" id="lightbox">
-    <span class="lb-close" onclick="closeLB()">×</span>
-    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
-    <img id="lb-img">
-    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <a href="index.html#lang-nghe">Các làng nghề</a>
+      <span>›</span>
+      <span style="color:var(--gold-ll);">Làng bún Vân Cù</span>
+    </div>
   </div>
 
-  <script>
-    let images = [...document.querySelectorAll(".lb-img")];
-    let lb = document.getElementById("lightbox");
-    let lbImg = document.getElementById("lb-img");
-    let index = 0;
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-border"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Làng nghề truyền thống · Thừa Thiên Huế</p>
+      <h1>Làng Bún <em>Vân Cù</em></h1>
+      <p class="hero-sub">Hơn 500 năm hương vị đặc sản ẩm thực xứ Huế</p>
+    </div>
+    <div class="hero-scroll">cuộn xuống<span></span></div>
+  </section>
 
-    images.forEach((img, i) => {
-      img.addEventListener("click", () => {
-        index = i;
-        openLB();
-      });
+  <main>
+    <!-- GIỚI THIỆU + VỊ TRÍ -->
+    <section id="gioi-thieu">
+      <div class="container">
+
+        <div class="info-grid reveal">
+          <div class="info-card">
+            <span class="info-card-icon">📍</span>
+            <div class="info-card-title">Vị trí</div>
+            <p>Ven sông Bồ, xã Hương Toàn, thị xã Hương Trà, cách kinh thành Huế khoảng 10 km về phía Tây Bắc.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">📅</span>
+            <div class="info-card-title">Lịch sử</div>
+            <p>Theo sách "Ô Châu cận lục", làng Vân Cù có bề dày lịch sử trên 500 năm, ban đầu mang tên Đào Cù, chuyên nghề nung gạch.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">🍜</span>
+            <div class="info-card-title">Đặc trưng</div>
+            <p>Sợi bún trắng ngà, mùi thơm như hương gạo mới xay — nguyên liệu chính tạo nên hàng loạt món ngon nức tiếng của xứ Huế.</p>
+          </div>
+        </div>
+
+        <div class="divider reveal"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Giới thiệu ✦</span>
+          <h2 class="sec-title">Đặc sản <em>bún Vân Cù</em> xứ Huế</h2>
+        </div>
+
+        <p class="intro-lead reveal">
+          Xứ Huế từ lâu được biết đến với danh xưng "Thiên đường ẩm thực" với hàng ngàn món ăn đa dạng, phong phú. Nổi danh nhất là bún của làng nghề truyền thống Vân Cù — nguyên liệu chính yếu của kho tàng ẩm thực độc đáo xứ Huế.
+        </p>
+
+        <div class="sec-header reveal-left" style="margin-bottom:1.5rem; margin-top:3rem;">
+          <span class="sec-eyebrow">✦ Vị trí ✦</span>
+          <h2 class="sec-title">Tìm đến <em>làng nghề</em></h2>
+        </div>
+        <p class="muted reveal">Vân Cù là tên một làng nằm ven sông Bồ, nay thuộc xã Hương Toàn, thị xã Hương Trà, tỉnh Thừa Thiên Huế. Tính từ chợ Đông Ba, làng nằm cách kinh thành Huế khoảng 10 km về phía Tây Bắc.</p>
+
+        <div class="map-wrapper reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.914241685183!2d107.54152090974829!3d16.530426584152053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a7bebffe11f3%3A0x53c72ddea95bc3f!2zxJDDrG5oIEzDoG5nIFbDom4gQ8O5!5e0!3m2!1svi!2s!4v1765547453364!5m2!1svi!2s"
+            width="100%" height="380" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- LỊCH SỬ -->
+    <section id="lich-su">
+      <div class="container">
+        <div class="history-layout">
+          <div class="history-text">
+            <div class="sec-header reveal-left">
+              <span class="sec-eyebrow">✦ Lịch sử hình thành ✦</span>
+              <h2 class="sec-title">Hơn năm thế kỷ <em>gắn với sợi bún</em></h2>
+            </div>
+
+            <p class="muted reveal">
+              Theo sách "Ô Châu cận lục" của cụ Dương Văn An, làng Vân Cù có bề dày lịch sử trên 500 năm. Ban đầu, làng có tên là Đào Cù thuộc huyện Đan Điền, chuyên nghề nung gạch. Sau đó, làng bỏ nghề gạch theo nghề bún nên có thêm tên tục là làng Bún.
+            </p>
+            <p class="muted reveal">
+              Cũng có truyền thuyết rằng, thuở xưa có một đoàn người từ Đàng Ngoài theo chân chúa Nguyễn Hoàng vào Nam lập nghiệp. Trong số đó có một cô gái xinh đẹp và giỏi giang chọn cách làm bún từ những hạt gạo xứ này. Vì làm bún rất ngon nên được mọi người gọi thân thương là cô Bún.
+            </p>
+            <p class="muted reveal">
+              Tuy nhiên, có vài kẻ ghen ghét nhân lúc mất ba mùa lúa liên tiếp đã rêu rao rằng thần linh quở phạt dân làng vì cô Bún dám lấy hạt ngọc của trời để ngâm, để chà, để xát. Vì thế mọi người buộc cô phải bỏ việc làm bún hoặc rời làng. Cô chọn cách thứ hai để giữ nghề.
+            </p>
+            <p class="muted reveal">
+              Là người phúc hậu nên dân làng ban ân cho cô được chọn hướng đi. Đến khi chàng trai thứ năm quỵ xuống vì cõng cối đá nặng, cô Bún nghĩ là do duyên trời sắp đặt. Nhìn xung quanh cây cỏ tốt tươi, lại còn có dòng sông mát rượi, cô quyết định chọn đây là nơi lập nghiệp. Từ đó, cô bày cho dân làng cách làm bún. Nghề làm bún ở Vân Cù được hình thành từ đó.
+            </p>
+
+            <div class="highlight-box reveal">
+              <p>"Điều khiến sợi bún bé nhỏ trở thành niềm tự hào của một làng quê chính là chất lượng gắn liền với những món ngon đặc trưng xứ Huế và sự cần cù, chịu thương chịu khó của bao thế hệ người Vân Cù."</p>
+            </div>
+          </div>
+
+          <div class="img-featured reveal-right">
+            <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg" alt="Làng bún Vân Cù Huế">
+            <div class="img-caption">Người dân làng Vân Cù tất bật với nghề bún sớm tinh mơ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUY TRÌNH LÀM BÚN -->
+    <section id="quy-trinh">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Quy trình làm bún ✦</span>
+          <h2 class="sec-title">Nghệ thuật từ <em>hạt gạo</em> đến sợi bún</h2>
+        </div>
+
+        <p class="muted reveal">Ngày xưa, nghề làm bún là một nghề công phu và đòi hỏi quá trình làm rất vất vả. Nghề làm bún cần có chày, cối để giã gạo; có khuôn để vặn bún; có lò lửa để luộc bún; có thúng, mủng để đựng bún…</p>
+
+        <div class="divider reveal"><span class="divider-icon">◆</span></div>
+
+        <div class="process-layout">
+          <div class="process-steps">
+            <div class="process-step reveal">
+              <div class="step-num">01</div>
+              <div class="step-content">
+                <div class="step-title"><span>🌾</span> Chọn gạo và ngâm</div>
+                <p class="muted">Gạo được dùng phải là gạo Khang dân (người Huế gọi là gạo ruộng). Gạo được rửa sạch kỹ lớp cám bên ngoài từ 4–5 lần, ngâm 2 ngày thì hạt gạo khô ban đầu trở thành dẻo và no nước. Bí quyết đặc biệt là sau khi ngâm xong thì bỏ muối hột sống — thành phần quan trọng để bún bớt chua mà lại có vị mặn giúp bún ăn ngon, đậm đà.</p>
+              </div>
+            </div>
+
+            <div class="process-step reveal">
+              <div class="step-num">02</div>
+              <div class="step-content">
+                <div class="step-title"><span>⚙️</span> Giã và lọc bột</div>
+                <p class="muted">Cho gạo vào cối giã, gạn lọc thành bột khô. Sau khi nấu chín bột, người làm bún phải dùng tay đánh bột nhuyễn thành hồ. Tỷ lệ bột lọc cho vào trong bún không có công thức cụ thể mà đòi hỏi kinh nghiệm của người làm nghề.</p>
+              </div>
+            </div>
+
+            <div class="process-step reveal">
+              <div class="step-num">03</div>
+              <div class="step-content">
+                <div class="step-title"><span>🔧</span> Vặn khuôn và luộc</div>
+                <p class="muted">Bột được bỏ vào khuôn vặn. Sợi bột sau khi đi qua lỗ khuôn được nhúng ngay vào nồi nước đang sôi, sợi bún từ đó được thành hình.</p>
+              </div>
+            </div>
+
+            <div class="process-step reveal">
+              <div class="step-num">04</div>
+              <div class="step-content">
+                <div class="step-title"><span>❄️</span> Làm nguội và hoàn thiện</div>
+                <p class="muted">Bước cuối cùng là làm nguội nhanh sợi bún bằng nước lạnh. Muốn con bún không quá bở cũng không quá dai, người làm bún phải pha thêm bột lọc với tỷ lệ phù hợp từ kinh nghiệm tích lũy qua nhiều năm.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal-right">
+            <div class="img-banner">
+              <img src="https://khamphahue.com.vn/Portals/0/DiSan/NgheTruyenThong/BunVanCu/2024_12_11_danhmucdisan_NghebunVanCu_.jpg?ver=2024-12-13-100942-190" alt="Quy trình làm bún Vân Cù">
+              <div class="img-banner-cap">Quy trình làm bún tươi truyền thống làng Vân Cù</div>
+            </div>
+
+            <div class="highlight-box" style="margin-top:1.5rem;">
+              <p>"Bún Vân Cù xưa có 3 loại: bún con, bún lá và bún mớ. Hiện nay chủ yếu còn bún con và bún mớ — loại người Huế ăn đại trà ngày nay."</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="muted reveal" style="margin-top:2rem;">Ngày nay, để đáp ứng nhu cầu ngày càng nhiều của thị trường, người dân làng Vân Cù đã biết ứng dụng máy móc, thiết bị kỹ thuật vào quy trình sản xuất bún. Tuy nhiên, để đảm bảo độ thơm ngon đặc trưng của sợi bún làng Vân, nhiều công đoạn thủ công vẫn được người dân nơi đây duy trì.</p>
+      </div>
+    </section>
+
+    <!-- GIÁ TRỊ DI SẢN ẨM THỰC -->
+    <section id="gia-tri">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Giá trị di sản ✦</span>
+          <h2 class="sec-title">Niềm tự hào <em>ẩm thực xứ Huế</em></h2>
+        </div>
+
+        <p class="muted reveal">
+          Bún Vân Cù thành phẩm ngày ngày được người dân trong làng và các đầu mối thu mua đưa đi giao khắp các chợ, quán ăn, nhà hàng trong tỉnh, góp phần tạo nên thương hiệu cho món "bún bò Huế" nức tiếng gần xa.
+        </p>
+        <p class="muted reveal">
+          Sợi bún Vân Cù màu trắng ngà, mùi thơm như hương gạo mới xay. Điều đặc biệt là không cần ăn kèm cao lương mỹ vị gì, nhiều khi chỉ cần một chén nước mắm chanh tỏi ớt cũng đủ làm thực khách nhớ mãi sợi bún ở ngôi làng ven phía sông Bồ…
+        </p>
+        <p class="muted reveal">
+          Khác với những làng nghề truyền thống khác, các sản phẩm đều có thể để được rất lâu. Sợi bún tươi Vân Cù được sản xuất và tiêu thụ trong ngày. Điều khiến sợi bún bé nhỏ trở thành niềm tự hào của một làng quê, rồi trở thành một làng nghề truyền thống như Vân Cù ngày nay chính là chất lượng của bún Vân Cù đã gắn liền với những món ngon đặc trưng của xứ Huế.
+        </p>
+      </div>
+    </section>
+
+    <!-- HÌNH ẢNH -->
+    <section id="hinh-anh">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Hình ảnh ✦</span>
+          <h2 class="sec-title" style="color:var(--cream-d);">Thư viện <em style="color:var(--gold-l);">hình ảnh</em></h2>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="g-item">
+            <img src="https://cdn.realtech.com.vn/uploads/gostay/news/2729/nghe-lam-bun-lang-van-cu.jpg" alt="Nghề làm bún làng Vân Cù" class="lb-img" data-caption="Nghề làm bún làng Vân Cù">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://media.vietnamplus.vn/images/ec8177852ad9f8006058dcf997b39405d07dee2316d11a166624143d54c7b6d1d46fb93569dc1060eace4bce688bc7eb/bun-van-cu3-1188.jpg" alt="Sợi bún Vân Cù" class="lb-img" data-caption="Sợi bún tươi Vân Cù trắng ngà đặc trưng">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://langngheviet.com.vn/stores/news_dataimages/2025/022025/25/10/vc5-kgwd20250225103624.jpg?rt=20250225103646" alt="Làng bún Vân Cù" class="lb-img" data-caption="Người dân làng Vân Cù tất bật sớm tinh mơ">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://cdn-i2.congthuong.vn/stores/news_dataimages/2025/022025/17/10/32c5536aa0781e26476920250217100714.jpg?rt=20250217101141" alt="Bún Vân Cù" class="lb-img" data-caption="Thành phẩm bún Vân Cù — niềm tự hào ẩm thực Huế">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" id="lbClose">×</span>
+    <div class="lb-wrap">
+      <span class="lb-btn lb-prev" id="lbPrev">❮</span>
+      <img id="lb-img-el" alt="" style="transform-origin:center center;">
+      <span class="lb-btn lb-next" id="lbNext">❯</span>
+    </div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+    <div class="lb-zoom-controls">
+      <button class="lb-zoom-btn" id="lbZoomOut">−</button>
+      <button class="lb-zoom-btn" id="lbZoomReset">⊙</button>
+      <button class="lb-zoom-btn" id="lbZoomIn">+</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>🏺 Làng nghề truyền thống Huế</strong>
+        <p>Trang tư liệu giáo dục địa phương về các làng nghề truyền thống của tỉnh Thừa Thiên Huế, biên soạn bởi THPT Đặng Huy Trứ.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p>Gmail: duynguyen.180109@gmail.com</p>
+        <p>SĐT: 0349229611</p>
+      </div>
+      <div>
+        <strong>Liên kết hữu ích</strong>
+        <p><a href="https://hue.gov.vn" target="_blank">hue.gov.vn</a></p>
+        <p><a href="https://www.huesmiletravel.com" target="_blank">huesmiletravel.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Tư liệu Giáo dục Địa phương Huế — Trường THPT Đặng Huy Trứ. Bảo lưu mọi quyền.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Lên đầu trang">↑</button>
+
+  <script>
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { topBtn.classList.toggle('show', window.scrollY > 300); });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); } });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // Lightbox
+    const lbItems = document.querySelectorAll('.lb-img');
+    const lb = document.getElementById('lightbox');
+    const lbImgEl = document.getElementById('lb-img-el');
+    const lbCap = document.getElementById('lbCaption');
+    const lbCount = document.getElementById('lbCounter');
+    let lbIdx = 0, lbZoom = 1;
+    const lbData = [];
+
+    lbItems.forEach((img, i) => {
+      lbData.push({ src: img.src, cap: img.getAttribute('data-caption') || img.alt || '' });
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => { lbIdx = i; openLB(); });
     });
 
     function openLB() {
-      lb.style.display = "flex";
-      lbImg.src = images[index].src;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
+      lb.classList.add('open'); updateLB();
+      document.body.style.overflow = 'hidden';
     }
-
-    function closeLB() {
-      lb.style.display = "none";
+    function closeLB() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function updateLB() {
+      lbImgEl.src = lbData[lbIdx].src;
+      lbCap.textContent = lbData[lbIdx].cap;
+      lbCount.textContent = `${lbIdx + 1} / ${lbData.length}`;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
     }
+    function changeLB(dir) { lbIdx = (lbIdx + dir + lbData.length) % lbData.length; updateLB(); }
 
-    function changeImg(dir) {
-      index = (index + dir + images.length) % images.length;
-      lbImg.src = images[index].src;
-    }
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', () => changeLB(-1));
+    document.getElementById('lbNext').addEventListener('click', () => changeLB(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 
-    // bấm nền -> tắt
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLB();
+    document.getElementById('lbZoomIn').addEventListener('click', () => { lbZoom = Math.min(lbZoom + .25, 3); lbImgEl.style.transform = `scale(${lbZoom})`; });
+    document.getElementById('lbZoomOut').addEventListener('click', () => { lbZoom = Math.max(lbZoom - .25, .5); lbImgEl.style.transform = `scale(${lbZoom})`; });
+    document.getElementById('lbZoomReset').addEventListener('click', () => { lbZoom = 1; lbImgEl.style.transform = 'scale(1)'; });
+    lbImgEl.addEventListener('wheel', e => {
+      e.preventDefault();
+      lbZoom = e.deltaY < 0 ? Math.min(lbZoom + .15, 3) : Math.max(lbZoom - .15, .5);
+      lbImgEl.style.transform = `scale(${lbZoom})`;
+    });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') changeLB(-1);
+      if (e.key === 'ArrowRight') changeLB(1);
     });
   </script>
-
-
-</div>
-
-<footer>
-  © 2025 – Làng bún Vân Cù
-</footer>
-<div id="backToTop">↑</div>
-<script>
-const btn = document.getElementById("backToTop");
-
-// Hiện nút khi cuộn xuống 300px
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
-  }
-});
-
-// Cuộn lên đầu trang
-btn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
-
-
-<script>
-const revealElements = document.querySelectorAll(
-  '.reveal, .reveal-img-left'
-);
-
-let ticking = false;
-
-function revealOnScroll(){
-  const windowHeight = window.innerHeight;
-
-  revealElements.forEach(el => {
-    if(el.classList.contains('show')) return;
-    const top = el.getBoundingClientRect().top;
-    if(top < windowHeight - 80){
-      el.classList.add('show');
-    }
-  });
-
-  ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-  if(!ticking){
-    requestAnimationFrame(revealOnScroll);
-    ticking = true;
-  }
-});
-
-window.addEventListener('load', revealOnScroll);
-</script>
-
-
-
-
 </body>
 </html>

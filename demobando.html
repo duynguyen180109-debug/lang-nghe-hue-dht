@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bản đồ Làng nghề truyền thống Huế</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,500&family=IM+Fell+English:ital@0;1&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── CSS VARIABLES (identical to main page) ── */
+    :root {
+      --ink:      #1c1208;
+      --ink-s:    #5c4a2a;
+      --ink-xs:   #8a7356;
+      --gold:     #b8892a;
+      --gold-l:   #d4a84b;
+      --gold-ll:  #f0d898;
+      --rust:     #8b3a1a;
+      --rust-l:   #c4552a;
+      --cream:    #f7f0e4;
+      --cream-d:  #ede3cc;
+      --cream-dd: #e0d0b0;
+      --paper:    #faf6ed;
+      --white:    #fffdf7;
+      --purple:   #4a1a6e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* Paper texture */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink);
+      color: var(--gold-ll);
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      padding: .55rem 1rem;
+      font-weight: 500;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--ink);
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+    }
+    .header-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: .75rem;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 42px; height: 42px; background: var(--gold);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+    }
+    .brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-ll); letter-spacing: .04em; line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: .6rem; color: rgba(255,255,255,.4);
+      letter-spacing: .2em; text-transform: uppercase; font-weight: 300;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--gold-ll); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .08em;
+      padding: .5rem 1.2rem;
+      border: 1px solid rgba(212,168,75,.3);
+      transition: all .3s;
+    }
+    .back-btn:hover {
+      background: rgba(212,168,75,.1); border-color: var(--gold); color: var(--gold);
+    }
+    .back-btn::before { content: '←'; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--ink);
+      border-bottom: 1px solid rgba(212,168,75,.15);
+      padding: .6rem 0;
+    }
+    .breadcrumb-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; color: rgba(255,255,255,.35);
+      letter-spacing: .05em;
+    }
+    .breadcrumb a { color: var(--gold-l); text-decoration: none; transition: color .3s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold-ll); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 42vh;
+      display: flex; align-items: center; justify-content: center;
+      background:
+        linear-gradient(160deg, rgba(28,18,8,.88) 0%, rgba(74,26,110,.6) 50%, rgba(139,58,26,.75) 100%),
+        url('https://vietnamtourism.vn/imguploads/tourist/58Ducdonghue01.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a84b' fill-opacity='0.04'%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3Cline x1='60' y1='0' x2='60' y2='120' stroke='%23d4a84b' stroke-width='0.5'/%3E%3Cline x1='0' y1='60' x2='120' y2='60' stroke='%23d4a84b' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-border {
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(212,168,75,.2); pointer-events: none;
+    }
+    .hero-border::before {
+      content: ''; position: absolute; inset: 8px;
+      border: 1px solid rgba(212,168,75,.08);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 2rem;
+    }
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .4em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 1rem;
+      font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      opacity: 0; animation: fadeUp .8s .2s forwards;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--cream);
+      text-shadow: 0 4px 40px rgba(0,0,0,.6);
+      opacity: 0; animation: fadeUp .9s .4s forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-l); }
+    .hero-sub {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: clamp(.95rem, 1.7vw, 1.25rem);
+      color: rgba(240,216,152,.7);
+      margin-top: .8rem;
+      opacity: 0; animation: fadeUp .9s .6s forwards;
+    }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1380px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-ll), var(--gold), var(--gold-ll), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1rem; letter-spacing: .3em; flex-shrink: 0; }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--ink);
+      border-bottom: 2px solid rgba(212,168,75,.2);
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .stat-item {
+      padding: 2rem 1.5rem; text-align: center;
+      border-right: 1px solid rgba(212,168,75,.12);
+      position: relative; transition: background .3s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: rgba(212,168,75,.04); }
+    .stat-item::after {
+      content: ''; position: absolute; bottom: 0; left: 20%; right: 20%; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      transform: scaleX(0); transition: transform .4s;
+    }
+    .stat-item:hover::after { transform: scaleX(1); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.2rem; font-weight: 300;
+      color: var(--gold); line-height: 1; display: block;
+    }
+    .stat-label {
+      font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(255,255,255,.45); margin-top: .4rem; display: block;
+    }
+
+    /* ── MAP SECTION ── */
+    #ban-do { padding: 5rem 0; background: var(--cream); }
+
+    .sec-header { margin-bottom: 3rem; }
+    .sec-eyebrow {
+      font-size: .68rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: .5rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; color: var(--ink); line-height: 1.15;
+    }
+    .sec-title em { font-style: italic; color: var(--rust); }
+    .sec-sub {
+      font-size: .9rem; color: var(--ink-xs);
+      line-height: 1.85; max-width: 560px;
+      margin: .6rem 0 0; font-style: italic;
+    }
+
+    .map-frame {
+      border: 2px solid var(--gold);
+      box-shadow: 0 12px 50px rgba(0,0,0,.15), 0 0 0 6px rgba(184,137,42,.08);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-frame::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rust), var(--gold), var(--purple));
+      z-index: 999;
+    }
+    #map { height: 650px; width: 100%; }
+
+    /* ── LEGEND ── */
+    .legend-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2px; background: var(--gold);
+      margin-top: 2.5rem;
+    }
+    .legend-item {
+      background: var(--white);
+      padding: 1.5rem 2rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      transition: all .3s;
+    }
+    .legend-item:hover { background: var(--cream); transform: translateX(4px); }
+    .legend-icon-wrap {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--ink); border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .legend-text strong {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; color: var(--rust);
+      display: block; margin-bottom: .3rem;
+    }
+    .legend-text p {
+      font-size: .82rem; color: var(--ink-s); line-height: 1.6;
+    }
+
+    /* ── VILLAGE LIST ── */
+    #danh-sach { padding: 5rem 0; background: var(--paper); }
+    #danh-sach .sec-title { color: var(--ink); }
+
+    .village-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--gold);
+      margin-top: 3rem;
+    }
+    .village-card {
+      background: var(--white);
+      padding: 2rem 1.8rem;
+      position: relative; overflow: hidden;
+      transition: all .35s;
+      cursor: pointer;
+    }
+    .village-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; bottom: 0; width: 3px;
+      background: var(--gold-l);
+      transition: width .3s;
+    }
+    .village-card:hover { background: var(--cream); }
+    .village-card:hover::before { width: 5px; background: var(--rust); }
+    .village-card:hover .village-arrow { transform: translateX(4px); }
+
+    .village-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--gold-ll); line-height: 1;
+      display: block; margin-bottom: .5rem;
+    }
+    .village-dot {
+      display: inline-block; width: 10px; height: 10px;
+      border-radius: 50%; margin-right: .5rem; flex-shrink: 0;
+      vertical-align: middle;
+    }
+    .village-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--rust);
+      margin-bottom: .4rem; line-height: 1.3;
+    }
+    .village-location {
+      font-size: .78rem; color: var(--ink-xs); margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .village-specialty {
+      font-size: .78rem; font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .05em; text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .village-desc {
+      font-size: .85rem; color: var(--ink-s);
+      line-height: 1.75; margin-bottom: 1rem;
+    }
+    .village-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--rust); text-decoration: none;
+      font-size: .75rem; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(139,58,26,.25);
+      padding-bottom: 2px; transition: all .3s;
+    }
+    .village-link:hover { color: var(--gold); border-color: var(--gold); }
+    .village-arrow { transition: transform .3s; }
+
+    /* ── CUSTOM LEAFLET POPUP ── */
+    .leaflet-popup-content-wrapper {
+      border-radius: 0 !important;
+      box-shadow: 0 12px 50px rgba(28,18,8,.35) !important;
+      border: 2px solid var(--gold) !important;
+      padding: 0 !important; overflow: hidden;
+    }
+    .leaflet-popup-content { margin: 0 !important; width: 340px !important; }
+    .leaflet-popup-tip { background: var(--gold) !important; }
+
+    .popup-header {
+      background: var(--ink);
+      padding: 1.4rem 1.6rem;
+      border-bottom: 2px solid var(--gold);
+      position: relative;
+    }
+    .popup-header::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rust), var(--gold));
+    }
+    .popup-header h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; color: var(--cream);
+      font-weight: 700; margin-bottom: .3rem;
+    }
+    .popup-header p {
+      font-size: .78rem; color: var(--gold-l);
+      font-style: italic; letter-spacing: .05em;
+    }
+
+    .popup-body { padding: 1.4rem 1.6rem; background: var(--white); }
+
+    .popup-info-item {
+      display: flex; align-items: flex-start; gap: .6rem;
+      padding: .5rem 0;
+      border-bottom: 1px solid var(--cream-dd);
+      font-size: .83rem;
+    }
+    .popup-info-item:last-of-type { border-bottom: none; }
+    .popup-info-item strong { color: var(--rust); min-width: 80px; font-size: .78rem; }
+    .popup-info-item span { color: var(--ink-s); line-height: 1.5; }
+
+    .popup-desc {
+      font-size: .82rem; color: var(--ink-s);
+      line-height: 1.75; margin: 1rem 0;
+      text-align: justify;
+    }
+
+    .qr-section {
+      text-align: center;
+      padding: 1rem;
+      background: var(--cream);
+      border: 1px solid var(--cream-dd);
+    }
+    .qr-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; color: var(--ink);
+      font-size: 1rem; margin-bottom: .7rem;
+    }
+    .qr-code {
+      display: inline-block; padding: 8px;
+      background: white;
+      border: 2px solid var(--gold);
+    }
+    .qr-instruction {
+      margin-top: .6rem; font-size: .75rem;
+      color: var(--ink-xs); font-style: italic;
+    }
+
+    .popup-link {
+      display: block; text-align: center;
+      background: var(--gold);
+      color: var(--ink);
+      padding: .75rem 1.5rem;
+      font-weight: 700; font-size: .78rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none; margin-top: 1rem;
+      clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .popup-link::before {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(255,255,255,.2);
+      transform: translateX(-100%); transition: transform .3s;
+    }
+    .popup-link:hover::before { transform: translateX(0); }
+    .popup-link:hover { box-shadow: 0 6px 20px rgba(184,137,42,.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: var(--cream);
+      border-top: 3px solid var(--gold); padding: 3.5rem 0 2rem;
+    }
+    .footer-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    footer strong { color: var(--gold-l); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
+    footer p { color: rgba(255,255,255,.55); font-size: .85rem; line-height: 1.8; margin-top: .5rem; }
+    footer a { color: var(--gold-l); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1380px; margin: 2rem auto 0; padding: 1.5rem 2.5rem 0;
+      border-top: 1px solid rgba(212,168,75,.15);
+      text-align: center; font-size: .72rem;
+      color: rgba(255,255,255,.3); letter-spacing: .05em;
+    }
+
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 50px; height: 50px;
+      background: var(--gold); color: var(--ink);
+      border-radius: 50%; cursor: pointer; border: none;
+      font-size: 1.2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 25px rgba(184,137,42,.5);
+      opacity: 0; visibility: hidden;
+      transition: all .35s; z-index: 500;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: var(--ink); color: var(--gold); transform: translateY(-5px); }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s, transform .8s; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width: 960px) {
+      .village-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(3, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media(max-width: 640px) {
+      .village-grid { grid-template-columns: 1fr; }
+      .legend-grid { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(212,168,75,.12); }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      #map { height: 480px; }
+      .leaflet-popup-content { width: 280px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- TOPBAR -->
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ — Tư liệu Giáo dục Địa phương Huế ✦</div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">🏺</div>
+        <div>
+          <div class="brand-text">Làng nghề truyền thống Huế</div>
+          <div class="brand-sub">Di sản · Thủ công · Văn hóa</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">Trang chủ</a>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <span style="color:var(--gold-ll);">Bản đồ làng nghề</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-border"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Bản đồ số · Thừa Thiên Huế</p>
+      <h1>Bản đồ <em>Làng nghề</em> Huế</h1>
+      <p class="hero-sub">Khám phá vị trí các làng nghề truyền thống trên bản đồ số</p>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <span class="stat-num">6</span>
+        <span class="stat-label">Làng nghề tiêu biểu</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">400+</span>
+        <span class="stat-label">Năm lịch sử</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">Thủ công truyền thống</span>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- BẢN ĐỒ -->
+    <section id="ban-do">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Bản đồ tương tác ✦</span>
+          <h2 class="sec-title">Khám phá <em>vị trí các làng nghề</em></h2>
+          <p class="sec-sub">Bấm vào ghim trên bản đồ để xem thông tin chi tiết và mã QR truy cập trang giới thiệu mỗi làng nghề.</p>
+        </div>
+
+        <div class="map-frame reveal">
+          <div id="map"></div>
+        </div>
+
+        <div class="divider reveal"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+        <!-- LEGEND -->
+        <div class="legend-grid reveal">
+          <div class="legend-item">
+            <div class="legend-icon-wrap">📍</div>
+            <div class="legend-text">
+              <strong>Ghim làng nghề</strong>
+              <p>Bấm vào ghim trên bản đồ để xem thông tin chi tiết về từng làng nghề truyền thống.</p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-icon-wrap">📱</div>
+            <div class="legend-text">
+              <strong>Mã QR</strong>
+              <p>Quét mã QR trong popup bằng camera điện thoại để truy cập trang web của từng làng nghề.</p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-icon-wrap">🔍</div>
+            <div class="legend-text">
+              <strong>Zoom bản đồ</strong>
+              <p>Dùng nút +/− hoặc cuộn chuột để phóng to, thu nhỏ bản đồ và xem vị trí chính xác.</p>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-icon-wrap">🏠</div>
+            <div class="legend-text">
+              <strong>Về vị trí ban đầu</strong>
+              <p>Bấm nút nhà ở góc trái bản đồ để trở về tổng quan toàn bộ khu vực Huế.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANH SÁCH LÀNG NGHỀ -->
+    <section id="danh-sach">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Danh sách ✦</span>
+          <h2 class="sec-title">Sáu làng nghề <em>tiêu biểu</em></h2>
+          <p class="sec-sub">Mỗi làng nghề là một câu chuyện về lịch sử, văn hóa và bàn tay tài hoa của người dân xứ Huế.</p>
+        </div>
+
+        <div class="village-grid" id="villageGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>🏺 Làng nghề truyền thống Huế</strong>
+        <p>Trang tư liệu giáo dục địa phương về các làng nghề truyền thống của tỉnh Thừa Thiên Huế, biên soạn bởi THPT Đặng Huy Trứ.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p>Gmail: duynguyen.180109@gmail.com</p>
+        <p>SĐT: 0349229611</p>
+      </div>
+      <div>
+        <strong>Liên kết hữu ích</strong>
+        <p><a href="https://hue.gov.vn" target="_blank">hue.gov.vn</a></p>
+        <p><a href="https://www.huesmiletravel.com" target="_blank">huesmiletravel.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Tư liệu Giáo dục Địa phương Huế — Trường THPT Đặng Huy Trứ. Bảo lưu mọi quyền.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Lên đầu trang">↑</button>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- QRCode.js -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+
+  <script>
+    // ── BACK TO TOP ──
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { topBtn.classList.toggle('show', window.scrollY > 300); });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ── SCROLL REVEAL ──
+    const revEls = document.querySelectorAll('.reveal, .reveal-left');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); } });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // ── CRAFT VILLAGES DATA ──
+    const craftVillages = [
+      {
+        name: "Làng hoa giấy Thanh Tiên",
+        location: "Dương Nỗ, Phú Mậu, Phú Vang",
+        lat: 16.4150, lng: 107.6450,
+        specialty: "Hoa giấy thủ công",
+        history: "Hơn 300 năm",
+        description: "Làng hoa giấy Thanh Tiên nổi tiếng với nghề làm hoa giấy truyền thống, đặc biệt phục vụ dịp Tết cổ truyền. Các sản phẩm được chế tác thủ công tinh xảo từ tre và giấy màu tự nhiên.",
+        url: "langhoagiay.html",
+        color: "#FF6B9D",
+        emoji: "🌸"
+      },
+      {
+        name: "Làng hương Thủy Xuân",
+        location: "Thủy Xuân, Thành phố Huế",
+        lat: 16.4300, lng: 107.5650,
+        specialty: "Làm hương thủ công",
+        history: "Hơn 400 năm",
+        description: "Làng hương Thủy Xuân với những bó hương rực rỡ sắc màu, tạo nên bức tranh đặc trưng của làng nghề. Hương Thủy Xuân được sản xuất theo phương pháp truyền thống, phục vụ nghi lễ thờ cúng.",
+        url: "langhuong.html",
+        color: "#FFD93D",
+        emoji: "🕯️"
+      },
+      {
+        name: "Làng đúc đồng Phường Đúc",
+        location: "Phường Đúc, Thành phố Huế",
+        lat: 16.4550, lng: 107.5850,
+        specialty: "Đúc đồng nghệ thuật",
+        history: "Từ thời Nguyễn",
+        description: "Phường Đúc nổi tiếng với nghề đúc đồng tinh xảo, tạo ra các sản phẩm thờ cúng như chuông, đỉnh, lư hương và các công trình nghệ thuật phục vụ cung đình.",
+        url: "phuongduc.html",
+        color: "#B8935E",
+        emoji: "🔔"
+      },
+      {
+        name: "Làng bún Vân Cù",
+        location: "Vân Cù, Phú Vang",
+        lat: 16.4800, lng: 107.6200,
+        specialty: "Làm bún tươi",
+        history: "Nhiều thế hệ",
+        description: "Làng bún Vân Cù nổi tiếng với bí quyết làm sợi bún tươi, dai ngon, đặc trưng của ẩm thực Huế. Nghề làm bún được truyền qua nhiều thế hệ với kỹ thuật độc đáo.",
+        url: "langbun.html",
+        color: "#87CEEB",
+        emoji: "🍜"
+      },
+      {
+        name: "Làng mây tre đan Bao La",
+        location: "Bao La, Quảng Điền",
+        lat: 16.5200, lng: 107.5300,
+        specialty: "Đan lát mây tre",
+        history: "Nhiều thế kỷ",
+        description: "Làng nghề mây tre đan Bao La với sản phẩm thủ công tinh xảo từ mây và tre. Nghề được truyền giữ qua nhiều thế kỷ, từ đồ dùng truyền thống đến mỹ nghệ hiện đại.",
+        url: "langmaytre.html",
+        color: "#90EE90",
+        emoji: "🌿"
+      },
+      {
+        name: "Làng tranh dân gian Sình",
+        location: "Sình, Phú Mậu, Phú Vang",
+        lat: 16.4350, lng: 107.6300,
+        specialty: "Tranh dân gian",
+        history: "Hơn 400 năm",
+        description: "Làng tranh Sình với bề dày lịch sử lâu đời, nơi lưu giữ nghệ thuật vẽ tranh dân gian truyền thống. Tranh Sình thường vẽ về đề tài tín ngưỡng, phong tục tập quán của người Huế.",
+        url: "tranhlangsinh.html",
+        color: "#DDA0DD",
+        emoji: "🎨"
+      }
+    ];
+
+    // ── BUILD VILLAGE CARDS ──
+    const grid = document.getElementById('villageGrid');
+    craftVillages.forEach((v, i) => {
+      grid.innerHTML += `
+        <div class="village-card reveal" onclick="window.location.href='${v.url}'">
+          <span class="village-num">0${i + 1}</span>
+          <div class="village-name">
+            <span class="village-dot" style="background:${v.color}"></span>${v.name}
+          </div>
+          <div class="village-location">📍 ${v.location}</div>
+          <div class="village-specialty">${v.emoji} ${v.specialty} · ${v.history}</div>
+          <p class="village-desc">${v.description}</p>
+          <a href="${v.url}" class="village-link">Xem chi tiết <span class="village-arrow">→</span></a>
+        </div>`;
+    });
+
+    // Re-observe new cards
+    document.querySelectorAll('.village-card').forEach(el => revObs.observe(el));
+
+    // ── MAP ──
+    const map = L.map('map').setView([16.4637, 107.5909], 12);
+
+    // Custom map style via openstreetmap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors',
+      maxZoom: 18
+    }).addTo(map);
+
+    // Custom icon
+    function createIcon(color, emoji) {
+      return L.divIcon({
+        className: '',
+        html: `
+          <div style="
+            width:46px; height:46px;
+            background: linear-gradient(135deg, #1c1208, #3a2010);
+            border: 2.5px solid ${color};
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 4px 18px rgba(0,0,0,.45);
+            display:flex; align-items:center; justify-content:center;
+          ">
+            <span style="transform:rotate(45deg); font-size:1.1rem; line-height:1;">${emoji}</span>
+          </div>`,
+        iconSize: [46, 46],
+        iconAnchor: [23, 46],
+        popupAnchor: [0, -50]
+      });
+    }
+
+    // QR generator
+    function generateQR(url, containerId) {
+      const canvas = document.createElement('canvas');
+      QRCode.toCanvas(canvas, url, {
+        width: 160, margin: 1,
+        color: { dark: '#1c1208', light: '#faf6ed' }
+      }, err => { if (err) console.error(err); });
+      return canvas;
+    }
+
+    // Add markers
+    craftVillages.forEach((v, i) => {
+      const marker = L.marker([v.lat, v.lng], { icon: createIcon(v.color, v.emoji) }).addTo(map);
+
+      const qrId = `qr-popup-${i}`;
+      marker.bindPopup(`
+        <div class="popup-header">
+          <h3>${v.name}</h3>
+          <p>📍 ${v.location}</p>
+        </div>
+        <div class="popup-body">
+          <div class="popup-info-item">
+            <strong>Nghề:</strong>
+            <span>${v.specialty}</span>
+          </div>
+          <div class="popup-info-item">
+            <strong>Lịch sử:</strong>
+            <span>${v.history}</span>
+          </div>
+          <p class="popup-desc">${v.description}</p>
+          <div class="qr-section">
+            <div class="qr-title">🔍 Quét mã QR để tìm hiểu thêm</div>
+            <div class="qr-code" id="${qrId}"></div>
+            <p class="qr-instruction">Mở camera điện thoại và quét mã bên trên</p>
+          </div>
+          <a href="${v.url}" class="popup-link">📖 Xem trang chi tiết</a>
+        </div>
+      `, { maxWidth: 380, className: '' });
+
+      marker.on('popupopen', () => {
+        const container = document.getElementById(qrId);
+        if (container && !container.hasChildNodes()) {
+          const fullUrl = window.location.origin + '/' + v.url;
+          container.appendChild(generateQR(fullUrl, qrId));
+        }
+      });
+    });
+
+    // Home button
+    const HomeControl = L.Control.extend({
+      options: { position: 'topleft' },
+      onAdd: function() {
+        const div = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        div.innerHTML = `<a href="#" style="
+          background:linear-gradient(135deg,#1c1208,#3a2010);
+          color:#f0d898; width:34px; height:34px;
+          display:flex; align-items:center; justify-content:center;
+          text-decoration:none; font-size:16px;
+          border:1px solid #b8892a !important;
+          title='Về vị trí ban đầu'
+        ">🏠</a>`;
+        div.onclick = e => { e.preventDefault(); map.setView([16.4637, 107.5909], 12); };
+        return div;
+      }
+    });
+    map.addControl(new HomeControl());
+
+    // Scale
+    L.control.scale({ imperial: false, metric: true }).addTo(map);
+  </script>
+</body>
+</html>

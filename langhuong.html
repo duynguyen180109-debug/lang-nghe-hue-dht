@@ -4,507 +4,877 @@
   <meta charset="UTF-8">
   <title>Làng hương Thủy Xuân – Huế</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,500&family=IM+Fell+English:ital@0;1&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- LIGHTBOX -->
   <style>
+    /* ── CSS VARIABLES (identical to main page) ── */
+    :root {
+      --ink:      #1c1208;
+      --ink-s:    #5c4a2a;
+      --ink-xs:   #8a7356;
+      --gold:     #b8892a;
+      --gold-l:   #d4a84b;
+      --gold-ll:  #f0d898;
+      --rust:     #8b3a1a;
+      --rust-l:   #c4552a;
+      --cream:    #f7f0e4;
+      --cream-d:  #ede3cc;
+      --cream-dd: #e0d0b0;
+      --paper:    #faf6ed;
+      --white:    #fffdf7;
+      --purple:   #4a1a6e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* Paper texture */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink);
+      color: var(--gold-ll);
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      padding: .55rem 1rem;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-weight: 500;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--ink);
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+    }
+
+    .header-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+
+    .brand {
+      display: flex; align-items: center; gap: .75rem;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 42px; height: 42px;
+      background: var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-ll); letter-spacing: .04em; line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: .6rem; color: rgba(255,255,255,.4);
+      letter-spacing: .2em; text-transform: uppercase;
+      font-family: 'Be Vietnam Pro', sans-serif; font-weight: 300;
+    }
+
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--gold-ll); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .08em;
+      padding: .5rem 1.2rem;
+      border: 1px solid rgba(212,168,75,.3);
+      transition: all .3s;
+    }
+    .back-btn:hover {
+      background: rgba(212,168,75,.1);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    .back-btn::before { content: '←'; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 55vh;
+      display: flex; align-items: center; justify-content: center;
+      background:
+        linear-gradient(160deg, rgba(28,18,8,.78) 0%, rgba(74,26,110,.5) 50%, rgba(139,58,26,.65) 100%),
+        url('https://bvhttdl.mediacdn.vn/291773308735864832/2023/10/9/lang-huong-thuy-xuan-2-1694747629844802897798-1696821165288-1696821165372290897755.jpg') center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a84b' fill-opacity='0.04'%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-border {
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(212,168,75,.2);
+      pointer-events: none;
+    }
+    .hero-border::before {
+      content: ''; position: absolute; inset: 8px;
+      border: 1px solid rgba(212,168,75,.08);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 2rem;
+    }
+
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .4em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 1rem;
+      font-family: 'Be Vietnam Pro', sans-serif; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      opacity: 0; animation: fadeUp .8s .2s forwards;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--cream);
+      text-shadow: 0 4px 40px rgba(0,0,0,.6);
+      opacity: 0; animation: fadeUp .9s .4s forwards;
+      letter-spacing: -.01em;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-l); }
+
+    .hero-sub {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      color: rgba(240,216,152,.7);
+      margin-top: .8rem;
+      opacity: 0; animation: fadeUp .9s .6s forwards;
+    }
+
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.35); font-size: .62rem; letter-spacing: .2em;
+      text-transform: uppercase; animation: bounce 2s infinite;
+    }
+    .hero-scroll span { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--ink);
+      border-bottom: 1px solid rgba(212,168,75,.15);
+      padding: .6rem 0;
+    }
+    .breadcrumb-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; color: rgba(255,255,255,.35);
+      letter-spacing: .05em;
+    }
+    .breadcrumb a {
+      color: var(--gold-l); text-decoration: none;
+      transition: color .3s;
+    }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold-ll); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 2.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-ll), var(--gold), var(--gold-ll), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1rem; letter-spacing: .3em; flex-shrink: 0; }
+
+    /* ── MAIN CONTENT ── */
+    main { padding: 5rem 0 6rem; }
+
+    /* Section heading */
+    .sec-eyebrow {
+      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: .5rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--ink); line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .sec-title em { font-style: italic; color: var(--rust); }
+
+    /* Section wrapper */
+    .content-section {
+      padding: 4rem 0;
+      position: relative;
+    }
+    .content-section + .content-section {
+      border-top: 1px solid var(--cream-dd);
+    }
+
+    /* ── INTRO SECTION ── */
+    #gioi-thieu { background: var(--cream); }
+    #gioi-thieu .container {
+      background: var(--cream);
+    }
+
+    .intro-lead {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-style: italic;
+      color: var(--rust);
+      line-height: 1.7;
+      border-left: 4px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      background: var(--white);
+      margin-bottom: 2rem;
+      box-shadow: 4px 0 20px rgba(0,0,0,.04);
+    }
+
+    .muted {
+      color: var(--ink-s); line-height: 1.95;
+      margin-bottom: 1.2rem; font-size: .92rem;
+      text-align: justify;
+    }
+
+    /* ── INFO CARDS ── */
+    .info-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--gold);
+      margin: 2.5rem 0;
+    }
+    .info-card {
+      background: var(--white); padding: 2rem 1.8rem;
+      transition: all .35s;
+    }
+    .info-card:hover {
+      background: var(--cream); transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.08);
+    }
+    .info-card-icon { font-size: 2rem; display: block; margin-bottom: .8rem; }
+    .info-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--rust);
+      margin-bottom: .6rem;
+    }
+    .info-card p { font-size: .87rem; color: var(--ink-s); line-height: 1.8; }
+
+    /* ── MAP ── */
+    .map-wrapper {
+      margin: 2rem 0;
+      border: 2px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 8px 35px rgba(0,0,0,.12);
+    }
+
+    /* ── HISTORY SECTION ── */
+    #lich-su { background: var(--paper); }
+
+    .history-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .history-text {}
+
+    .highlight-box {
+      background: var(--ink);
+      padding: 2rem;
+      border-left: 4px solid var(--gold);
+      position: relative; overflow: hidden;
+      margin-top: 2rem;
+    }
+    .highlight-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rust), var(--gold));
+    }
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--gold-ll); line-height: 1.75; margin: 0;
+    }
+
+    .img-featured {
+      position: sticky; top: 100px;
+    }
+    .img-featured img {
+      width: 100%; display: block;
+      border: 3px solid var(--gold);
+      box-shadow: 8px 8px 40px rgba(0,0,0,.15);
+    }
+    .img-caption {
+      text-align: center; font-size: .75rem;
+      color: var(--ink-xs); letter-spacing: .1em;
+      margin-top: .6rem; font-style: italic;
+    }
+
+    /* ── PROCESS SECTION ── */
+    #quy-trinh { background: var(--cream-d); }
+
+    .process-steps {
+      display: flex; flex-direction: column; gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute;
+      left: 28px; top: 0; bottom: 0; width: 2px;
+      background: linear-gradient(to bottom, var(--gold), var(--rust), var(--gold));
+    }
+
+    .process-step {
+      display: flex; gap: 2rem; align-items: flex-start;
+      padding: 2rem 0; padding-left: 0;
+      border-bottom: 1px solid rgba(224,208,176,.5);
+      position: relative;
+    }
+    .process-step:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 58px; height: 58px; flex-shrink: 0;
+      background: var(--ink);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--gold);
+      position: relative; z-index: 1;
+    }
+
+    .step-content { flex: 1; }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--rust);
+      margin-bottom: .6rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .step-title span { font-size: 1.1rem; }
+
+    .step-img {
+      width: 100%; margin-top: 1.2rem;
+      border: 2px solid var(--cream-dd);
+      display: block;
+      transition: border-color .3s;
+    }
+    .process-step:hover .step-img { border-color: var(--gold); }
+
+    /* ── GALLERY SECTION ── */
+    #hinh-anh { background: var(--ink); }
+    #hinh-anh .sec-title { color: var(--cream-d); }
+    #hinh-anh .sec-eyebrow { color: var(--gold-l); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      background: var(--gold);
+      margin-top: 2.5rem;
+    }
+    .gallery-grid .g-item:first-child { grid-column: span 2; grid-row: span 1; }
+
+    .g-item {
+      position: relative; overflow: hidden;
+      cursor: zoom-in;
+      aspect-ratio: 4/3;
+    }
+    .g-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s;
+      filter: brightness(.85) saturate(.9);
+    }
+    .g-item:hover img { transform: scale(1.08); filter: brightness(1) saturate(1.1); }
+    .g-item-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,18,8,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: white;
+      opacity: 0; transition: opacity .3s;
+    }
+    .g-item:hover .g-item-overlay { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
     .lightbox {
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
+      position: fixed; z-index: 9999; inset: 0;
+      background: rgba(0,0,0,.95);
+      display: none; justify-content: center; align-items: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lb-wrap {
+      position: relative; max-width: 88%; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
     }
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-      animation: zoomIn .2s ease;
+      max-width: 100%; max-height: 80vh;
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 80px rgba(184,137,42,.3);
+      animation: zoomIn .3s ease; display: block;
     }
-    @keyframes zoomIn {
-      from {transform: scale(0.7); opacity: 0;}
-      to   {transform: scale(1); opacity: 1;}
+    .lb-caption {
+      margin-top: .8rem; color: rgba(255,255,255,.5);
+      font-size: .8rem; letter-spacing: .1em; text-align: center;
     }
+    .lb-counter {
+      color: var(--gold); font-size: .72rem; letter-spacing: .2em; margin-top: .3rem;
+    }
+    @keyframes zoomIn { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
     .lb-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 42px;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.2rem; color: white; cursor: pointer;
+      background: rgba(184,137,42,.3); border: 1px solid var(--gold);
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; user-select: none; z-index: 2;
     }
-    .lb-prev { left: 30px; }
-    .lb-next { right: 30px; }
+    .lb-btn:hover { background: var(--gold); color: var(--ink); transform: translateY(-50%) scale(1.1); }
+    .lb-prev { left: -70px; } .lb-next { right: -70px; }
     .lb-close {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 48px;
-      color: #fff;
-      cursor: pointer;
+      position: fixed; top: 18px; right: 24px;
+      font-size: 1.4rem; color: white; cursor: pointer;
+      background: rgba(139,58,26,.5); border: 1px solid var(--rust-l);
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; z-index: 10;
     }
-  </style>
-
-
-  
-  <style>
-
-    :root{
-  --muted:#666;
-}
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f7f2ff;
-      color: #333;
+    .lb-close:hover { background: var(--rust); transform: rotate(90deg); }
+    .lb-zoom-controls {
+      display: flex; gap: .5rem; margin-top: .8rem;
     }
-
-    header {
-      background: #6a0dad;
-      padding: 15px 30px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .lb-zoom-btn {
+      width: 34px; height: 34px;
+      background: rgba(184,137,42,.2); border: 1px solid rgba(212,168,75,.3);
+      border-radius: 50%; cursor: pointer; color: var(--gold-ll);
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: all .3s;
     }
+    .lb-zoom-btn:hover { background: var(--gold); color: var(--ink); }
 
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: url('https://bvhttdl.mediacdn.vn/291773308735864832/2023/10/9/lang-huong-thuy-xuan-2-1694747629844802897798-1696821165288-1696821165372290897755.jpg') center/cover no-repeat;
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
-    0 4px 12px rgba(0,0,0,0.5),
-    0 8px 20px rgba(0,0,0,0.4);
-      font-size: 36px;
-      font-weight: bold;
-    }
-
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      color: #6a0dad;
-      border-left: 6px solid #6a0dad;
-      padding-left: 10px;
-    }
-
-    p {
-      line-height: 1.7;
-      margin: 15px 0;
-    }
-
-    .content section{
-  padding:48px 0;
-}
-
-    .grid{display:grid;gap:20px}
-    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
-    .card img{width:100%;height:160px;object-fit:cover}
-    .card .body{padding:16px}
-    .muted{color:var(--muted)}
-
-    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-
-
-    
-
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #6a0dad;
-      color: white;
-      margin-top: 50px;
+      background: var(--ink);
+      color: var(--cream);
+      border-top: 3px solid var(--gold);
+      padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    footer strong { color: var(--gold-l); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
+    footer p { color: rgba(255,255,255,.55); font-size: .85rem; line-height: 1.8; margin-top: .5rem; }
+    footer a { color: var(--gold-l); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1380px; margin: 2rem auto 0; padding: 1.5rem 2.5rem 0;
+      border-top: 1px solid rgba(212,168,75,.15);
+      text-align: center; font-size: .72rem;
+      color: rgba(255,255,255,.3); letter-spacing: .05em;
     }
 
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 50px; height: 50px;
+      background: var(--gold); color: var(--ink);
+      border-radius: 50%; cursor: pointer;
+      font-size: 1.2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 25px rgba(184,137,42,.5);
+      opacity: 0; visibility: hidden;
+      transition: all .35s; z-index: 500;
+      border: none;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: var(--ink); color: var(--gold); transform: translateY(-5px); }
 
-    .img-center {
-  text-align: center;
-  margin: 20px 0;
-}
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s, transform .8s; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s, transform .8s; }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-.img-center img {
-  max-width: 80%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-
-.map-wrapper {
-  margin: 25px 0;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-}
-#backToTop {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: white;
-  color: black;
-  padding: 12px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 22px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-}
-
-#backToTop.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-
-.gallery img{
-  transition: .4s ease;
-}
-
-.gallery img:hover{
-  transform: scale(1.06);
-  box-shadow: 0 10px 22px rgba(0,0,0,.25);
-}
-
-
-#backToTop:hover{
-  background:#6a0dad;
-  color:white;
-  transform: translateY(-4px);
-}
-
-/* hiệu ứng xuất hiện khi load */
-.fade-top{
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeUp 0.9s ease forwards;
-}
-
-.delay-1{ animation-delay: .2s }
-.delay-2{ animation-delay: .4s }
-.delay-3{ animation-delay: .6s }
-
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-
-/* hiệu ứng khi cuộn tới */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* biến thể trái – phải nếu cần */
-.reveal-left {
-  transform: translateX(-40px);
-}
-.reveal-right {
-  transform: translateX(40px);
-}
-.reveal-left.show,
-.reveal-right.show {
-  transform: translateX(0);
-}
-
-
-/* Ảnh bay từ trái */
-.reveal-img-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.9s ease;
-}
-
-.reveal-img-left.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-.reveal,
-.reveal-img-left{
-  will-change: transform, opacity;
-}
-@media (max-width: 768px){
-
-  header{
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  nav a{
-    margin: 0 12px;
-  }
-
-  .hero{
-    height: 180px;
-    font-size: 24px;
-    padding: 0 10px;
-    text-align: center;
-  }
-
-  .content{
-    margin: 25px auto;
-  }
-
-  h2{
-    font-size: 20px;
-  }
-
-  p{
-    font-size: 15px;
-  }
-
-  .card img,
-  .gallery img{
-    height: 140px;
-  }
-
-  .lb-btn{
-    font-size: 32px;
-  }
-
-  .lb-close{
-    font-size: 38px;
-  }
-}
-
-
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      .history-layout { grid-template-columns: 1fr; }
+      .img-featured { position: static; }
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid .g-item:first-child { grid-column: span 2; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    }
+    @media(max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .g-item:first-child { grid-column: span 1; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .process-steps::before { left: 22px; }
+      .step-num { width: 46px; height: 46px; font-size: 1.1rem; }
+    }
   </style>
-
-  
 </head>
+
 <body>
+  <!-- TOPBAR -->
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ — Tư liệu Giáo dục Địa phương Huế ✦</div>
 
-<header class="fade-top">
-  <h1>Làng nghề truyền thống Huế</h1>
-  <nav>
-    <a href="index.html">🏠Trang chủ</a>
-  </nav>
-</header>
-
-<section class="hero fade-top delay-1">
-  Làng hương Thủy Xuân 
-</section>
-
-<div class="content">
-
-  <h2 class="reveal reveal-left">Giới thiệu</h2>
-  <p class="reveal">
-    Không chỉ là một làng nghề truyền thống lớn nhất ở Cố đô, Thủy Xuân còn là một địa điểm du lịch hấp dẫn với nhiều khung cảnh rực rỡ sắc màu. Khi đến đây, du khách không chỉ được tham quan các cơ sở làm hương nổi tiếng, mà còn có thể chụp những bức ảnh check-in tuyệt đẹp.
-
-    Theo lời kể của những nghệ nhân kỳ cựu tại đây, nghề làm hương đã xuất hiện từ thời kỳ nhà Nguyễn. Chính làng hương Thủy Xuân này đã cung cấp nguồn hương chủ yếu cho toàn bộ khu vực Thuận Hóa, Phú Xuân. Trải qua nhiều giai đoạn lịch sử, làng Thủy Xuân vẫn tiếp tục phát huy những nét đẹp truyền thống mà ông cha để lại cho đến ngày nay.
-  </p>
-  <h2 class="reveal reveal-left">Vị Trí</h2>
-  <p class="reveal">
-    Nằm trên trục đường dẫn đến lăng Tự Đức và gần đồi Vọng Cảnh, làng hương Thủy Xuân là một điểm dừng chân lý tưởng cho những ai muốn cảm nhận hồn cốt xứ Huế. Ngôi làng chỉ cách trung tâm thành phố khoảng 7 km về phía Tây Nam.
-  </p>
-
-
-
-
-<div class="map-wrapper">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1913.3967494316332!2d107.56128712514135!3d16.435310800000007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a4032ba35039%3A0xe8ba6ff05ee1d6b1!2zNjYgSHV54buBbiBUcsOibiBDw7RuZyBDaMO6YSwgVGjhu6d5IFh1w6JuLCBIdeG6vywgVGjDoG5oIHBo4buRIEh14bq_LCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1765516910291!5m2!1svi!2s"   
-    width="100%" 
-    height="350" 
-    style="border:0; border-radius:10px;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
-
-  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
-  <p class="reveal">
-   Làng hương Thủy Xuân được cho rằng đã hình thành từ 700 năm trước - khi nơi này còn là vùng đất Thuận Hóa thời Trần - và phát triển mạnh mẽ khi kinh đô Phú Xuân được định hình dưới triều Nguyễn. Truyền thống làm hương ở đây gắn liền với tín ngưỡng thờ cúng tổ tiên và triều đình phong kiến, cung cấp hương trầm cho các điện, đền lăng.
-
-   Qua hơn 7 thế kỷ, các bí quyết chọn nguyên liệu, từ cây dó bầu, trầm hương, quế chi, cho đến hoa nhài, cùng kỹ thuật chế biến độc đáo đã được các thế hệ nghệ nhân gìn giữ, làm nên thương hiệu hương Thủy Xuân nức tiếng xứ Huế.
-  </p>
-
-  <div class="img-center reveal-img-left">
-  <img src="https://ik.imagekit.io/tvlk/blog/2023/05/lang-huong-thuy-xuan-2-1024x683.jpg?tr=q-70,c-at_max,w-1000,h-600" alt="Làng hương Thủy Xuân">
-</div>
-
-  <h2 class="reveal reveal-left">Quy trình sản xuất hương trầm tại làng nghề Thuỷ Xuân</h2>
-  <p class="reveal">Quy trình sản xuất hương tại đây sử dụng các nguyên liệu tự nhiên, tạo ra thành phẩm có mùi thơm thanh khiết, dịu nhẹ và không gây hại cho sức khỏe. Hiện nay, mặc dù máy móc đã thay thế phần lớn sức thủ công, nhưng từng công đoạn vẫn vô cùng tỉ mỉ và khéo léo, mang lại thành phẩm hương trầm xứ Huế với hương vị đặc trưng và chất lượng thượng hạng.
-
-  Các công đoạn sản xuất hương phức tạp bao gồm:
-  </p>
-  <strong>Giai đoạn 1 - Chọn lựa nguyên liệu:</strong>
-  <p class="reveal">
-    Nguyên liệu làm hương chủ yếu là bột vỏ cây trầm hương trộn với vỏ cây bời lời, kết hợp với các vị thảo mộc như quế chi, thảo quả, nụ tùng, đinh hương, hoa hồi, bạch đàn, bột vỏ bưởi rừng, hoa bưởi khô, v.v.
-  </p>
-  <strong>Giai đoạn 2 - Pha trộn bột hương:</strong>
-  <p class="reveal">
-    Tỷ lệ pha trộn các loại thảo mộc là bí quyết gia truyền, quyết định mùi thơm đặc trưng của mỗi gia đình nghệ nhân sản xuất. Bột trầm sau khi được phối trộn với keo bời lời sẽ được thêm nước sạch từ từ, nhào đến khi hỗn hợp đạt độ dẻo quánh nhất định.
-  </p>
-<strong>Giai đoạn 3 - Se hương:</strong>
-  <p class="reveal">
-      Hỗn hợp bột dẻo đã trộn được đem se bằng tay trên từng thanh tăm tre già đã được ngâm và phơi khô nhiều ngày, vừa se vừa tạo hình đều và chắc. Đây là khâu đòi hỏi lắm công phu và nhiều khéo léo: nếu trộn nhiều keo, hương dễ tắt; nếu quá nhão, nén hương dễ mẻ, vỡ khi se.
-  </p>
-  <strong>Giai đoạn 4 - Nhuộm chân hương:</strong>
-  <p class="reveal">
-    Để tạo ra những "bó hoa" hương rực rỡ sắc màu, chân hương sẽ được nhuộm bằng các loại màu tự nhiên. Ví dụ, màu đỏ được lấy từ gỗ vang, màu vàng từ hoa dành dành, tạo nên vẻ đẹp bắt mắt nhưng vẫn an toàn.
-  </p>
-  <strong>Giai đoạn 5 - Phơi hương:</strong>
-  <p class="reveal">
-    Hương sau khi se xong sẽ được đem đi phơi nắng tự nhiên khoảng 2 - 3 ngày. Dưới cái nắng vàng của Huế, những bó hương đủ màu sắc được bung xòe như những đóa hoa khổng lồ, tạo nên một khung cảnh vô cùng ấn tượng.
-  </p>
-
-
-  <p class="reveal">
-  Sau khi thành phẩm, nén hương đạt tiêu chuẩn khi cháy sẽ để lại tàn cong tuyệt đẹp, đồng thời toả mùi hương thanh tao, nhẹ nhàng và bền lâu, mang dấu ấn riêng biệt của xứ Huế. Không chỉ đơn thuần dùng trong các nghi lễ cúng bái, hương trầm còn giúp xoa dịu tinh thần, giảm căng thẳng và mang lại cảm giác thư thái.</p>
-
-  <h2 class="reveal reveal-left">Làng hương Thủy Xuân có gì đặc biệt?</h2>
-  <p class="reveal">
-  Làng hương Thủy Xuân ở Huế là nơi sản xuất hương truyền thống lớn nhất trong vùng. Ngoài giá trị lịch sử, nơi đây còn trở thành một điểm đến du lịch nổi bật, thu hút du khách trong và ngoài nước.</p>
-  <p class="reveal">
-  Theo lời kể của các nghệ nhân cao tuổi, nghề làm hương tại đây đã có từ thời nhà Nguyễn. Trước kia, làng từng cung cấp hương trầm cho triều đình. Đến nay, nghề vẫn được duy trì và phát triển với nhiều sản phẩm như hương quế, hương sả, nhang vòng và nụ trầm.</p>
-  <p class="reveal">
-  Điểm khác biệt của hương Thủy Xuân chính là thành phần hoàn toàn tự nhiên, không hóa chất độc hại. Hương có mùi thơm dịu nhẹ, dễ chịu, an toàn cho sức khỏe. Sản phẩm tại đây có chất lượng cao, phục vụ nhu cầu trong nước. Ngoài ra, hương Thủy Xuân còn được xuất khẩu ra nhiều quốc gia, góp phần quảng bá bản sắc Huế ra thế giới.</p>
-
-
-<h2 class="reveal reveal-left">Hình ảnh</h2>
-
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
-      <div class="gallery"><img src="https://cdn.statically.io/img/www.lagunalangco.com/wp-content/uploads/2025/04/lang-huong-thuy-xuan-2-768x512.jpg?f=auto" class="lb-img"></div>
-      <div class="gallery"><img src="https://aeonmall-review-rikkei.cdn.vccloud.vn/website/21/articles/November2025/bfe1031c-44fa-4edd-a4e7-c95c12a5007e.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://reviewhue.vn/wp-content/uploads/2022/12/lang-nghe-1.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://visithue.vn/Portals/0/VisitHue/Destination/LangNghe/HuongThuyXuan/huetourism_lang%20huong%20Thuy%20xuan%201.jpg" class="lb-img"></div>
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">🏺</div>
+        <div>
+          <div class="brand-text">Làng nghề truyền thống Huế</div>
+          <div class="brand-sub">Di sản · Thủ công · Văn hóa</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">Trang chủ</a>
     </div>
-   
-  <div class="lightbox" id="lightbox">
-    <span class="lb-close" onclick="closeLB()">×</span>
-    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
-    <img id="lb-img">
-    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <a href="index.html#lang-nghe">Các làng nghề</a>
+      <span>›</span>
+      <span style="color:var(--gold-ll);">Làng hương Thủy Xuân</span>
+    </div>
   </div>
 
-  <script>
-    let images = [...document.querySelectorAll(".lb-img")];
-    let lb = document.getElementById("lightbox");
-    let lbImg = document.getElementById("lb-img");
-    let index = 0;
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-border"></div>
+    <div class="hero-content">
+      <h1>Làng hương <em>Thủy Xuân</em></h1>
+<p class="hero-sub">Nét đẹp truyền thống giữa lòng xứ Huế</p>
+      <p class="hero-sub"></p>
+    </div>
+    <div class="hero-scroll">cuộn xuống<span></span></div>
+  </section>
 
-    images.forEach((img, i) => {
-      img.addEventListener("click", () => {
-        index = i;
-        openLB();
+  <main>
+    <!-- GIỚI THIỆU + VỊ TRÍ -->
+    <section id="gioi-thieu" style="background:var(--cream);padding:5rem 0;">
+      <div class="container">
+
+        <!-- 3 info cards -->
+        <div class="info-grid reveal">
+          <div class="info-card">
+  <span class="info-card-icon">📍</span>
+  <div class="info-card-title">Vị trí</div>
+  <p>Làng hương Thủy Xuân nằm trên đường Huyền Trân Công Chúa, cách trung tâm thành phố Huế khoảng 7 km về phía Tây Nam, gần lăng Tự Đức và đồi Vọng Cảnh.</p>
+</div>
+
+          <div class="info-card">
+  <span class="info-card-icon">📅</span>
+  <div class="info-card-title">Lịch sử</div>
+  <p>Làng hương Thủy Xuân có lịch sử hơn 700 năm, hình thành từ thời nhà Trần và phát triển mạnh dưới triều Nguyễn, chuyên cung cấp hương cho triều đình và dân gian.</p>
+</div>
+<div class="info-card">
+  <span class="info-card-icon">🌸</span>
+  <div class="info-card-title">Đặc trưng</div>
+  <p>Nổi bật với những bó hương nhiều màu sắc rực rỡ, vừa phục vụ tín ngưỡng vừa trở thành điểm du lịch check-in nổi tiếng.</p>
+</div>
+  
+        </div>
+
+        <div class="divider reveal"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Giới thiệu ✦</span>
+          <h2 class="sec-title">Nét đẹp <em>làng hương truyền thống</em></h2>
+<p class="intro-lead">
+  Làng hương Thủy Xuân là một trong những làng nghề lâu đời của Huế, nổi tiếng với nghề làm hương trầm phục vụ đời sống tâm linh và văn hóa người Việt.
+</p>
+        </div>
+
+       <p class="muted">
+  Không chỉ là nơi sản xuất hương, Thủy Xuân còn là điểm du lịch hấp dẫn với hình ảnh những bó hương nhiều màu sắc được phơi dọc hai bên đường, tạo nên khung cảnh độc đáo và đậm chất nghệ thuật.
+</p>
+
+        <!-- BẢN ĐỒ -->
+        <div class="sec-header reveal-left" style="margin-bottom:1.5rem;margin-top:3rem;">
+          <span class="sec-eyebrow">✦ Vị trí ✦</span>
+          <h2 class="sec-title">Tìm đến <em>làng nghề</em></h2>
+        </div>
+        <p class="muted reveal">Làng hương Thủy Xuân nằm trên đường Huyền Trân Công Chúa, cách trung tâm thành phố Huế khoảng 7 km về phía Tây Nam, gần lăng Tự Đức và đồi Vọng Cảnh.</p>
+
+        <div class="map-wrapper reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.388577046374!2d107.57844148307802!3d16.506469088049215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a100617da4bf%3A0x1728af2a1468f9b!2zTMOgbmcgSG9hIGdp4bqleSBUaGFuaCBUacOqbg!5e0!3m2!1svi!2s!4v1765512262719!5m2!1svi!2s"
+            width="100%" height="380" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- LỊCH SỬ HÌNH THÀNH -->
+    <section id="lich-su" style="padding:5rem 0;background:var(--paper);">
+      <div class="container">
+        <div class="history-layout">
+          <div class="history-text">
+            <div class="sec-header reveal-left">
+              <span class="sec-eyebrow">✦ Lịch sử hình thành ✦</span>
+              <h2 class="sec-title">Hơn bảy thế kỷ <em>giữ nghề</em></h2>
+            </div>
+
+            <p class="muted">
+  Nghề làm hương tại Thủy Xuân gắn liền với nhu cầu tín ngưỡng của người dân và triều đình xưa. Từ thời Nguyễn, làng đã cung cấp hương cho các cung điện, đền đài và lăng tẩm.
+</p>
+
+<p class="muted">
+  Trải qua nhiều biến động lịch sử, người dân nơi đây vẫn gìn giữ và phát triển nghề truyền thống, truyền lại qua nhiều thế hệ.
+</p>
+
+<div class="highlight-box">
+  <p>"Mỗi nén hương là sự kết tinh của đất trời, bàn tay khéo léo và lòng thành kính."</p>
+</div>
+          </div>
+
+          <div class="img-featured reveal-right">
+            <img src="https://ik.imagekit.io/tvlk/blog/2023/05/lang-huong-thuy-xuan-2-1024x683.jpg?tr=q-70,c-at_max,w-1000,h-600" alt="Làng hương Thủy Xuân" >
+            <div class="img-caption"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUY TRÌNH LÀM HOA GIẤY -->
+    <section id="quy-trinh" style="padding:5rem 0;background:var(--cream-d);">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title">Quy trình <em>làm hương</em></h2>
+        </div>
+
+       
+
+        <div class="divider reveal"><span class="divider-icon">◆</span></div>
+
+        <div class="process-steps">
+          <div class="process-step reveal">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-title">🌿 Chuẩn bị nguyên liệu</div>
+<p class="muted">Nguyên liệu chính gồm bột gỗ, bột quế, trầm, keo bời lời và tre làm tăm hương. Tất cả đều được chọn lọc kỹ càng.</p>
+            </div>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-title">⚙️ Trộn và se hương</div>
+<p class="muted">Bột hương được trộn theo tỷ lệ riêng, sau đó se quanh que tre để tạo thành nén hương đều và chắc.</p>
+              
+            </div>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-title">🌞 Phơi hương</div>
+<p class="muted">Hương được nhuộm màu ở phần chân và đem phơi dưới nắng. Những bó hương xòe ra như hoa tạo nên hình ảnh đặc trưng của làng.</p>
+
+              
+            </div>
+          </div>
+
+          <div class="process-step reveal">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <div class="step-title"><span>🌿</span> Ghép và hoàn thiện cành hoa</div>
+              <div class="step-title">📦 Hoàn thiện</div>
+<p class="muted">Sau khi khô, hương được bó lại và đóng gói để cung cấp cho thị trường và phục vụ du khách.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HÌNH ẢNH -->
+    <section id="hinh-anh" style="padding:5rem 0;">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Hình ảnh ✦</span>
+          <h2 class="sec-title" style="color:var(--cream-d);">Thư viện <em style="color:var(--gold-l);">hình ảnh</em></h2>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="g-item">
+            <img src="https://cdn.statically.io/img/www.lagunalangco.com/wp-content/uploads/2025/04/lang-huong-thuy-xuan-2-768x512.jpg?f=auto" alt="" class="lb-img" data-caption="Làng hoa giấy Thanh Tiên">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://aeonmall-review-rikkei.cdn.vccloud.vn/website/21/articles/November2025/bfe1031c-44fa-4edd-a4e7-c95c12a5007e.jpg" alt="Nghề truyền thống Huế" class="lb-img" data-caption="">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://reviewhue.vn/wp-content/uploads/2022/12/lang-nghe-1.jpg" alt="Hoa giấy Thanh Tiên" class="lb-img" data-caption="">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://visithue.vn/Portals/0/VisitHue/Destination/LangNghe/HuongThuyXuan/huetourism_lang%20huong%20Thuy%20xuan%201.jpg"  class="lb-img" >
+            <div class="g-item-overlay">🔍</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" id="lbClose">×</span>
+    <div class="lb-wrap">
+      <span class="lb-btn lb-prev" id="lbPrev">❮</span>
+      <img id="lb-img-el" alt="" style="transform-origin:center center;">
+      <span class="lb-btn lb-next" id="lbNext">❯</span>
+    </div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+    <div class="lb-zoom-controls">
+      <button class="lb-zoom-btn" id="lbZoomOut">−</button>
+      <button class="lb-zoom-btn" id="lbZoomReset">⊙</button>
+      <button class="lb-zoom-btn" id="lbZoomIn">+</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>🏺 Làng nghề truyền thống Huế</strong>
+        <p>Trang tư liệu giáo dục địa phương về các làng nghề truyền thống của tỉnh Thừa Thiên Huế, biên soạn bởi THPT Đặng Huy Trứ.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p>Gmail: duynguyen.180109@gmail.com</p>
+        <p>SĐT: 0349229611</p>
+      </div>
+      <div>
+        <strong>Liên kết hữu ích</strong>
+        <p><a href="https://hue.gov.vn" target="_blank">hue.gov.vn</a></p>
+        <p><a href="https://www.huesmiletravel.com" target="_blank">huesmiletravel.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Tư liệu Giáo dục Địa phương Huế — Trường THPT Đặng Huy Trứ. Bảo lưu mọi quyền.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Lên đầu trang">↑</button>
+
+  <script>
+    // ── BACK TO TOP ──
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      topBtn.classList.toggle('show', window.scrollY > 300);
+    });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ── SCROLL REVEAL ──
+    const revEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); }
       });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // ── LIGHTBOX ──
+    const lbItems = document.querySelectorAll('.lb-img');
+    const lb = document.getElementById('lightbox');
+    const lbImgEl = document.getElementById('lb-img-el');
+    const lbCap = document.getElementById('lbCaption');
+    const lbCount = document.getElementById('lbCounter');
+    let lbIdx = 0, lbZoom = 1;
+    const lbData = [];
+
+    lbItems.forEach((img, i) => {
+      const src = img.getAttribute('data-caption') ? img.src : img.src;
+      const cap = img.getAttribute('data-caption') || img.alt || '';
+      lbData.push({ src: img.src, cap });
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => { lbIdx = i; openLB(); });
     });
 
     function openLB() {
-      lb.style.display = "flex";
-      lbImg.src = images[index].src;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
+      lb.classList.add('open');
+      updateLB();
+      document.body.style.overflow = 'hidden';
     }
-
     function closeLB() {
-      lb.style.display = "none";
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function updateLB() {
+      lbImgEl.src = lbData[lbIdx].src;
+      lbCap.textContent = lbData[lbIdx].cap;
+      lbCount.textContent = `${lbIdx + 1} / ${lbData.length}`;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
+    }
+    function changeLB(dir) {
+      lbIdx = (lbIdx + dir + lbData.length) % lbData.length;
+      updateLB();
     }
 
-    function changeImg(dir) {
-      index = (index + dir + images.length) % images.length;
-      lbImg.src = images[index].src;
-    }
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', () => changeLB(-1));
+    document.getElementById('lbNext').addEventListener('click', () => changeLB(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 
-    // bấm nền -> tắt
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLB();
+    document.getElementById('lbZoomIn').addEventListener('click', () => {
+      lbZoom = Math.min(lbZoom + 0.25, 3);
+      lbImgEl.style.transform = `scale(${lbZoom})`;
+    });
+    document.getElementById('lbZoomOut').addEventListener('click', () => {
+      lbZoom = Math.max(lbZoom - 0.25, 0.5);
+      lbImgEl.style.transform = `scale(${lbZoom})`;
+    });
+    document.getElementById('lbZoomReset').addEventListener('click', () => {
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
+    });
+    lbImgEl.addEventListener('wheel', e => {
+      e.preventDefault();
+      lbZoom = e.deltaY < 0 ? Math.min(lbZoom + 0.15, 3) : Math.max(lbZoom - 0.15, 0.5);
+      lbImgEl.style.transform = `scale(${lbZoom})`;
+    });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') changeLB(-1);
+      if (e.key === 'ArrowRight') changeLB(1);
     });
   </script>
-
-
-</div>
-
-<footer>
-  © 2025 – Làng Hương Thủy Xuân
-</footer>
-
-<div id="backToTop">↑</div>
-<script>
-const btn = document.getElementById("backToTop");
-
-// Hiện nút khi cuộn xuống 300px
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
-  }
-});
-
-// Cuộn lên đầu trang
-btn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
-<script>
-const revealElements = document.querySelectorAll(
-  '.reveal, .reveal-img-left'
-);
-
-let ticking = false;
-
-function revealOnScroll(){
-  const windowHeight = window.innerHeight;
-
-  revealElements.forEach(el => {
-    if(el.classList.contains('show')) return;
-    const top = el.getBoundingClientRect().top;
-    if(top < windowHeight - 80){
-      el.classList.add('show');
-    }
-  });
-
-  ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-  if(!ticking){
-    window.requestAnimationFrame(revealOnScroll);
-    ticking = true;
-  }
-});
-
-window.addEventListener('load', revealOnScroll);
-</script>
-
-
-
-
 </body>
 </html>
