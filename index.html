@@ -9,7 +9,7 @@
   <meta name="keywords" content="làng nghề truyền thống Huế, làng hương Thủy Xuân, gốm Phước Tích, tranh làng Sinh, hoa giấy Thanh Tiên, văn hóa Huế">
   <meta name="language" content="vi">
   <meta name="author" content="THPT Đặng Huy Trứ">
-  <meta property="og:title" content="Làng nghề truyền thống Huế">
+  <meta property="og:title" content="Tư liệu Di sản làng nghề truyền thống Huế">
   <meta property="og:description" content="Khám phá các làng nghề truyền thống Huế: Thủy Xuân, Phước Tích, Thanh Tiên, tranh làng Sinh.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="langnghe.png">
@@ -35,7 +35,6 @@
       --purple-l:  #7b3fa8;
     }
 
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -911,11 +910,47 @@
       .gallery-masonry { columns: 2; }
       .video-gallery { grid-template-columns: 1fr; }
     }
+    .btn-detail{
+  display:inline-block;
+  margin-top:1.5rem;
+  padding:12px 28px;
+  font-size:.8rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#2D0052;
+  background:linear-gradient(135deg,#C9A84C,#A07830);
+  border:none;
+  position:relative;
+  overflow:hidden;
+  clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  transition:all .35s ease;
+}
+
+/* hiệu ứng ánh sáng */
+.btn-detail::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0.2);
+  transform:translateX(-100%);
+  transition:transform .4s;
+}
+
+.btn-detail:hover::before{
+  transform:translateX(0);
+}
+
+/* hover */
+.btn-detail:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 25px rgba(201,168,76,.4);
+}
   </style>
 </head>
 
 <body>
-  <div class="topbar">✦ Trường THPT Đặng Huy Trứ — Tư liệu Giáo dục Địa phương Huế ✦</div>
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ ✦</div>
 
   <header>
     <div class="header-inner">
@@ -947,7 +982,7 @@
   <section class="hero" id="trang-chu">
     <div class="hero-border"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">THPT Đặng Huy Trứ · Thừa Thiên Huế</p>
+      <p class="hero-eyebrow">THPT Đặng Huy Trứ · Thành Phố Huế</p>
       <h1>Giới thiệu và lưu giữ<br><em>làng nghề truyền thống Huế</em></h1>
       <p class="hero-slogan">"Chạm vào di sản – Cảm nhận tinh hoa làng nghề Huế"</p>
       <div class="hero-cta">
@@ -963,9 +998,9 @@
     <section id="gioi-thieu">
       <div class="container">
         <div class="sec-header reveal-left">
-          <span class="sec-eyebrow">✦ Giới thiệu ✦</span>
-          <h2 class="sec-title">Tinh hoa thủ công xứ <em>Cố đô</em></h2>
-          <p class="sec-sub">Kết tinh của lịch sử, văn hóa và bàn tay tài hoa bao thế hệ nghệ nhân xứ Huế.</p>
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title">Giới thiệu</h2>
+          <p class="sec-sub"></p>
         </div>
         <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
         <div class="intro-grid reveal">
@@ -984,7 +1019,15 @@
             <div class="intro-panel-title">Hướng tới tương lai</div>
             <p class="muted">Ngày nay, các làng nghề truyền thống đang nỗ lực bảo tồn những bí quyết gia truyền quý báu, đồng thời mở ra hướng phát triển mới thông qua du lịch trải nghiệm và quảng bá văn hóa. Sự kết nối giữa làng nghề và du lịch không chỉ góp phần gìn giữ các giá trị di sản mà còn đưa hình ảnh văn hóa Huế đến gần hơn với bạn bè trong nước và quốc tế.</p>
           </div>
+
         </div>
+        <div class="divider"><span class="divider-icon">◆ ◆ ◆</span></div>
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title">Bản đồ các <em>làng nghề Huế<em/></h2>
+          <p class="sec-sub"></p>
+        </div>
+        <a href="demobando.html" class="btn-detail">Xem bản đồ</a>
       </div>
     </section>
 
@@ -992,9 +1035,9 @@
     <section id="lang-nghe">
       <div class="container">
         <div class="sec-header reveal-left">
-          <span class="sec-eyebrow">✦ Các làng nghề tiêu biểu ✦</span>
-          <h2 class="sec-title" style="color:var(--cream-d)">Di sản thủ công <em style="color:var(--gold-l)">ngàn đời</em></h2>
-          <p class="sec-sub">Sáu làng nghề mang dấu ấn văn hóa đặc trưng nhất của xứ Huế.</p>
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title" style="color:var(--cream-d)">Các làng nghề <em style="color:var(--gold-l)">tiêu biểu</em></h2>
+          <p class="sec-sub"></p>
         </div>
         <div class="craft-grid reveal">
           <div class="craft-card">
@@ -1024,6 +1067,7 @@
               <a href="phuongduc.html" class="craft-link">Xem chi tiết</a>
             </div>
           </div>
+
           <div class="craft-card">
             <img src="https://images2.thanhnien.vn/528068263637045248/2025/2/19/img6384-17399434381911266887593.jpg" alt="Làng bún Vân Cù">
             <div class="craft-overlay">
@@ -1033,6 +1077,7 @@
               <a href="langbun.html" class="craft-link">Xem chi tiết</a>
             </div>
           </div>
+
           <div class="craft-card">
             <img src="https://imagevietnam.vnanet.vn//MediaUpload/Org/2024/05/06/106-9-47-4.jpg" alt="Làng mây tre đan Bao La">
             <div class="craft-overlay">
@@ -1042,6 +1087,7 @@
               <a href="langmaytre.html" class="craft-link">Xem chi tiết</a>
             </div>
           </div>
+
           <div class="craft-card">
             <img src="https://statics.vinpearl.com/tranh-lang-sinh-1_1679156776.jpg" alt="Làng tranh Sình">
             <div class="craft-overlay">
@@ -1051,6 +1097,19 @@
               <a href="tranhlangsinh.html" class="craft-link">Xem chi tiết</a>
             </div>
           </div>
+
+          <div class="craft-card">
+  <img src="https://aeonmall-review-rikkei.cdn.vccloud.vn/website/21/articles/September2025/1cef86c4-9a5c-4ef5-b2ac-5b016c7d9ee7.jpg" alt="Làng nón bài thơ Tây Hồ">
+  <div class="craft-overlay">
+    <span class="craft-tag">Thủ công truyền thống</span>
+    <h3 class="craft-name">Làng nón bài thơ Tây Hồ</h3>
+    <p class="craft-desc">
+      Làng Tây Hồ là cái nôi của nón bài thơ Huế – sản phẩm thủ công tinh xảo mang vẻ đẹp dịu dàng, thanh thoát. Những chiếc nón được chằm tỉ mỉ từ lá nón, đặc biệt có thể ép thơ và hình ảnh đặc trưng xứ Huế giữa hai lớp lá.
+    </p>
+    <a href="nonbaitayho.html" class="craft-link">Xem chi tiết</a>
+  </div>
+</div>
+
         </div>
       </div>
     </section>
@@ -1059,9 +1118,9 @@
     <section id="giao-duc">
       <div class="container">
         <div class="sec-header reveal-left">
-          <span class="sec-eyebrow">✦ Làng nghề trong giáo dục ✦</span>
-          <h2 class="sec-title">Học từ di sản,<br><em>sống với truyền thống</em></h2>
-          <p class="sec-sub">Trường THPT Đặng Huy Trứ luôn chú trọng gắn kết hoạt động giáo dục với thực tiễn đời sống và các giá trị văn hóa truyền thống của địa phương.</p>
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title">Làng nghề trong <em>giáo dục</em></h2>
+          <p class="sec-sub"></p>
         </div>
         <div class="edu-layout">
           <div class="edu-text">
@@ -1114,40 +1173,7 @@
       </div>
     </section>
 
-    <!-- HOẠT ĐỘNG TRẢI NGHIỆM -->
-    <section id="trai-nghiem">
-      <div class="container">
-        <div class="sec-header reveal-left">
-          <span class="sec-eyebrow">✦ Hoạt động trải nghiệm ✦</span>
-          <h2 class="sec-title">Chạm tay vào <em>di sản</em></h2>
-          <p class="sec-sub">Những hoạt động thực tế giúp học sinh cảm nhận sâu sắc nhất về các làng nghề truyền thống.</p>
-        </div>
-        <div class="exp-grid reveal">
-          <div class="exp-cell">
-            <span class="exp-num">01</span>
-            <span class="exp-icon">🧭</span>
-            <div class="exp-title">Tham quan làng nghề</div>
-            <p class="exp-desc">Nhà trường tổ chức cho học sinh tham quan các làng nghề truyền thống tại Huế, giúp các em trực tiếp quan sát quy trình sản xuất và tìm hiểu giá trị văn hóa của từng nghề.</p>
-          </div>
-          <div class="exp-cell">
-            <span class="exp-num">02</span>
-            <span class="exp-icon">🤝</span>
-            <div class="exp-title">Giao lưu với nghệ nhân</div>
-            <p class="exp-desc">Học sinh có cơ hội gặp gỡ, trao đổi với các nghệ nhân để hiểu rõ hơn về lịch sử nghề, kỹ thuật chế tác và những câu chuyện gắn liền với làng nghề.</p>
-          </div>
-          <div class="exp-cell">
-            <span class="exp-num">03</span>
-            <span class="exp-icon">🎨</span>
-            <div class="exp-title">Trải nghiệm thực hành</div>
-            <p class="exp-desc">Các em được tham gia một số hoạt động thực hành đơn giản như làm hoa giấy, se hương hoặc thử các công đoạn thủ công, từ đó cảm nhận được sự khéo léo và công phu của nghề truyền thống.</p>
-          </div>
-          <div class="exp-cell">
-            <span class="exp-num">04</span>
-            <span class="exp-icon">📸</span>
-            <div class="exp-title">Ghi nhận &amp; chia sẻ</div>
-            <p class="exp-desc">Sau các hoạt động trải nghiệm, học sinh thực hiện bài thu hoạch, sản phẩm sáng tạo hoặc chia sẻ cảm nhận nhằm lan tỏa giá trị của các làng nghề truyền thống.</p>
-          </div>
-        </div>
+    
 
         <!-- VIDEO SECTION -->
         <div class="exp-highlight reveal">
@@ -1161,40 +1187,131 @@
           <div class="video-gallery" id="videoGallery">
             <!-- Video 1 -->
             <div class="video-item">
-              <div class="video-placeholder" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Học sinh THPT Đặng Huy Trứ trải nghiệm làm hoa giấy Thanh Tiên')">
-                <img class="video-thumb" src="https://phuotvivu.com/blog/wp-content/uploads/2021/12/lam-huong-thuy-xuan-o-hue-1.jpg" alt="Video hoa giấy">
+              <div class="video-placeholder" onclick="openVideoModal('https://drive.google.com/file/d/1aCuCVMMLYgZ28DvNREy_h51rIXQ5u1ZB/preview')">
+                <!<img class="video-thumb" src="" alt="Video hoa giấy">>
                 <div class="video-play-btn">▶</div>
                 <div class="video-label">Xem video</div>
               </div>
               <div class="video-meta">
                 <h4>Trải nghiệm làm hoa giấy Thanh Tiên</h4>
-                <p>Học sinh tham quan và thực hành làm hoa giấy tại làng Thanh Tiên, xã Phú Mậu, TP. Huế.</p>
+               
               </div>
             </div>
+
+
+
+
             <!-- Video 2 -->
             <div class="video-item">
-              <div class="video-placeholder" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Học sinh tham quan làng hương Thủy Xuân')">
-                <img class="video-thumb" src="https://ik.imagekit.io/tvlk/blog/2022/12/lang-huong-thuy-xuan-7.jpg?tr=q-70,c-at_max,w-1000,h-600" alt="Video làng hương">
+              <div class="video-placeholder" onclick="openVideoModal('https://drive.google.com/file/d/1o4U_PxpmCq2Z3f0T6JcvZoxDzIqb-5TC/preview')">
+                
                 <div class="video-play-btn">▶</div>
                 <div class="video-label">Xem video</div>
               </div>
               <div class="video-meta">
-                <h4>Tham quan làng hương Thủy Xuân</h4>
-                <p>Học sinh khám phá quy trình làm hương trầm truyền thống tại đường Huyền Trân Công Chúa, TP. Huế.</p>
+                <h4>Trải nghiệm làm hoa giấy Thanh Tiên</h4>
+               
               </div>
             </div>
-            <!-- Video 3 -->
-            <div class="video-item">
-              <div class="video-placeholder" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ', 'Giao lưu với nghệ nhân đúc đồng Phường Đúc')">
-                <img class="video-thumb" src="https://phuotvivu.com/blog/wp-content/uploads/2021/12/lang-nghe-duc-dong-o-hue.jpg" alt="Video đúc đồng">
+      
+
+
+
+
+
+
+<div class="video-item">
+              <div class="video-placeholder" onclick="openVideoModal('videos/video1.mp4')">
+                
                 <div class="video-play-btn">▶</div>
                 <div class="video-label">Xem video</div>
               </div>
               <div class="video-meta">
-                <h4>Giao lưu nghệ nhân đúc đồng Phường Đúc</h4>
-                <p>Cuộc gặp gỡ giữa học sinh và các nghệ nhân đúc đồng tại làng nghề lịch sử Phường Đúc, TP. Huế.</p>
+                <h4>Trải nghiệm làng hương Thủy Xuân</h4>
+               
               </div>
             </div>
+
+
+<div class="gallery-item" data-src="images/Anh1 (1).jpg"><img src="images/Anh1 (1).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (2).jpg"><img src="images/Anh1 (2).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (3).jpg"><img src="images/Anh1 (3).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (4).jpg"><img src="images/Anh1 (4).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (5).jpg"><img src="images/Anh1 (5).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (6).jpg"><img src="images/Anh1 (6).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (7).jpg"><img src="images/Anh1 (7).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (8).jpg"><img src="images/Anh1 (8).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (9).jpg"><img src="images/Anh1 (9).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (10).jpg"><img src="images/Anh1 (10).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (11).jpg"><img src="images/Anh1 (11).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (12).jpg"><img src="images/Anh1 (12).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (13).jpg"><img src="images/Anh1 (13).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (14).jpg"><img src="images/Anh1 (14).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (15).jpg"><img src="images/Anh1 (15).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (16).jpg"><img src="images/Anh1 (16).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (17).jpg"><img src="images/Anh1 (17).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (18).jpg"><img src="images/Anh1 (18).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (19).jpg"><img src="images/Anh1 (19).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (20).jpg"><img src="images/Anh1 (20).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (21).jpg"><img src="images/Anh1 (21).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (22).jpg"><img src="images/Anh1 (22).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (23).jpg"><img src="images/Anh1 (23).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (24).jpg"><img src="images/Anh1 (24).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (25).jpg"><img src="images/Anh1 (25).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (26).jpg"><img src="images/Anh1 (26).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (27).jpg"><img src="images/Anh1 (27).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (28).jpg"><img src="images/Anh1 (28).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (29).jpg"><img src="images/Anh1 (29).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (30).jpg"><img src="images/Anh1 (30).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (31).jpg"><img src="images/Anh1 (31).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (32).jpg"><img src="images/Anh1 (32).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (33).jpg"><img src="images/Anh1 (33).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (34).jpg"><img src="images/Anh1 (34).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (35).jpg"><img src="images/Anh1 (35).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (36).jpg"><img src="images/Anh1 (36).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (37).jpg"><img src="images/Anh1 (37).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (38).jpg"><img src="images/Anh1 (38).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (39).jpg"><img src="images/Anh1 (39).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (40).jpg"><img src="images/Anh1 (40).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (41).jpg"><img src="images/Anh1 (41).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (42).jpg"><img src="images/Anh1 (42).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (43).jpg"><img src="images/Anh1 (43).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (44).jpg"><img src="images/Anh1 (44).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (45).jpg"><img src="images/Anh1 (45).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (46).jpg"><img src="images/Anh1 (46).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (47).jpg"><img src="images/Anh1 (47).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (48).jpg"><img src="images/Anh1 (48).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (49).jpg"><img src="images/Anh1 (49).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (50).jpg"><img src="images/Anh1 (50).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (51).jpg"><img src="images/Anh1 (51).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (52).jpg"><img src="images/Anh1 (52).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (53).jpg"><img src="images/Anh1 (53).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (54).jpg"><img src="images/Anh1 (54).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (55).jpg"><img src="images/Anh1 (55).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (56).jpg"><img src="images/Anh1 (56).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (57).jpg"><img src="images/Anh1 (57).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (58).jpg"><img src="images/Anh1 (58).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (59).jpg"><img src="images/Anh1 (59).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (60).jpg"><img src="images/Anh1 (60).jpg"><div class="gallery-item-overlay"></div></div>
+
+<div class="gallery-item" data-src="images/Anh1 (61).jpg"><img src="images/Anh1 (61).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (62).jpg"><img src="images/Anh1 (62).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (63).jpg"><img src="images/Anh1 (63).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (64).jpg"><img src="images/Anh1 (64).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (65).jpg"><img src="images/Anh1 (65).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (66).jpg"><img src="images/Anh1 (66).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (67).jpg"><img src="images/Anh1 (67).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (68).jpg"><img src="images/Anh1 (68).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (69).jpg"><img src="images/Anh1 (69).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (70).jpg"><img src="images/Anh1 (70).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (71).jpg"><img src="images/Anh1 (71).jpg"><div class="gallery-item-overlay"></div></div>
+<div class="gallery-item" data-src="images/Anh1 (72).jpg"><img src="images/Anh1 (72).jpg"><div class="gallery-item-overlay"></div></div>
+
             <!-- Placeholder thêm video -->
             <div class="video-item" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.03);border:1px dashed rgba(212,168,75,.25);min-height:180px;">
               <div style="text-align:center;padding:2rem;">
@@ -1211,9 +1328,9 @@
     <section id="thu-vien">
       <div class="container">
         <div class="sec-header reveal-left">
-          <span class="sec-eyebrow">✦ Thư viện tư liệu ✦</span>
-          <h2 class="sec-title">Kho lưu trữ <em>tri thức</em></h2>
-          <p class="sec-sub">Danh bạ nghệ nhân, tài liệu tham khảo và thư viện ảnh về các làng nghề truyền thống Huế.</p>
+          <span class="sec-eyebrow"></span>
+          <h2 class="sec-title">Thư viện <em>tư liệu</em></h2>
+          <p class="sec-sub"></p>
         </div>
 
         <!-- DANH BẠ NGHỆ NHÂN -->
@@ -1329,10 +1446,14 @@
               <!-- Phan Ngọc Hiếu -->
               <div class="artisan-profile">
                 <div class="artisan-photo-wrap">
-                  <div class="artisan-photo-placeholder">
-                    <span>🌸</span>
-                    <span style="font-size:.75rem;line-height:1.4;">Chị Phan Ngọc Hiếu</span>
-                  </div>
+                  <div class="artisan-photo-wrap">
+                      <img 
+                        src="images/NN1.jpg" 
+                        alt="Phan Ngọc Hiếu"
+                        class="artisan-photo"
+                      >
+                      
+                    </div>
                   <div class="artisan-photo-badge">Maypaperflower</div>
                 </div>
                 <div class="artisan-info">
@@ -1352,11 +1473,15 @@
               <!-- Võ Ngọc Hùng -->
               <div class="artisan-profile">
                 <div class="artisan-photo-wrap">
-                  <div class="artisan-photo-placeholder">
-                    <span>🎩</span>
-                    <span style="font-size:.75rem;line-height:1.4;">Ông Võ Ngọc Hùng</span>
-                  </div>
-                  <div class="artisan-photo-badge">Nghệ nhân Huế 2025</div>
+                  <div class="artisan-photo-wrap">
+                      <img 
+                        src="images/NN2.jpg" 
+                        alt=""
+                        class="artisan-photo"
+                      >
+                      
+                    </div>
+                  <div class="artisan-photo-badge">Nghệ Nhân Huế</div>
                 </div>
                 <div class="artisan-info">
                   <h4 style="margin-top:0;">Ông Võ Ngọc Hùng – Nghệ nhân nón lá xương lá bàng</h4>
@@ -1372,11 +1497,15 @@
               <!-- Trần Điền -->
               <div class="artisan-profile">
                 <div class="artisan-photo-wrap">
-                  <div class="artisan-photo-placeholder">
-                    <span>🌿</span>
-                    <span style="font-size:.75rem;line-height:1.4;">Anh Trần Điền</span>
-                  </div>
-                  <div class="artisan-photo-badge">Nghệ nhân Huế 2025</div>
+                  <div class="artisan-photo-wrap">
+                      <img 
+                        src="images/NN3.jpg" 
+                        alt=""
+                        class="artisan-photo"
+                      >
+                      
+                    </div>
+                  <div class="artisan-photo-badge">Nghệ Nhân Huế</div>
                 </div>
                 <div class="artisan-info">
                   <h4 style="margin-top:0;">Anh Trần Điền – Nghệ nhân sinh vật cảnh</h4>
@@ -1511,7 +1640,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        © 2026 Tư liệu Giáo dục Địa phương Huế — Trường THPT Đặng Huy Trứ. Bảo lưu mọi quyền.
+        © 2026 Trường THPT Đặng Huy Trứ.
       </div>
     </div>
   </footer>

@@ -501,7 +501,7 @@
 
 <body>
   <!-- TOPBAR -->
-  <div class="topbar">✦ Trường THPT Đặng Huy Trứ — Tư liệu Giáo dục Địa phương Huế ✦</div>
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ ✦</div>
 
   <!-- HEADER -->
   <header>
@@ -609,7 +609,7 @@
       <div class="container">
         <div class="sec-header reveal-left">
           <span class="sec-eyebrow">✦ Danh sách ✦</span>
-          <h2 class="sec-title">Sáu làng nghề <em>tiêu biểu</em></h2>
+          <h2 class="sec-title"></em></h2>
           <p class="sec-sub">Mỗi làng nghề là một câu chuyện về lịch sử, văn hóa và bàn tay tài hoa của người dân xứ Huế.</p>
         </div>
 
@@ -639,7 +639,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      © 2026 Tư liệu Giáo dục Địa phương Huế — Trường THPT Đặng Huy Trứ. Bảo lưu mọi quyền.
+      © 2026 Trường THPT Đặng Huy Trứ.
     </div>
   </footer>
 
@@ -701,7 +701,7 @@
       {
         name: "Làng bún Vân Cù",
         location: "Vân Cù, Phú Vang",
-        lat: 16.4800, lng: 107.6200,
+        lat: 16.53547075877991, lng: 107.54325361670406,
         specialty: "Làm bún tươi",
         history: "Nhiều thế hệ",
         description: "Làng bún Vân Cù nổi tiếng với bí quyết làm sợi bún tươi, dai ngon, đặc trưng của ẩm thực Huế. Nghề làm bún được truyền qua nhiều thế hệ với kỹ thuật độc đáo.",
@@ -730,7 +730,19 @@
         url: "tranhlangsinh.html",
         color: "#DDA0DD",
         emoji: "🎨"
-      }
+      },
+      {
+  name: "Làng nón bài thơ Tây Hồ",
+  location: "Phú Hồ, Phú Vang, Thừa Thiên Huế",
+  lat: 16.453865035192326, lng: 107.55756340904189,
+  specialty: "Nón bài thơ truyền thống",
+  history: "Lâu đời (phát triển mạnh từ thế kỷ 20)",
+  description: "Làng Tây Hồ là nơi sản sinh ra nón bài thơ – biểu tượng của vẻ đẹp dịu dàng xứ Huế. Những chiếc nón mỏng nhẹ, thanh thoát, được chằm thủ công và đặc biệt có những bài thơ, hình ảnh Huế được ép giữa hai lớp lá.",
+  url: "nonlatayho.html",
+  color: "#F4E1C1",
+  emoji: "👒"
+}
+
     ];
 
     // ── BUILD VILLAGE CARDS ──
@@ -745,6 +757,7 @@
           <div class="village-location">📍 ${v.location}</div>
           <div class="village-specialty">${v.emoji} ${v.specialty} · ${v.history}</div>
           <p class="village-desc">${v.description}</p>
+        <div id="qr-${i}"></div>
           <a href="${v.url}" class="village-link">Xem chi tiết <span class="village-arrow">→</span></a>
         </div>`;
     });
@@ -795,6 +808,7 @@
 
     // Add markers
     craftVillages.forEach((v, i) => {
+      
       const marker = L.marker([v.lat, v.lng], { icon: createIcon(v.color, v.emoji) }).addTo(map);
 
       const qrId = `qr-popup-${i}`;

@@ -2,492 +2,737 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Làng nghề làm tranh Sình – Huế</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Làng nghề làm tranh Sình – Huế</title>
+  <meta name="description" content="Làng nghề làm tranh Sình – dòng tranh dân gian hơn 400 năm tuổi tại làng Lại Ân, xứ Huế.">
 
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,500&family=IM+Fell+English:ital@0;1&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- LIGHTBOX -->
   <style>
+    :root {
+      --ink:      #1c1208;
+      --ink-s:    #5c4a2a;
+      --ink-xs:   #8a7356;
+      --gold:     #b8892a;
+      --gold-l:   #d4a84b;
+      --gold-ll:  #f0d898;
+      --rust:     #8b3a1a;
+      --rust-l:   #c4552a;
+      --cream:    #f7f0e4;
+      --cream-d:  #ede3cc;
+      --cream-dd: #e0d0b0;
+      --paper:    #faf6ed;
+      --white:    #fffdf7;
+      --purple:   #4a1a6e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .6;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      background: var(--ink); color: var(--gold-ll);
+      text-align: center; font-size: .72rem;
+      letter-spacing: .25em; text-transform: uppercase;
+      padding: .55rem 1rem; font-weight: 500;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 900;
+      background: var(--ink);
+      border-bottom: 2px solid var(--gold);
+      box-shadow: 0 4px 30px rgba(0,0,0,.4);
+    }
+    .header-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .brand { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .brand-icon {
+      width: 42px; height: 42px; background: var(--gold);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.4rem; flex-shrink: 0;
+    }
+    .brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--gold-ll); letter-spacing: .04em; line-height: 1.2;
+    }
+    .brand-sub {
+      font-size: .6rem; color: rgba(255,255,255,.4);
+      letter-spacing: .2em; text-transform: uppercase; font-weight: 300;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--gold-ll); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .08em;
+      padding: .5rem 1.2rem; border: 1px solid rgba(212,168,75,.3);
+      transition: all .3s;
+    }
+    .back-btn::before { content: '←'; }
+    .back-btn:hover { background: rgba(212,168,75,.1); border-color: var(--gold); color: var(--gold); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--ink);
+      border-bottom: 1px solid rgba(212,168,75,.15); padding: .6rem 0;
+    }
+    .breadcrumb-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: flex; align-items: center; gap: .5rem;
+      font-size: .72rem; color: rgba(255,255,255,.35); letter-spacing: .05em;
+    }
+    .breadcrumb a { color: var(--gold-l); text-decoration: none; transition: color .3s; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold-ll); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; overflow: hidden;
+      min-height: 55vh;
+      display: flex; align-items: center; justify-content: center;
+      background:
+        linear-gradient(160deg, rgba(28,18,8,.80) 0%, rgba(74,26,110,.48) 50%, rgba(139,58,26,.68) 100%),
+        url('https://statics.vinpearl.com/tranh-lang-sinh-2_1679156848.jpg') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4a84b' fill-opacity='0.04'%3E%3Ccircle cx='60' cy='60' r='40'/%3E%3Ccircle cx='60' cy='60' r='28'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-border {
+      position: absolute; inset: 20px;
+      border: 1px solid rgba(212,168,75,.2); pointer-events: none;
+    }
+    .hero-border::before {
+      content: ''; position: absolute; inset: 8px;
+      border: 1px solid rgba(212,168,75,.08);
+    }
+    .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 2rem; }
+    .hero-eyebrow {
+      font-size: .7rem; letter-spacing: .4em; text-transform: uppercase;
+      color: var(--gold-l); margin-bottom: 1rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      opacity: 0; animation: fadeUp .8s .2s forwards;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; display: block; width: 40px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold));
+    }
+    .hero-eyebrow::after { background: linear-gradient(to left, transparent, var(--gold)); }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.1; color: var(--cream);
+      text-shadow: 0 4px 40px rgba(0,0,0,.6);
+      opacity: 0; animation: fadeUp .9s .4s forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold-l); }
+    .hero-sub {
+      font-family: 'IM Fell English', serif; font-style: italic;
+      font-size: clamp(1rem, 1.8vw, 1.3rem);
+      color: rgba(240,216,152,.7); margin-top: .8rem;
+      opacity: 0; animation: fadeUp .9s .6s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.35); font-size: .62rem; letter-spacing: .2em;
+      text-transform: uppercase; animation: bounce 2s infinite;
+    }
+    .hero-scroll span { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; position: relative; z-index: 1; }
+
+    .divider {
+      display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-ll), var(--gold), var(--gold-ll), transparent);
+    }
+    .divider-icon { color: var(--gold); font-size: 1rem; letter-spacing: .3em; flex-shrink: 0; }
+
+    .sec-eyebrow {
+      font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: .5rem;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 1.2rem;
+    }
+    .sec-title em { font-style: italic; color: var(--rust); }
+
+    .muted {
+      color: var(--ink-s); line-height: 1.95;
+      margin-bottom: 1.2rem; font-size: .92rem; text-align: justify;
+    }
+
+    /* ── INTRO SECTION ── */
+    #gioi-thieu { background: var(--cream); padding: 5rem 0; }
+
+    .info-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2px; background: var(--gold); margin: 2.5rem 0;
+    }
+    .info-card {
+      background: var(--white); padding: 2rem 1.8rem; transition: all .35s;
+    }
+    .info-card:hover { background: var(--cream); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .info-card-icon { font-size: 2rem; display: block; margin-bottom: .8rem; }
+    .info-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--rust); margin-bottom: .6rem;
+    }
+    .info-card p { font-size: .87rem; color: var(--ink-s); line-height: 1.8; }
+
+    .intro-lead {
+      font-family: 'IM Fell English', serif;
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-style: italic;
+      color: var(--rust); line-height: 1.7;
+      border-left: 4px solid var(--gold);
+      padding: 1.2rem 1.8rem;
+      background: var(--white); margin-bottom: 2rem;
+      box-shadow: 4px 0 20px rgba(0,0,0,.04);
+    }
+
+    /* ── MAP ── */
+    .map-wrapper {
+      margin: 2rem 0; border: 2px solid var(--gold);
+      overflow: hidden; box-shadow: 0 8px 35px rgba(0,0,0,.12);
+    }
+
+    /* ── HISTORY SECTION ── */
+    #lich-su { background: var(--paper); padding: 5rem 0; }
+
+    .history-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .img-featured { position: sticky; top: 100px; }
+    .img-featured img {
+      width: 100%; display: block;
+      border: 3px solid var(--gold);
+      box-shadow: 8px 8px 40px rgba(0,0,0,.15);
+    }
+    .img-caption {
+      text-align: center; font-size: .75rem;
+      color: var(--ink-xs); letter-spacing: .1em;
+      margin-top: .6rem; font-style: italic;
+    }
+    .highlight-box {
+      background: var(--ink); padding: 2rem;
+      border-left: 4px solid var(--gold);
+      position: relative; overflow: hidden; margin-top: 2rem;
+    }
+    .highlight-box::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--rust), var(--gold));
+    }
+    .highlight-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-style: italic;
+      color: var(--gold-ll); line-height: 1.75; margin: 0;
+    }
+
+    /* ── ART SECTION ── */
+    #nghe-tranh { background: var(--cream-d); padding: 5rem 0; }
+
+    .art-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .art-sub-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--rust);
+      margin: 2rem 0 .8rem;
+      padding-left: .8rem;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* ── FEATURED IMAGES ── */
+    .img-banner {
+      position: relative; overflow: hidden; margin: 1.5rem 0;
+      border: 2px solid var(--gold);
+    }
+    .img-banner img {
+      width: 100%; max-height: 380px; object-fit: cover; display: block;
+      filter: brightness(.88) saturate(.9);
+      transition: transform .6s, filter .4s;
+    }
+    .img-banner:hover img { transform: scale(1.03); filter: brightness(1) saturate(1.05); }
+    .img-banner-cap {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(28,18,8,.85), transparent);
+      padding: 1.5rem 1rem .8rem;
+      font-size: .75rem; color: var(--gold-ll);
+      letter-spacing: .1em; font-style: italic;
+    }
+
+    /* ── GALLERY ── */
+    #hinh-anh { background: var(--ink); padding: 5rem 0; }
+    #hinh-anh .sec-title { color: var(--cream-d); }
+    #hinh-anh .sec-eyebrow { color: var(--gold-l); }
+
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 3px; background: var(--gold); margin-top: 2.5rem;
+    }
+    .gallery-grid .g-item:first-child { grid-column: span 2; }
+
+    .g-item {
+      position: relative; overflow: hidden;
+      cursor: zoom-in; aspect-ratio: 4/3;
+    }
+    .g-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .6s cubic-bezier(.4,0,.2,1), filter .4s;
+      filter: brightness(.85) saturate(.9);
+    }
+    .g-item:hover img { transform: scale(1.08); filter: brightness(1) saturate(1.1); }
+    .g-item-overlay {
+      position: absolute; inset: 0;
+      background: rgba(28,18,8,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: white;
+      opacity: 0; transition: opacity .3s;
+    }
+    .g-item:hover .g-item-overlay { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
     .lightbox {
-      position: fixed;
-      z-index: 9999;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      justify-content: center;
-      align-items: center;
+      position: fixed; z-index: 9999; inset: 0;
+      background: rgba(0,0,0,.95);
+      display: none; justify-content: center; align-items: center;
+      flex-direction: column;
+    }
+    .lightbox.open { display: flex; }
+    .lb-wrap {
+      position: relative; max-width: 88%; max-height: 82vh;
+      display: flex; align-items: center; justify-content: center;
     }
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
-      animation: zoomIn .2s ease;
+      max-width: 100%; max-height: 80vh;
+      border: 2px solid var(--gold);
+      box-shadow: 0 20px 80px rgba(184,137,42,.3);
+      animation: zoomIn .3s ease; display: block;
     }
-    @keyframes zoomIn {
-      from {transform: scale(0.7); opacity: 0;}
-      to   {transform: scale(1); opacity: 1;}
+    .lb-caption {
+      margin-top: .8rem; color: rgba(255,255,255,.5);
+      font-size: .8rem; letter-spacing: .1em; text-align: center;
     }
+    .lb-counter { color: var(--gold); font-size: .72rem; letter-spacing: .2em; margin-top: .3rem; }
+    @keyframes zoomIn { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
     .lb-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 42px;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 1.2rem; color: white; cursor: pointer;
+      background: rgba(184,137,42,.3); border: 1px solid var(--gold);
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; user-select: none; z-index: 2;
     }
-    .lb-prev { left: 30px; }
-    .lb-next { right: 30px; }
+    .lb-btn:hover { background: var(--gold); color: var(--ink); transform: translateY(-50%) scale(1.1); }
+    .lb-prev { left: -70px; } .lb-next { right: -70px; }
     .lb-close {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 48px;
-      color: #fff;
-      cursor: pointer;
+      position: fixed; top: 18px; right: 24px;
+      font-size: 1.4rem; color: white; cursor: pointer;
+      background: rgba(139,58,26,.5); border: 1px solid var(--rust-l);
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .3s; z-index: 10;
     }
-  </style>
-
-
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      background: #f7f2ff;
-      color: #333;
+    .lb-close:hover { background: var(--rust); transform: rotate(90deg); }
+    .lb-zoom-controls { display: flex; gap: .5rem; margin-top: .8rem; }
+    .lb-zoom-btn {
+      width: 34px; height: 34px;
+      background: rgba(184,137,42,.2); border: 1px solid rgba(212,168,75,.3);
+      border-radius: 50%; cursor: pointer; color: var(--gold-ll);
+      font-size: 1rem; display: flex; align-items: center; justify-content: center;
+      transition: all .3s;
     }
+    .lb-zoom-btn:hover { background: var(--gold); color: var(--ink); }
 
-    header {
-      background: #6a0dad;
-      padding: 15px 30px;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
-
-    .hero {
-      background: url('https://statics.vinpearl.com/tranh-lang-sinh-2_1679156848.jpg') center/cover no-repeat;
-      height: 260px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.6),
-    0 4px 12px rgba(0,0,0,0.5),
-    0 8px 20px rgba(0,0,0,0.4);
-      font-size: 36px;
-      font-weight: bold;
-    }
-
-    .content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      color: #6a0dad;
-      border-left: 6px solid #6a0dad;
-      padding-left: 10px;
-    }
-
-    p {
-      line-height: 1.7;
-      margin: 15px 0;
-    }
-
-    section{padding:48px 0}
-    .grid{display:grid;gap:20px}
-    .cols-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.08);overflow:hidden}
-    .card img{width:100%;height:160px;object-fit:cover}
-    .card .body{padding:16px}
-    .muted{color:var(--muted)}
-
-    .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-
-
-
+    /* ── FOOTER ── */
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #6a0dad;
-      color: white;
-      margin-top: 50px;
+      background: var(--ink); color: var(--cream);
+      border-top: 3px solid var(--gold); padding: 3rem 0 2rem;
+    }
+    .footer-inner {
+      max-width: 1380px; margin: 0 auto; padding: 0 2.5rem;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+    }
+    footer strong { color: var(--gold-l); font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; }
+    footer p { color: rgba(255,255,255,.55); font-size: .85rem; line-height: 1.8; margin-top: .5rem; }
+    footer a { color: var(--gold-l); text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+    .footer-bottom {
+      max-width: 1380px; margin: 2rem auto 0; padding: 1.5rem 2.5rem 0;
+      border-top: 1px solid rgba(212,168,75,.15);
+      text-align: center; font-size: .72rem;
+      color: rgba(255,255,255,.3); letter-spacing: .05em;
     }
 
+    /* ── BACK TO TOP ── */
+    #backToTop {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 50px; height: 50px;
+      background: var(--gold); color: var(--ink);
+      border-radius: 50%; cursor: pointer; border: none;
+      font-size: 1.2rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 25px rgba(184,137,42,.5);
+      opacity: 0; visibility: hidden; transition: all .35s; z-index: 500;
+    }
+    #backToTop.show { opacity: 1; visibility: visible; }
+    #backToTop:hover { background: var(--ink); color: var(--gold); transform: translateY(-5px); }
 
-    .img-center {
-  text-align: center;
-  margin: 20px 0;
-}
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .8s, transform .8s; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .8s, transform .8s; }
+    .reveal-left.active { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .8s, transform .8s; }
+    .reveal-right.active { opacity: 1; transform: translateX(0); }
 
-.img-center img {
-  max-width: 80%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-
-.map-wrapper {
-  margin: 25px 0;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
-}
-#backToTop {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: white;
-  color: black;
-  padding: 12px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 22px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-}
-
-#backToTop.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-:root{
-  --muted:#666;
-}
-.gallery img{
-  transition: .4s ease;
-}
-
-.gallery img:hover{
-  transform: scale(1.06);
-  box-shadow: 0 10px 22px rgba(0,0,0,.25);
-}
-
-
-#backToTop:hover{
-  background:#6a0dad;
-  color:white;
-  transform: translateY(-4px);
-}
-
-/* hiệu ứng xuất hiện khi load */
-.fade-top{
-  opacity: 0;
-  transform: translateY(25px);
-  animation: fadeUp 0.9s ease forwards;
-}
-
-.delay-1{ animation-delay: .2s }
-.delay-2{ animation-delay: .4s }
-.delay-3{ animation-delay: .6s }
-
-@keyframes fadeUp{
-  to{
-    opacity:1;
-    transform: translateY(0);
-  }
-}
-
-/* hiệu ứng khi cuộn tới */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.reveal.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* biến thể trái – phải nếu cần */
-.reveal-left {
-  transform: translateX(-40px);
-}
-.reveal-right {
-  transform: translateX(40px);
-}
-.reveal-left.show,
-.reveal-right.show {
-  transform: translateX(0);
-}
-
-
-/* Ảnh bay từ trái */
-.reveal-img-left {
-  opacity: 0;
-  transform: translateX(-60px);
-  transition: all 0.9s ease;
-}
-
-.reveal-img-left.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-@media (max-width: 768px){
-
-  header{
-    flex-direction: column;
-    gap: 10px;
-    text-align: center;
-  }
-
-  nav a{
-    margin-left: 0;
-    margin: 0 10px;
-  }
-
-  .hero{
-    height: 180px;
-    font-size: 24px;
-    padding: 0 15px;
-    text-align: center;
-  }
-
-  .content{
-    margin: 25px auto;
-  }
-
-  h2{
-    font-size: 20px;
-  }
-
-  p, strong{
-    font-size: 15px;
-  }
-
-  .gallery img{
-    height: 140px;
-  }
-
-  .img-center img{
-    max-width: 100%;
-  }
-
-  .lb-btn{
-    font-size: 32px;
-  }
-
-  .lb-close{
-    font-size: 36px;
-  }
-}
-
-
+    /* ── RESPONSIVE ── */
+    @media(max-width: 900px) {
+      .history-layout, .art-layout { grid-template-columns: 1fr; }
+      .img-featured { position: static; }
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gallery-grid .g-item:first-child { grid-column: span 2; }
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .lb-prev { left: 8px; } .lb-next { right: 8px; }
+    }
+    @media(max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .g-item:first-child { grid-column: span 1; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+    }
   </style>
-
-  
 </head>
+
 <body>
+  <div class="topbar">✦ Trường THPT Đặng Huy Trứ✦</div>
 
-<header class="fade-top">
-  <h1>Làng nghề truyền thống Huế</h1>
-  <nav>
-    <a href="index.html">🏠Trang chủ</a>
-  </nav>
-</header>
-
-<section class="hero fade-top delay-1">
-  Làng nghề làm tranh Sình
-</section>
-
-<div class="content">
-
-  <h2 class="reveal reveal-left">Giới thiệu</h2>
-  <p class="reveal">
-    Tranh làng Sình được biết tới là một trong những nhân chứng sống có bề dày lịch sử lâu đời ở xứ kinh kỳ. Dù đã trải qua rất nhiều thăng trầm của thời gian, tranh làng Sình ngày nay vẫn còn tồn tại và được gìn giữ phát triển.
-  </p>
-  <p class="reveal">
-    Cùng với dòng tranh Đông Hồ, tranh Hàng Trống ở miền Bắc, tranh làng Sình xứ Huế cũng góp phần làm nên sự đa dạng và phong phú cho dòng tranh dân gian của nước ta. Trong chuyến du lịch Huế, nếu bỏ qua lịch trình khám phá làng nghề tranh dân gian làng Sình sẽ là một thiếu sót rất lớn.
-  </p>
-  <h2 class="reveal reveal-left">Vị Trí</h2>
-  <p class="reveal">
-    Làng Sình Huế có địa chỉ ở thôn Lại Ân, TP. Huế. Ngôi làng nằm ven sông Hương, liền kề ngã ba sông Hương hợp với sông Bồ.Ngôi làng này cách thành phố Huế 10km về phía Bắc.
-  </p>
-  <p class="reveal"> 
-    Sau khi đi qua cầu Đập Đá, bạn rẽ phải vào đường tỉnh 10A rồi chếch trái qua đường Nguyễn Sinh Cung. Đến được đường tỉnh 2, bạn rẽ trái và đi tiếp khoảng 3.3 km là tới làng Sình. Quãng đường này dài khoảng 10 km và mất gần 20 phút di chuyển. Trên đường đi, bạn sẽ có cơ hội chiêm ngưỡng cảnh sắc sông Hương thơ mộng và khám phá nét văn hóa độc đáo của làng Sình.
-  </p>
-
-
-<div class="map-wrapper">
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.0709474939804!2d107.57169968885496!3d16.5225155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a14b7c5a1bf7%3A0x141d79500cf93e34!2zTMOgbmcgU8Osbmg!5e0!3m2!1svi!2s!4v1765597860622!5m2!1svi!2s" 
-    width="100%" 
-    height="350" 
-    style="border:0; border-radius:10px;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
-</div>
-
-
-  <h2 class="reveal reveal-left">Lịch sử hình thành</h2>
-  <p class="reveal">
-   Làng Sình (hay còn có tên gọi Lại Ân) là một ngôi làng cổ nằm bên bờ sông Hương xinh đẹp. Đây là một trong những nơi duy nhất ở Việt Nam còn giữ được nghề làm tranh giấy mộc truyền thống. Làng Sình có lịch sử lâu đời, từng là trung tâm văn hóa của cố đô Huế và là điểm giao thương quan trọng. Tên gọi Sình có nhiều giả thuyết khác nhau. Theo nhiều người, tên gọi của làng có thể là dấu tích của người Chăm hoặc liên quan đến một thế võ xưa. Ngoài ra, nhiều người còn tin rằng đây là tên của một ngôi chợ nổi tiếng từng tồn tại trong làng.
-  </p>
-
-  <p class="reveal">
-    Theo truyền thuyết, nghề làm tranh dân gian làng Sình bắt nguồn từ ông Kỳ Hữu Hòa - một người đến định cư ở đây mang theo nghề của quê hương. Ngày nay, ở làng Sình chỉ còn một nhà duy nhất là ông Kỳ Hữu Phước - con cháu của ông Kỳ Hữu Hòa - vẫn tiếp tục nghề làm tranh cảnh mang đậm nét dân gian. Các nhà làm tranh khác thì chuyển sang làm tranh thờ cúng, loại tranh này chỉ dùng một lần rồi đốt đi. Dần dần, nơi đây trở thành một địa điểm tham quan lý thú cho những ai yêu thích văn hóa và nghệ thuật của Huế.
-  </p>
-
-  <div class="img-center reveal-img-left">
-  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-02-1700548381.jpg">
-</div>
-
-  <h2 class="reveal reveal-left">Chiêm ngưỡng tranh làng Sình nổi tiếng tại xứ Huế</h2>
-  <strong>Tranh làng Sình - Dòng tranh dân gian hơn 400 năm</strong>
-  <p class="reveal">
-    Làng Sình nổi tiếng với nghề làm tranh mộc bản cổ truyền mang đậm bản sắc văn hóa của xứ Huế. Tranh làng Sình có nguồn gốc từ thế kỷ 17, ban đầu chỉ dùng để thờ cúng, cầu mong một năm bình an, mùa màng bội thu. Thế nhưng qua nhiều đổi thay của lịch sử, tranh làng Sình đã phát triển thành một nét đẹp văn hóa đặc trưng của xứ Huế và được sử dụng trong nhiều dịp lễ, Tết, làm quà biếu, trang trí nhà cửa hay tham gia các lễ hội dân gian. Làng Sình Huế cũng là điểm đến hấp dẫn của du khách trong và ngoài nước mong muốn tìm hiểu về nghệ thuật và truyền thống của vùng đất cố đô.
-  </p>
-
- <div class="img-center reveal-img-left">
-  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-04-1700548381.jpg">
-</div>
-
-  <strong>Nghề làm tranh làng Sình tại Huế</strong>
-  <p class="reveal">
-   Nghề làm tranh làng Sình Huế là một nghề truyền thống có từ rất lâu đời và vẫn tồn tại đến tận ngày nay. Để tạo ra một bức tranh làng Sình, người nghệ nhân phải trải qua nhiều công đoạn khéo léo và tỉ mỉ. Đầu tiên, họ phải chọn gỗ mít, gỗ kền hoặc gỗ thị để khắc thành các khuôn mộc bản, mỗi khuôn tương ứng với một đề tài tranh. Sau đó, họ phải quét màu đen lên khuôn và dập lên giấy dó - một loại giấy trắng được làm từ bột gạo và vỏ cây điệp. Giấy dó có khổ 25x70cm có thể xén thành các khổ nhỏ hơn tùy theo kích thước tranh. Khi bản in đen đã khô, người nghệ nhân sẽ tô màu cho tranh bằng các màu được làm từ thiên nhiên như màu đỏ từ nước lá bàng, màu tím từ hạt cây mồng tơi, màu vàng từ lá đung và hoa hòe… Mỗi màu sắc trên tranh đều có ý nghĩa riêng nhằm thể hiện sự tôn kính và mong ước của người dân.
-  </p>
-
-<div class="img-center reveal-img-left">
-  <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-05-1700548381.jpg">
-</div>
-
-
-
-<h2>Hình ảnh</h2>
-
-  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr));">
-      <div class="gallery"><img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-06-1700548381.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://statics.vinpearl.com/tranh-lang-sinh-1_1679156776.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://static.vinwonders.com/production/lang-sinh-hue.jpg" class="lb-img"></div>
-      <div class="gallery"><img src="https://vietnamtourism.vn/imguploads/tourist/58Tranhlangsinh01.jpg" class="lb-img"></div>
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">🏺</div>
+        <div>
+          <div class="brand-text">Làng nghề truyền thống Huế</div>
+          <div class="brand-sub">Di sản · Thủ công · Văn hóa</div>
+        </div>
+      </a>
+      <a href="index.html" class="back-btn">Trang chủ</a>
     </div>
- 
+  </header>
 
-  <div class="lightbox" id="lightbox">
-    <span class="lb-close" onclick="closeLB()">×</span>
-    <span class="lb-btn lb-prev" onclick="changeImg(-1)">❮</span>
-    <img id="lb-img">
-    <span class="lb-btn lb-next" onclick="changeImg(1)">❯</span>
+  <div class="breadcrumb">
+    <div class="breadcrumb-inner">
+      <a href="index.html">Trang chủ</a>
+      <span>›</span>
+      <a href="index.html#lang-nghe">Các làng nghề</a>
+      <span>›</span>
+      <span style="color:var(--gold-ll);">Làng tranh dân gian Sình</span>
+    </div>
   </div>
 
-  <script>
-    let images = [...document.querySelectorAll(".lb-img")];
-    let lb = document.getElementById("lightbox");
-    let lbImg = document.getElementById("lb-img");
-    let index = 0;
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-border"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Làng nghề truyền thống · Thừa Thiên Huế</p>
+      <h1>Làng nghề làm <em>tranh Sình</em></h1>
+      <p class="hero-sub">Dòng tranh dân gian hơn 400 năm tuổi xứ kinh kỳ</p>
+    </div>
+    <div class="hero-scroll">cuộn xuống<span></span></div>
+  </section>
 
-    images.forEach((img, i) => {
-      img.addEventListener("click", () => {
-        index = i;
-        openLB();
-      });
+  <main>
+    <!-- GIỚI THIỆU + VỊ TRÍ -->
+    <section id="gioi-thieu">
+      <div class="container">
+
+        <div class="info-grid reveal">
+          <div class="info-card">
+            <span class="info-card-icon">📍</span>
+            <div class="info-card-title">Vị trí</div>
+            <p>Thôn Lại Ân, TP. Huế — ven sông Hương, liền kề ngã ba sông Hương hợp với sông Bồ. Cách thành phố Huế 10 km về phía Bắc.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">📅</span>
+            <div class="info-card-title">Lịch sử</div>
+            <p>Làng Sình (Lại Ân) là làng cổ với lịch sử lâu đời, từng là trung tâm văn hóa của cố đô Huế. Nghề làm tranh gắn với truyền thuyết ông Kỳ Hữu Hòa.</p>
+          </div>
+          <div class="info-card">
+            <span class="info-card-icon">🎨</span>
+            <div class="info-card-title">Đặc trưng</div>
+            <p>Tranh mộc bản cổ truyền, màu sắc làm từ nguyên liệu thiên nhiên. Cùng với tranh Đông Hồ, tranh Hàng Trống, góp phần làm phong phú dòng tranh dân gian Việt Nam.</p>
+          </div>
+        </div>
+
+        <div class="divider reveal"><span class="divider-icon">◆ ◆ ◆</span></div>
+
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Giới thiệu ✦</span>
+          <h2 class="sec-title">Nhân chứng sống của <em>tranh dân gian</em> xứ Huế</h2>
+        </div>
+
+        <p class="intro-lead reveal">
+          Tranh làng Sình được biết tới là một trong những nhân chứng sống có bề dày lịch sử lâu đời ở xứ kinh kỳ. Dù đã trải qua rất nhiều thăng trầm của thời gian, tranh làng Sình ngày nay vẫn còn tồn tại và được gìn giữ phát triển.
+        </p>
+
+        <p class="muted reveal">Cùng với dòng tranh Đông Hồ, tranh Hàng Trống ở miền Bắc, tranh làng Sình xứ Huế cũng góp phần làm nên sự đa dạng và phong phú cho dòng tranh dân gian của nước ta. Trong chuyến du lịch Huế, nếu bỏ qua lịch trình khám phá làng nghề tranh dân gian làng Sình sẽ là một thiếu sót rất lớn.</p>
+
+        <div class="sec-header reveal-left" style="margin-bottom:1.5rem; margin-top:3rem;">
+          <span class="sec-eyebrow">✦ Vị trí ✦</span>
+          <h2 class="sec-title">Tìm đến <em>làng Sình</em></h2>
+        </div>
+        <p class="muted reveal">Làng Sình Huế có địa chỉ ở thôn Lại Ân, TP. Huế. Ngôi làng nằm ven sông Hương, liền kề ngã ba sông Hương hợp với sông Bồ. Ngôi làng này cách thành phố Huế 10 km về phía Bắc.</p>
+        <p class="muted reveal">Sau khi đi qua cầu Đập Đá, bạn rẽ phải vào đường tỉnh 10A rồi chếch trái qua đường Nguyễn Sinh Cung. Đến được đường tỉnh 2, bạn rẽ trái và đi tiếp khoảng 3.3 km là tới làng Sình. Quãng đường này dài khoảng 10 km và mất gần 20 phút di chuyển. Trên đường đi, bạn sẽ có cơ hội chiêm ngưỡng cảnh sắc sông Hương thơ mộng và khám phá nét văn hóa độc đáo của làng Sình.</p>
+
+        <div class="map-wrapper reveal">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.0709474939804!2d107.57169968885496!3d16.5225155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3141a14b7c5a1bf7%3A0x141d79500cf93e34!2zTMOgbmcgU8Osbmg!5e0!3m2!1svi!2s!4v1765597860622!5m2!1svi!2s"
+            width="100%" height="380" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- LỊCH SỬ -->
+    <section id="lich-su">
+      <div class="container">
+        <div class="history-layout">
+          <div class="history-text">
+            <div class="sec-header reveal-left">
+              <span class="sec-eyebrow">✦ Lịch sử hình thành ✦</span>
+              <h2 class="sec-title">Làng cổ hơn <em>bốn thế kỷ</em> bên sông Hương</h2>
+            </div>
+
+            <p class="muted reveal">
+              Làng Sình (hay còn có tên gọi Lại Ân) là một ngôi làng cổ nằm bên bờ sông Hương xinh đẹp. Đây là một trong những nơi duy nhất ở Việt Nam còn giữ được nghề làm tranh giấy mộc truyền thống. Làng Sình có lịch sử lâu đời, từng là trung tâm văn hóa của cố đô Huế và là điểm giao thương quan trọng.
+            </p>
+            <p class="muted reveal">
+              Tên gọi Sình có nhiều giả thuyết khác nhau. Theo nhiều người, tên gọi của làng có thể là dấu tích của người Chăm hoặc liên quan đến một thế võ xưa. Ngoài ra, nhiều người còn tin rằng đây là tên của một ngôi chợ nổi tiếng từng tồn tại trong làng.
+            </p>
+            <p class="muted reveal">
+              Theo truyền thuyết, nghề làm tranh dân gian làng Sình bắt nguồn từ ông Kỳ Hữu Hòa — một người đến định cư ở đây mang theo nghề của quê hương. Ngày nay, ở làng Sình chỉ còn một nhà duy nhất là ông Kỳ Hữu Phước — con cháu của ông Kỳ Hữu Hòa — vẫn tiếp tục nghề làm tranh cảnh mang đậm nét dân gian. Dần dần, nơi đây trở thành một địa điểm tham quan lý thú cho những ai yêu thích văn hóa và nghệ thuật của Huế.
+            </p>
+
+            <div class="highlight-box reveal">
+              <p>"Đây là một trong những nơi duy nhất ở Việt Nam còn giữ được nghề làm tranh giấy mộc truyền thống — niềm tự hào của văn hóa dân gian xứ kinh kỳ."</p>
+            </div>
+          </div>
+
+          <div class="img-featured reveal-right">
+            <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-02-1700548381.jpg" alt="Tranh làng Sình Huế">
+            <div class="img-caption">Không gian làm tranh dân gian làng Sình</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHIÊM NGƯỠNG & NGHỀ TRANH -->
+    <section id="nghe-tranh">
+      <div class="container">
+        <div class="art-layout">
+          <div>
+            <div class="sec-header reveal-left">
+              <span class="sec-eyebrow">✦ Dòng tranh dân gian hơn 400 năm ✦</span>
+              <h2 class="sec-title">Chiêm ngưỡng <em>tranh làng Sình</em></h2>
+            </div>
+
+            <p class="muted reveal">
+              Làng Sình nổi tiếng với nghề làm tranh mộc bản cổ truyền mang đậm bản sắc văn hóa của xứ Huế. Tranh làng Sình có nguồn gốc từ thế kỷ 17, ban đầu chỉ dùng để thờ cúng, cầu mong một năm bình an, mùa màng bội thu.
+            </p>
+            <p class="muted reveal">
+              Thế nhưng qua nhiều đổi thay của lịch sử, tranh làng Sình đã phát triển thành một nét đẹp văn hóa đặc trưng của xứ Huế và được sử dụng trong nhiều dịp lễ, Tết, làm quà biếu, trang trí nhà cửa hay tham gia các lễ hội dân gian. Làng Sình Huế cũng là điểm đến hấp dẫn của du khách trong và ngoài nước mong muốn tìm hiểu về nghệ thuật và truyền thống của vùng đất cố đô.
+            </p>
+
+            <div class="divider reveal"><span class="divider-icon">◆</span></div>
+
+            <div class="art-sub-title reveal-left">Nghề làm tranh làng Sình tại Huế</div>
+            <p class="muted reveal">
+              Nghề làm tranh làng Sình Huế là một nghề truyền thống có từ rất lâu đời và vẫn tồn tại đến tận ngày nay. Để tạo ra một bức tranh làng Sình, người nghệ nhân phải trải qua nhiều công đoạn khéo léo và tỉ mỉ.
+            </p>
+            <p class="muted reveal">
+              Đầu tiên, họ phải chọn gỗ mít, gỗ kền hoặc gỗ thị để khắc thành các khuôn mộc bản, mỗi khuôn tương ứng với một đề tài tranh. Sau đó, họ quét màu đen lên khuôn và dập lên giấy dó — một loại giấy trắng được làm từ bột gạo và vỏ cây điệp.
+            </p>
+            <p class="muted reveal">
+              Khi bản in đen đã khô, người nghệ nhân sẽ tô màu cho tranh bằng các màu được làm từ thiên nhiên như màu đỏ từ nước lá bàng, màu tím từ hạt cây mồng tơi, màu vàng từ lá đung và hoa hòe… Mỗi màu sắc trên tranh đều có ý nghĩa riêng nhằm thể hiện sự tôn kính và mong ước của người dân.
+            </p>
+          </div>
+
+          <div class="reveal-right">
+            <div class="img-banner">
+              <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-04-1700548381.jpg" alt="Tranh làng Sình dân gian">
+              <div class="img-banner-cap">Những bức tranh dân gian làng Sình rực rỡ sắc màu</div>
+            </div>
+            <div class="img-banner" style="margin-top: 3px;">
+              <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-05-1700548381.jpg" alt="Nghệ nhân làm tranh làng Sình">
+              <div class="img-banner-cap">Nghệ nhân tỉ mỉ tô màu từ thiên nhiên lên từng bức tranh</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HÌNH ẢNH -->
+    <section id="hinh-anh">
+      <div class="container">
+        <div class="sec-header reveal-left">
+          <span class="sec-eyebrow">✦ Hình ảnh ✦</span>
+          <h2 class="sec-title" style="color:var(--cream-d);">Thư viện <em style="color:var(--gold-l);">hình ảnh</em></h2>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <div class="g-item">
+            <img src="https://mia.vn/media/uploads/blog-du-lich/tranh-lang-sinh-co-do-hue-06-1700548381.jpg" alt="Tranh làng Sình Huế" class="lb-img" data-caption="Tranh làng Sình — nét đẹp dân gian xứ Huế">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://statics.vinpearl.com/tranh-lang-sinh-1_1679156776.jpg" alt="Tranh dân gian làng Sình" class="lb-img" data-caption="Đa dạng đề tài tranh dân gian làng Sình">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://static.vinwonders.com/production/lang-sinh-hue.jpg" alt="Làng Sình Huế" class="lb-img" data-caption="Không gian làng nghề tranh Sình bên sông Hương">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+          <div class="g-item">
+            <img src="https://vietnamtourism.vn/imguploads/tourist/58Tranhlangsinh01.jpg" alt="Tranh làng Sình truyền thống" class="lb-img" data-caption="Tranh làng Sình — di sản văn hóa phi vật thể">
+            <div class="g-item-overlay">🔍</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <span class="lb-close" id="lbClose">×</span>
+    <div class="lb-wrap">
+      <span class="lb-btn lb-prev" id="lbPrev">❮</span>
+      <img id="lb-img-el" alt="" style="transform-origin:center center;">
+      <span class="lb-btn lb-next" id="lbNext">❯</span>
+    </div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-counter" id="lbCounter"></div>
+    <div class="lb-zoom-controls">
+      <button class="lb-zoom-btn" id="lbZoomOut">−</button>
+      <button class="lb-zoom-btn" id="lbZoomReset">⊙</button>
+      <button class="lb-zoom-btn" id="lbZoomIn">+</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>🏺 Làng nghề truyền thống Huế</strong>
+        <p>Trang tư liệu giáo dục địa phương về các làng nghề truyền thống của tỉnh Thừa Thiên Huế, biên soạn bởi THPT Đặng Huy Trứ.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p>Gmail: duynguyen.180109@gmail.com</p>
+        <p>SĐT: 0349229611</p>
+      </div>
+      <div>
+        <strong>Liên kết hữu ích</strong>
+        <p><a href="https://hue.gov.vn" target="_blank">hue.gov.vn</a></p>
+        <p><a href="https://www.huesmiletravel.com" target="_blank">huesmiletravel.com</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Trường THPT Đặng Huy Trứ.
+    </div>
+  </footer>
+
+  <button id="backToTop" title="Lên đầu trang">↑</button>
+
+  <script>
+    const topBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { topBtn.classList.toggle('show', window.scrollY > 300); });
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('active'); revObs.unobserve(e.target); } });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // Lightbox
+    const lbItems = document.querySelectorAll('.lb-img');
+    const lb = document.getElementById('lightbox');
+    const lbImgEl = document.getElementById('lb-img-el');
+    const lbCap = document.getElementById('lbCaption');
+    const lbCount = document.getElementById('lbCounter');
+    let lbIdx = 0, lbZoom = 1;
+    const lbData = [];
+
+    lbItems.forEach((img, i) => {
+      lbData.push({ src: img.src, cap: img.getAttribute('data-caption') || img.alt || '' });
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => { lbIdx = i; openLB(); });
     });
 
     function openLB() {
-      lb.style.display = "flex";
-      lbImg.src = images[index].src;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
+      lb.classList.add('open'); updateLB();
+      document.body.style.overflow = 'hidden';
     }
-
-    function closeLB() {
-      lb.style.display = "none";
+    function closeLB() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function updateLB() {
+      lbImgEl.src = lbData[lbIdx].src;
+      lbCap.textContent = lbData[lbIdx].cap;
+      lbCount.textContent = `${lbIdx + 1} / ${lbData.length}`;
+      lbZoom = 1; lbImgEl.style.transform = 'scale(1)';
     }
+    function changeLB(dir) { lbIdx = (lbIdx + dir + lbData.length) % lbData.length; updateLB(); }
 
-    function changeImg(dir) {
-      index = (index + dir + images.length) % images.length;
-      lbImg.src = images[index].src;
-    }
+    document.getElementById('lbClose').addEventListener('click', closeLB);
+    document.getElementById('lbPrev').addEventListener('click', () => changeLB(-1));
+    document.getElementById('lbNext').addEventListener('click', () => changeLB(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
 
-    // bấm nền -> tắt
-    lb.addEventListener("click", (e) => {
-      if (e.target === lb) closeLB();
+    document.getElementById('lbZoomIn').addEventListener('click', () => { lbZoom = Math.min(lbZoom + .25, 3); lbImgEl.style.transform = `scale(${lbZoom})`; });
+    document.getElementById('lbZoomOut').addEventListener('click', () => { lbZoom = Math.max(lbZoom - .25, .5); lbImgEl.style.transform = `scale(${lbZoom})`; });
+    document.getElementById('lbZoomReset').addEventListener('click', () => { lbZoom = 1; lbImgEl.style.transform = 'scale(1)'; });
+    lbImgEl.addEventListener('wheel', e => {
+      e.preventDefault();
+      lbZoom = e.deltaY < 0 ? Math.min(lbZoom + .15, 3) : Math.max(lbZoom - .15, .5);
+      lbImgEl.style.transform = `scale(${lbZoom})`;
+    });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLB();
+      if (e.key === 'ArrowLeft') changeLB(-1);
+      if (e.key === 'ArrowRight') changeLB(1);
     });
   </script>
-
-
-</div>
-
-<footer>
-  © 2025 – Làng nghề làm tranh Sình
-</footer>
-<div id="backToTop">↑</div>
-<script>
-const btn = document.getElementById("backToTop");
-
-// Hiện nút khi cuộn xuống 300px
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    btn.classList.add("show");
-  } else {
-    btn.classList.remove("show");
-  }
-});
-
-// Cuộn lên đầu trang
-btn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});
-</script>
-
-
-<script>
-const revealElements = document.querySelectorAll(
-  '.reveal, .reveal-img-left'
-);
-
-let ticking = false;
-
-function revealOnScroll(){
-  const windowHeight = window.innerHeight;
-
-  revealElements.forEach(el => {
-    if(el.classList.contains('show')) return;
-    const top = el.getBoundingClientRect().top;
-    if(top < windowHeight - 80){
-      el.classList.add('show');
-    }
-  });
-
-  ticking = false;
-}
-
-window.addEventListener('scroll', () => {
-  if(!ticking){
-    requestAnimationFrame(revealOnScroll);
-    ticking = true;
-  }
-});
-
-window.addEventListener('load', revealOnScroll);
-</script>
-
-
-
-
-
 </body>
 </html>
